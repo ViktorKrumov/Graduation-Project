@@ -1,0 +1,51 @@
+header {
+    background-color: #333;
+    padding: 10px 0;
+}
+
+.container-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto; /* Center the navbar */
+    height: 60px; /* Adjust the navbar height */
+    padding-right: 20px; /* Add padding to create a gap between logo and links */
+}
+
+/* Style the navigation links */
+.nav-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+}
+
+.nav-item {
+    margin-right: 20px;
+}
+
+/* Style the links */
+.nav-item a {
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    font-size: 16px; /* Adjust link font size */
+}
+
+.nav-item a:hover {
+    background-color: #555;
+}
+
+/* Style the active link */
+.active {
+    background-color: #555;
+}
+
+/* Style the logo image */
+.logo {
+    max-width: 250px; /* Adjust the logo size */
+    height: auto;
+    margin-bottom: 20px;
+   
+}
