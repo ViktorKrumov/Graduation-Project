@@ -1,33 +1,33 @@
-/* Styling the header */
+
 header {
-    background: linear-gradient(to right, #000000, #2164bd); /* Gradient background from baby blue to electric green */
-    color: #fff; /* Text color */
+    background: linear-gradient(to right, #000000, #2164bd);
+    color: #fff;
     padding: 10px 0;
   }
   
-  /* Styling the navigation bar */
+
   .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 60px; /* Fixed height for the navbar */
+    height: 60px; 
   }
   
-  /* Styling the logo container */
+
   .logoContainer {
-    /* You can add any additional styling for the logo container here */
-    overflow: hidden; /* Hide any overflowing content */
+   
+    overflow: hidden; 
   }
   
-  /* Styling the logo image */
+ 
   .logo {
-    max-width: 300px; /* Set the maximum width for the logo */
-    max-height: 300px; /* Set the maximum height for the logo */
+    max-width: 300px; 
+    max-height: 300px;
     margin-left: 100px;
     margin-bottom: 30px;
   }
   
-  /* Styling the navigation menu */
+  
   .nav-list {
     list-style: none;
     padding: 0;
@@ -42,30 +42,28 @@ header {
   .listItem {
     text-decoration: none;
     color: #fff;
-    padding: 10px 20px; /* Adjust this for spacing */
-    background: transparent; /* Make buttons transparent initially */
+    padding: 10px 20px;
+    background: transparent;
     border-radius: 5px;
     transition: background-color 0.3s;
-    text-shadow: 0 0 10px #00f; /* Glow effect with electric blue color */
-    font-size: 18px; /* Adjust the font size to make letters bigger */
+    text-shadow: 0 0 10px #00f; 
+    font-size: 18px; 
     
   }
   
-  /* Styling the active link */
+  
   .listItem.active {
-    background-color: rgba(255, 255, 255, 0); /* Electric blue for active link */
-    color: #00eeff; /* Text color for the active link */
+    background-color: rgba(255, 255, 255, 0); 
+    color: #00eeff; 
     font-size: larger;
   }
   
-  /* Hover effect */
+  
   .listItem:hover {
-    background-color: #0099ff; /* Change this to your desired hover background color */
+    background-color: #0099ff; 
   }
 
-/* Styling the button with the "LoginBtn" class */
-/* Styling the button with the "LoginBtn" class */
-/* Styling the button with the "LoginBtn" class */
+
 .LoginBtn {
     width: 150px;
     height: 50px;
