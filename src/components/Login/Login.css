@@ -1,19 +1,72 @@
+/* Add some basic styles for the form */
 .login-form-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(252, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 999;
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: rgba(0, 0, 0, 0.6);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	z-index: 1000;
   }
   
   .login-form {
-    background: #06be62;
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+	background: #fff;
+	padding: 20px;
+	border-radius: 8px;
+	box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+	width: 300px;
+	transition: all 0.3s ease-in-out;
+	position: relative;
   }
+  
+  .close-button {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	background: none;
+	border: none;
+	font-size: 20px;
+	cursor: pointer;
+  }
+  
+  form {
+	display: flex;
+	flex-direction: column;
+  }
+  
+  label {
+	margin: 10px 0;
+	font-size: 16px;
+  }
+  
+  input {
+	padding: 8px;
+	font-size: 16px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+  }
+  
+  .submit-button {
+	margin: 10px 0;
+	background: #007bff;
+	color: #fff;
+	border: none;
+	padding: 10px;
+	font-size: 16px;
+	border-radius: 4px;
+	cursor: pointer;
+	transition: background 0.3s ease-in-out;
+  }
+  
+  .submit-button:hover {
+	background: #0056b3;
+  }
+  
+  /* Add styles to switch between login and register forms */
+  .register-form {
+	height: 320px; /* Adjust the height if needed */
+  }
+  

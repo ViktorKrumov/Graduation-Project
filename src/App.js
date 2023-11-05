@@ -1,9 +1,13 @@
 import React, { useState } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import Home from './components/HomePage/Home';
-import About from './components/AboutPage/About';
+import Trendy from './components/TrendyPage/Trendy';
+import Store from './components/StorePage/Store';
 import NavBar from './components/NavBarPage/NavBar';
 import Login from './components/Login/Login';
+import Footer from './components/Footer/FooterF';
+
+
 
 const App = () => {
   const [isLoginFormVisible, setIsLoginFormVisible] = useState(false);
@@ -21,9 +25,11 @@ const App = () => {
       <NavBar toggleLoginForm={toggleLoginForm} />
       <Switch>
         <Route exact path="/" component={Home} />
-        <Route path="/about" component={About} />
+        <Route path="/trendy" component={Trendy} />
+        <Route path="/store" component={Store} />
       </Switch>
       {isLoginFormVisible && <Login closeLoginForm={closeLoginForm} />}
+      <Footer/>
     </>
   );
 }

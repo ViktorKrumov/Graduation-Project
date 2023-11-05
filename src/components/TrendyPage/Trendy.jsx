@@ -1,11 +1,11 @@
 import React from 'react';
 
-const About =() => {
+const Trendy =() => {
     return(
         <>
-        <h1>About page</h1>
+        <h1>Trendy page</h1>
         </>
     )
 
 }
-export default About
+export default Trendy
