@@ -1,0 +1,248 @@
+
+header {
+    background: linear-gradient(to right, #000000, #2164bd);
+    color: #fff;
+    padding: 10px 0;
+  }
+  
+
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 60px; 
+  }
+  
+
+  .logoContainer {
+   
+    overflow: hidden; 
+  }
+  
+ 
+  .logo {
+    max-width: 300px; 
+    max-height: 300px;
+    margin-left: 100px;
+    margin-bottom: 30px;
+  }
+  
+  
+  .nav-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: space-around;
+  }
+  
+  .nav-list li {
+    margin: 0;
+  }
+  
+  .listItem {
+    text-decoration: none;
+    color: #fff;
+    padding: 10px 20px;
+    background: transparent;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    text-shadow: 0 0 10px #00f; 
+    font-size: 18px; 
+    
+  }
+  
+  
+  .listItem.active {
+    background-color: rgba(255, 255, 255, 0); 
+    color: #00eeff; 
+    font-size: larger;
+  }
+  
+  
+  .listItem:hover {
+    background-color: #0099ff; 
+  }
+
+
+.LoginBtn {
+    width: 150px;
+    height: 50px;
+    background-color: rgb(0, 0, 0);
+    margin-right: 20px;
+    color: #00e1ff;
+    position: relative;
+    overflow: hidden;
+    font-size: 14px;
+    letter-spacing: 1px;
+    font-weight: 500;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 3px;
+  }
+  
+  .LoginBtn:before,
+  .LoginBtn:after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background-color: #44d8a4;
+    transition: all 0.3s cubic-bezier(0.35, 0.1, 0.25, 1);
+  }
+  
+  .LoginBtn:before {
+    right: 0;
+    top: 0;
+    transition: all 0.5s cubic-bezier(0.35, 0.1, 0.25, 1);
+  }
+  
+  .LoginBtn:after {
+    left: 0;
+    bottom: 0;
+  }
+  
+  .LoginBtn span {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    margin: 0;
+    padding: 0;
+    z-index: 1;
+  }
+  
+  .LoginBtn span:before,
+  .LoginBtn span:after {
+    content: "";
+    position: absolute;
+    width: 2px;
+    height: 0;
+    background-color: #44d8a4;
+    transition: all 0.3s cubic-bezier(0.35, 0.1, 0.25, 1);
+  }
+  
+  .LoginBtn span:before {
+    right: 0;
+    top: 0;
+    transition: all 0.5s cubic-bezier(0.35, 0.1, 0.25, 1);
+  }
+  
+  .LoginBtn span:after {
+    left: 0;
+    bottom: 0;
+  }
+  
+  .LoginBtn p {
+    
+    transition: all 0.4s cubic-bezier(0.35, 0.1, 0.25, 1);
+    position: absolute;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .LoginBtn p:before,
+  .LoginBtn p:after {
+    position: absolute;
+    width: 100%;
+    transition: all 0.4s cubic-bezier(0.35, 0.1, 0.25, 1);
+    z-index: 1;
+    left: 0;
+  }
+  
+  .LoginBtn p:before {
+    content: "Login";
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  
+  .LoginBtn p:after {
+    content: "Register";
+    top: 150%;
+    color: #44d8a4;
+  }
+  
+  .LoginBtn:hover:before,
+  .LoginBtn:hover:after {
+    width: 100%;
+  }
+  
+  .LoginBtn:hover span {
+    z-index: 1;
+  }
+  
+  .LoginBtn:hover span:before,
+  .LoginBtn:hover span:after {
+    height: 100%;
+  }
+  
+  .LoginBtn:hover p:before {
+    top: -50%;
+    transform: rotate(5deg);
+  }
+  
+  .LoginBtn:hover p:after {
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  
+  .LoginBtn.start {
+    background-color: #44d8a4;
+    box-shadow: 0px 5px 10px -10px rgba(0, 0, 0, 0.2);
+    transition: all 0.2s ease;
+  }
+  
+  .LoginBtn.start p:before {
+    top: -50%;
+    transform: rotate(5deg);
+  }
+  
+  .LoginBtn.start p:after {
+    color: rgb(0, 0, 0);
+    transition: all 0s ease;
+    content: "Starting";
+    top: 50%;
+    transform: translateY(-50%);
+    animation: start 0.3s ease;
+    animation-fill-mode: forwards;
+  }
+  
+  @keyframes start {
+    from {
+      top: -50%;
+    }
+  }
+  
+  .LoginBtn.start:hover:before,
+  .LoginBtn.start:hover:after {
+    display: none;
+  }
+  
+  .LoginBtn.start:hover span {
+    display: none;
+  }
+  
+  .LoginBtn:active {
+    outline: none;
+    border: none;
+  }
+  
+  .LoginBtn:focus {
+    outline: 0;
+  }
+  
+  .listItem, .LoginBtn {
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0 10px; /* Adjust the margin as needed */
+  }
+  
+  
+
+  
+  
