@@ -1,12 +1,11 @@
 import React from 'react';
 import './FooterF.css';
-import logo from 'D:/Diplomna/myapp/src/Images/TechnoS-removebg-preview.png';
 
 const Footer = () => {
   return (
     <footer className="footer">
       <div className="footer__addr">
-        <h1 className="footer__logo">TECHNISHACK</h1>
+        <h1 className="footer__logo">TECHNOSHACK</h1>
         
         <h2>Contact</h2>
         

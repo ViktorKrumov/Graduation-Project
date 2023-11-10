@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import logo from 'D:/Diplomna/myapp/src/Images/TechnoS-removebg-preview.png';
 import './NavBar.css';
 import './loginbutton.css';
+
+
+const logo = 'https://github.com/ViktorKrumov/Images-Graduation-Project/raw/main/TechnoS-removebg-preview.png';
 
 const NavBar = ({ toggleLoginForm }) => {
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);

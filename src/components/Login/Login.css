@@ -1,4 +1,4 @@
-/* Add some basic styles for the form */
+
 .login-form-overlay {
 	position: fixed;
 	top: 0;
@@ -65,8 +65,8 @@
 	background: #0056b3;
   }
   
-  /* Add styles to switch between login and register forms */
+ 
   .register-form {
-	height: 320px; /* Adjust the height if needed */
+	height: 320px; 
   }
   
