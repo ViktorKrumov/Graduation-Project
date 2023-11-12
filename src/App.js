@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import Home from './components/HomePage/Home';
 import Trendy from './components/TrendyPage/Trendy';
 import Store from './components/StorePage/Store';
@@ -23,11 +23,11 @@ const App = () => {
   return (
     <>
       <NavBar toggleLoginForm={toggleLoginForm} />
-      <Switch>
-        <Route exact path="/" component={Home} />
-        <Route path="/trendy" component={Trendy} />
-        <Route path="/store" component={Store} />
-      </Switch>
+      <Routes>
+        <Route exact path="/" element={<Home/>} />
+        <Route path="/trendy" element={<Trendy/>} />
+        <Route path="/store" element={<Store/>} />
+      </Routes>
       {isLoginFormVisible && <Login closeLoginForm={closeLoginForm} />}
       <Footer/>
     </>

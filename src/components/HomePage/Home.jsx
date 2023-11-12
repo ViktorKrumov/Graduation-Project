@@ -1,7 +1,31 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './Home.css';
 
 const Home = () => {
+  const [computers, setComputers] = useState([]);
+
+  useEffect(() => {
+    
+    fetch('https://gist.githubusercontent.com/ViktorKrumov/f29035d526ddc0c4f74d1ac18bd9e283/raw')
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then(data => {
+        console.log('Fetched data:', data);
+        if (data && data.computers && Array.isArray(data.computers)) {
+          setComputers(data.computers);
+        } else {
+          throw new Error('Fetched data is not in the expected format');
+        }
+      })
+      .catch(error => {
+        console.error('Error fetching or processing data:', error);
+      });
+  }, []);
+
   return (
     <div className="home-page">
       <header>
@@ -9,25 +33,19 @@ const Home = () => {
         <p>Your One-Stop Shop for the Latest in Technology</p>
       </header>
       <section className="featured-products">
-        <h2>Featured Products</h2>
-        <div className="product-card">
-          <img src="product1.jpg" alt="Product 1" />
-          <h3>Smartphone XYZ</h3>
-          <p>The latest smartphone with amazing features.</p>
-          <button>Buy Now</button>
-        </div>
-        <div className="product-card">
-          <img src="product2.jpg" alt="Product 2" />
-          <h3>Laptop ABC</h3>
-          <p>Powerful and stylish laptop for your needs.</p>
-          <button>Buy Now</button>
-        </div>
-        <div className="product-card">
-          <img src="product3.jpg" alt="Product 3" />
-          <h3>Smart Watch 123</h3>
-          <p>Stay connected with this smartwatch.</p>
-          <button>Buy Now</button>
-        </div>
+        <h2>Featured Computers</h2>
+        {computers.map(computer => (
+          <div className="product-card" key={computer.id}>
+            <img src={computer.photo_url} alt={computer.name} />
+            <h3>{computer.name}</h3>
+            <p>Processor: {computer.processor}</p>
+            <p>Memory: {computer.memory}</p>
+            <p>Storage: {computer.storage}</p>
+            <p>Graphics Card: {computer.graphics_card}</p>
+            <p>Operating System: {computer.operating_system}</p>
+            <button>Buy Now</button>
+          </div>
+        ))}
       </section>
       <section className="about-us">
         <h2>About Us</h2>
