@@ -3,9 +3,10 @@ import { NavLink } from 'react-router-dom';
 import './NavBar.css';
 import './loginbutton.css';
 
+
 const logo = 'https://github.com/ViktorKrumov/Images-Graduation-Project/raw/main/TechnoS-removebg-preview.png';
 
-const NavBar = ({ toggleLoginForm, isLoggedIn, handleLogout }) => {
+const NavBar = ({ toggleLoginForm }) => {
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const handleMobileMenuToggle = () => {
@@ -27,7 +28,7 @@ const NavBar = ({ toggleLoginForm, isLoggedIn, handleLogout }) => {
           <div className="bar"></div>
           <div className="bar"></div>
         </div>
-
+        
         <ul className={`nav-list ${isMobileMenuOpen ? 'mobile-open' : ''}`}>
           <li>
             <NavLink exact to="/" className="listItem" activeClassName="active" onClick={closeMobileMenu}>
@@ -50,15 +51,11 @@ const NavBar = ({ toggleLoginForm, isLoggedIn, handleLogout }) => {
             </NavLink>
           </li>
           <li>
-            {isLoggedIn ? (
-              <NavLink to="/profile" className="ProfileBtn">
-              Profile
-            </NavLink>
-            ) : (
-              <button className="LoginBtn" onClick={toggleLoginForm}>
-                Login/Register
-              </button>
-            )}
+            <button className="LoginBtn" onClick={toggleLoginForm}>
+              Login/Register
+            </button>
+            
+            
           </li>
         </ul>
       </nav>
