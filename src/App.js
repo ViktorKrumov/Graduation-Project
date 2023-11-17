@@ -6,10 +6,10 @@ import Store from './components/StorePage/Store';
 import NavBar from './components/NavBarPage/NavBar';
 import Login from './components/Login/Login';
 import Footer from './components/Footer/FooterF';
-
-
+// import Profile from './components/Profile/Profile';
 
 const App = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isLoginFormVisible, setIsLoginFormVisible] = useState(false);
 
   const toggleLoginForm = () => {
@@ -20,18 +20,34 @@ const App = () => {
     setIsLoginFormVisible(false);
   };
 
+  const handleLogin = () => {
+  
+    setIsLoggedIn(true);
+    closeLoginForm();
+  };
+
+  const handleLogout = () => {
+    
+    setIsLoggedIn(false);
+  };
+
   return (
     <>
-      <NavBar toggleLoginForm={toggleLoginForm} />
+      <NavBar
+        toggleLoginForm={toggleLoginForm}
+        isLoggedIn={isLoggedIn}
+        handleLogout={handleLogout}
+      />
       <Routes>
-        <Route exact path="/" element={<Home/>} />
-        <Route path="/trendy" element={<Trendy/>} />
-        <Route path="/store" element={<Store/>} />
+        <Route exact path="/" element={<Home />} />
+        <Route path="/trendy" element={<Trendy />} />
+        <Route path="/store" element={<Store />} />
+        {/* <Route path="/profile" element={<Profile />} /> */}
       </Routes>
-      {isLoginFormVisible && <Login closeLoginForm={closeLoginForm} />}
-      <Footer/>
+      {isLoginFormVisible && <Login closeLoginForm={closeLoginForm} handleLogin={handleLogin} />}
+      <Footer />
     </>
   );
-}
+};
 
 export default App;
