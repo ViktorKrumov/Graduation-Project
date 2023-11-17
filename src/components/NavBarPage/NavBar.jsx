@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import logo from 'D:/Diplomna/myapp/src/Images/TechnoS-removebg-preview.png';
 import './NavBar.css';
 import './loginbutton.css';
 
-const NavBar = ({ toggleLoginForm }) => {
+const logo = 'https://github.com/ViktorKrumov/Images-Graduation-Project/raw/main/TechnoS-removebg-preview.png';
+
+const NavBar = ({ toggleLoginForm, isLoggedIn, handleLogout }) => {
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const handleMobileMenuToggle = () => {
@@ -26,7 +27,7 @@ const NavBar = ({ toggleLoginForm }) => {
           <div className="bar"></div>
           <div className="bar"></div>
         </div>
-        
+
         <ul className={`nav-list ${isMobileMenuOpen ? 'mobile-open' : ''}`}>
           <li>
             <NavLink exact to="/" className="listItem" activeClassName="active" onClick={closeMobileMenu}>
@@ -49,11 +50,15 @@ const NavBar = ({ toggleLoginForm }) => {
             </NavLink>
           </li>
           <li>
-            <button className="LoginBtn" onClick={toggleLoginForm}>
-              Login/Register
-            </button>
-            
-            
+            {isLoggedIn ? (
+              <NavLink to="/profile" className="ProfileBtn">
+              Profile
+            </NavLink>
+            ) : (
+              <button className="LoginBtn" onClick={toggleLoginForm}>
+                Login/Register
+              </button>
+            )}
           </li>
         </ul>
       </nav>
