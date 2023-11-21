@@ -11,36 +11,36 @@ const Home = () => {
     dots: true,
     infinite: true,
     speed: 500,
-    slidesToShow: 4, // Show 4 photos by default
+    slidesToShow: 4, 
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 3000, // Adjust the autoplay speed as needed
+    autoplaySpeed: 3000, 
     responsive: [
       {
         breakpoint: 1600,
         settings: {
-          slidesToShow: 3, // Show 3 photos on larger screens
+          slidesToShow: 3, 
           slidesToScroll: 1,
         },
       },
       {
         breakpoint: 1200,
         settings: {
-          slidesToShow: 3, // Adjust the number of slides at this breakpoint
+          slidesToShow: 3, 
           slidesToScroll: 1,
         },
       },
       {
         breakpoint: 1000,
         settings: {
-          slidesToShow: 2, // Adjust the number of slides at this breakpoint
+          slidesToShow: 2, 
           slidesToScroll: 1,
         },
       },
       {
         breakpoint: 992,
         settings: {
-          slidesToShow: 2, // Show 2 photos on medium screens
+          slidesToShow: 2, 
           slidesToScroll: 1,
         },
       },
@@ -48,7 +48,7 @@ const Home = () => {
       {
         breakpoint: 792,
         settings: {
-          slidesToShow: 1, // Show 2 photos on medium screens
+          slidesToShow: 1, 
           slidesToScroll: 1,
         },
       },
@@ -56,14 +56,14 @@ const Home = () => {
       {
         breakpoint: 576,
         settings: {
-          slidesToShow: 1, // Maintain 1 photo on extra small screens
+          slidesToShow: 1, 
           slidesToScroll: 1,
         },
       },
       {
         breakpoint: 480,
         settings: {
-          slidesToShow: 1, // Maintain 1 photo on phone screens
+          slidesToShow: 1, 
           slidesToScroll: 1,
         },
       },

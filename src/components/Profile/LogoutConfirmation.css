@@ -1,0 +1,54 @@
+/* LogoutConfirmation.css */
+.logout-confirmation-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  .logout-confirmation-form {
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    width: 400px;
+    text-align: center;
+  }
+  
+  .logout-question {
+    font-size: 20px;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  .logout-buttons {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .logout-buttons button {
+    background: #007bff;
+    color: #fff;
+    border: none;
+    padding: 12px 24px;
+    font-size: 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+    margin-right: 10px;
+  }
+  
+  .logout-buttons button.no {
+    background: #ccc;
+  }
+  
+  .logout-buttons button:hover {
+    filter: brightness(90%);
+  }
+  

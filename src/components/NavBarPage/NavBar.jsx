@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import './NavBar.css';
@@ -52,8 +53,8 @@ const NavBar = ({ toggleLoginForm, isLoggedIn, handleLogout }) => {
           <li>
             {isLoggedIn ? (
               <NavLink to="/profile" className="ProfileBtn">
-              Profile
-            </NavLink>
+                Profile
+              </NavLink>
             ) : (
               <button className="LoginBtn" onClick={toggleLoginForm}>
                 Login/Register
