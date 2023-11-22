@@ -51,7 +51,7 @@ const NavBar = ({ toggleLoginForm, isLoggedIn, handleLogout }) => {
           </li>
           <li>
             {isLoggedIn ? (
-              <NavLink to="/profile" className="ProfileBtn">
+              <NavLink to="/profile" className="ProfileBtn" activeClassName="active" onClick={closeMobileMenu}>
               Profile
             </NavLink>
             ) : (

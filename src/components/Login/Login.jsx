@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './Login.css';
-import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.5.2/firebase-app.js';
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, sendPasswordResetEmail } from 'https://www.gstatic.com/firebasejs/10.5.2/firebase-auth.js';
+import { initializeApp } from 'firebase/app';
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, sendPasswordResetEmail } from 'firebase/auth';
 
 const firebaseConfig = {
   apiKey: "AIzaSyDlb-kd6pQy8mCf4Y19X98tqCFseg2bT6A",
@@ -16,25 +16,24 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
-const Login = ({ closeLoginForm }) => {
+const Login = ({ closeLoginForm, handleLoginSuccess }) => {
   const [isRegister, setIsRegister] = useState(false);
   const [forgotPassword, setForgotPassword] = useState(false);
   const [emailForPasswordReset, setEmailForPasswordReset] = useState('');
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [showPasswordWarning, setShowPasswordWarning] = useState(false);
 
   const toggleForm = () => {
     setIsRegister(!isRegister);
     setForgotPassword(false);
-    setShowPasswordWarning(false); 
+    setShowPasswordWarning(false);
   };
 
   const handleRegister = (email, password) => {
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user;
-        setIsLoggedIn(true);
-        closeLoginForm(); 
+        closeLoginForm();
+        handleLoginSuccess(); 
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -59,14 +58,14 @@ const Login = ({ closeLoginForm }) => {
       signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
           const user = userCredential.user;
-          setIsLoggedIn(true);
           closeLoginForm();
+          handleLoginSuccess(); 
         })
         .catch((error) => {
           const errorCode = error.code;
           const errorMessage = error.message;
           console.error(errorCode, errorMessage);
-          setShowPasswordWarning(true); 
+          setShowPasswordWarning(true);
         });
     }
   };
@@ -84,7 +83,7 @@ const Login = ({ closeLoginForm }) => {
                 e.preventDefault();
                 const email = e.target.email.value;
                 setEmailForPasswordReset(email);
-                handleLogin(email, ''); 
+                handleLogin(email, '');
               }}
             >
               <label>Email: <input type="text" name="email" /></label>
@@ -133,7 +132,7 @@ const Login = ({ closeLoginForm }) => {
             <button type="submit" className="submit-button">
               {forgotPassword ? 'Reset Password' : (isRegister ? 'Register' : 'Login')}
             </button>
-            {!forgotPassword && !isRegister && !isLoggedIn && (
+            {!forgotPassword && !isRegister && (
               <>
                 <p onClick={() => setForgotPassword(true)} className="toggle-form forgot-password">
                   Forgot your password?
@@ -145,16 +144,11 @@ const Login = ({ closeLoginForm }) => {
                 </div>
               </>
             )}
-            {!forgotPassword && isRegister && !isLoggedIn && (
+            {!forgotPassword && isRegister && (
               <div className="additional-links">
                 <p onClick={toggleForm} className="toggle-form">
                   Back to login
                 </p>
-              </div>
-            )}
-            {isLoggedIn && (
-              <div className="additional-links">
-                <p>Profile</p>
               </div>
             )}
           </form>

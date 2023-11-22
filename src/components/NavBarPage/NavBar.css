@@ -328,3 +328,31 @@ opacity: 0;
 .mobile-menu-toggle.active .bar:last-child {
 transform: rotate(45deg) translate(-5px, -6px);
 }
+
+
+
+.ProfileBtn {
+  width: 150px;
+  height: 50px;
+  background-color: rgb(0, 0, 0);
+  margin-right: 20px;
+  color: #00e1ff;
+  position: relative;
+  overflow: hidden;
+  font-size: 14px;
+  letter-spacing: 1px;
+  font-weight: 500;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 3px;
+ 
+}
+
+.ProfileBtn:hover {
+  background-color: #2980b9; 
+}
