@@ -7,6 +7,7 @@ import NavBar from './components/NavBarPage/NavBar';
 import Login from './components/Login/Login';
 import Footer from './components/Footer/FooterF';
 import Profile from './components/Profile/Profile';
+import Header from './components/Header/Header'
 import LogoutConfirmation from './components/Profile/LogoutConfirmation';
 import { getAuth, onAuthStateChanged, signOut } from 'firebase/auth';
 
@@ -76,20 +77,23 @@ const App = () => {
 
   return (
     <>
-      <NavBar toggleLoginForm={toggleLoginForm} isLoggedIn={isLoggedIn} handleLogout={handleLogout} />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/trendy" element={<Trendy />} />
-        <Route path="/store" element={<Store />} />
-        <Route
-          path="/profile"
-          element={<Profile isLoggedIn={isLoggedIn} handleLogout={handleLogout} toggleLoginForm={toggleLoginForm} />}
-        />
-      </Routes>
-      {isLoginFormVisible && <Login closeLoginForm={closeLoginForm} handleLoginSuccess={handleLoginSuccess} />}
-      {showLogoutConfirmation && <LogoutConfirmation confirmLogout={confirmLogout} closeModal={closeModal} />}
-      <Footer />
-    </>
+    <NavBar toggleLoginForm={toggleLoginForm} isLoggedIn={isLoggedIn} handleLogout={handleLogout} />
+    
+    <Routes>
+      <Route path="/" element={<>{ <Header />} <Home /> </>} />
+      <Route path="/trendy" element={<Trendy />} />
+      <Route path="/store" element={<Store />} />
+      <Route
+        path="/profile"
+        element={<Profile isLoggedIn={isLoggedIn} handleLogout={handleLogout} toggleLoginForm={toggleLoginForm} />}
+      />
+    </Routes>
+    
+    {isLoginFormVisible && <Login closeLoginForm={closeLoginForm} handleLoginSuccess={handleLoginSuccess} />}
+    {showLogoutConfirmation && <LogoutConfirmation confirmLogout={confirmLogout} closeModal={closeModal} />}
+    
+    <Footer />
+  </>
   );
 };
 
