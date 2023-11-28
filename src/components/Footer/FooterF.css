@@ -2,8 +2,8 @@
   display: flex;
   flex-flow: row wrap;
   padding: 30px 30px 20px 30px;
-  color: #2f2f2f;
-  background-color: #fff;
+  color: #ffffff;
+  background-color: rgb(4, 45, 85);
   border-top: 10px solid #e5e5e5;
 
   position: relative; 

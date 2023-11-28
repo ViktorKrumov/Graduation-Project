@@ -2,6 +2,7 @@
 .home-page {
   padding: 20px;
   text-align: center;
+  background-color: rgb(0, 0, 0);
 }
 
 header {
@@ -36,6 +37,7 @@ header p {
   max-width: 300px;
   text-align: center;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+  background-color: #ffffff;
 }
 
 .product-card img {
@@ -93,6 +95,24 @@ header p {
 
 
 
+.header-image {
+  width: 100%;
+  height: 350px; /* Specify your desired height */
+  object-fit: cover; /* This will make the image cover the entire container while maintaining its aspect ratio */
+}
 
+.slider-container {
+  margin-top: 50px; /* Increased space between sliders */
+  background-color: rgb(4, 45, 85); /* Bright blue color */
+}
 
+.featured-products h2,
+.second-slider h2 {
+  font-size: 2rem; /* Increased size for slider headers */
+  color: #fff; /* White color for text */
+  margin-bottom: 20px; /* Increased space below headers */
+}
 
+.second-slider {
+  background-color: #ff9800; /* Bright orange color for the second slider */
+}

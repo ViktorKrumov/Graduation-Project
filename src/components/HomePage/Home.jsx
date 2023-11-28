@@ -4,8 +4,6 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
-
-
 const Home = () => {
   const [computers, setComputers] = useState([]);
 
@@ -13,59 +11,119 @@ const Home = () => {
     dots: true,
     infinite: true,
     speed: 500,
-    slidesToShow: 4, 
+    slidesToShow: 4,
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 3000, 
+    autoplaySpeed: 3000,
     responsive: [
       {
         breakpoint: 1600,
         settings: {
-          slidesToShow: 3, 
+          slidesToShow: 3,
           slidesToScroll: 1,
         },
       },
       {
         breakpoint: 1200,
         settings: {
-          slidesToShow: 3, 
+          slidesToShow: 3,
           slidesToScroll: 1,
         },
       },
       {
         breakpoint: 1000,
         settings: {
-          slidesToShow: 2, 
+          slidesToShow: 2,
           slidesToScroll: 1,
         },
       },
       {
         breakpoint: 992,
         settings: {
-          slidesToShow: 2, 
+          slidesToShow: 2,
           slidesToScroll: 1,
         },
       },
-
       {
         breakpoint: 792,
         settings: {
-          slidesToShow: 1, 
+          slidesToShow: 1,
           slidesToScroll: 1,
         },
       },
-      
       {
         breakpoint: 576,
         settings: {
-          slidesToShow: 1, 
+          slidesToShow: 1,
           slidesToScroll: 1,
         },
       },
       {
         breakpoint: 480,
         settings: {
-          slidesToShow: 1, 
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
+  };
+
+  const reverseSettings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 3000,
+    rtl: true, 
+    responsive: [
+      {
+        breakpoint: 1600,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 1200,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 1000,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 992,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 792,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 576,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
           slidesToScroll: 1,
         },
       },
@@ -73,9 +131,6 @@ const Home = () => {
   };
 
   useEffect(() => {
-    
-    // document.cookie = "myCookie=myValue; SameSite=None; Secure";
-  
     fetch('https://gist.githubusercontent.com/ViktorKrumov/f29035d526ddc0c4f74d1ac18bd9e283/raw')
       .then((response) => response.json())
       .then((data) => {
@@ -89,29 +144,66 @@ const Home = () => {
         console.error('Error fetching or processing data:', error);
       });
   }, []);
-  
 
   return (
     <div>
       <div className="home-page">
-        <section className="featured-products">
-          <h2>Featured Computers</h2>
-          <Slider {...settings}>
-            {computers.map((computer) => (
-              <div className="product-card" key={computer.id}>
-                <img src={computer.photo_url} alt={computer.name} />
-                <h3>{computer.name}</h3>
-                <p>Processor: {computer.processor}</p>
-                <p>Memory: {computer.memory}</p>
-                <p>Storage: {computer.storage}</p>
-                <p>Graphics Card: {computer.graphics_card}</p>
-                <p>Operating System: {computer.operating_system}</p>
-                <button>Buy Now</button>
-              </div>
-            ))}
-          </Slider>
-        </section>
-  
+      <section className="intro-section">
+  <header className="black-friday-header">
+    <img
+      className="header-image"
+      src="https://github.com/ViktorKrumov/Images-Graduation-Project/blob/main/BalckFridayBannerr.png?raw=true"
+      alt="Black Friday Banner"
+    />
+    <div className="header-content">
+      <h1>Unbeatable Deals on Black Friday</h1>
+      <p>Discover exclusive discounts and savings for a limited time!</p>
+      <a href="/shop" className="shop-now-button">Shop Now</a>
+    </div>
+  </header>
+</section>
+
+
+        <div className="slider-container">
+          <section className="featured-products">
+            <h2>Featured Computers</h2>
+            <Slider {...settings}>
+              {computers.map((computer) => (
+                <div className="product-card" key={computer.id}>
+                  <img src={computer.photo_url} alt={computer.name} />
+                  <h3>{computer.name}</h3>
+                  <p>Processor: {computer.processor}</p>
+                  <p>Memory: {computer.memory}</p>
+                  <p>Storage: {computer.storage}</p>
+                  <p>Graphics Card: {computer.graphics_card}</p>
+                  <p>Operating System: {computer.operating_system}</p>
+                  <button>Buy Now</button>
+                </div>
+              ))}
+            </Slider>
+          </section>
+        </div>
+
+        <div className="slider-container">
+          <section className="featured-products">
+            <h2>Second Slider (Reverse Direction)</h2>
+            <Slider {...reverseSettings}>
+              {computers.map((computer) => (
+                <div className="product-card" key={computer.id}>
+                  <img src={computer.photo_url} alt={computer.name} />
+                  <h3>{computer.name}</h3>
+                  <p>Processor: {computer.processor}</p>
+                  <p>Memory: {computer.memory}</p>
+                  <p>Storage: {computer.storage}</p>
+                  <p>Graphics Card: {computer.graphics_card}</p>
+                  <p>Operating System: {computer.operating_system}</p>
+                  <button>Buy Now</button>
+                </div>
+              ))}
+            </Slider>
+          </section>
+        </div>
+
         <section className="about-us">
           <h2>About Us</h2>
           <p>
@@ -119,7 +211,7 @@ const Home = () => {
             mission is to provide you with the best technology products at affordable prices.
           </p>
         </section>
-  
+
         <section className="contact-us">
           <h2>Contact Us</h2>
           <p>
