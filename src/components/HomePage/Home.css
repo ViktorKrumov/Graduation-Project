@@ -95,24 +95,84 @@ header p {
 
 
 
-.header-image {
-  width: 100%;
-  height: 350px; /* Specify your desired height */
-  object-fit: cover; /* This will make the image cover the entire container while maintaining its aspect ratio */
-}
 
 .slider-container {
-  margin-top: 50px; /* Increased space between sliders */
-  background-color: rgb(4, 45, 85); /* Bright blue color */
+  margin-top: 50px; 
+  background-color: rgb(4, 45, 85); 
 }
 
 .featured-products h2,
 .second-slider h2 {
-  font-size: 2rem; /* Increased size for slider headers */
-  color: #fff; /* White color for text */
-  margin-bottom: 20px; /* Increased space below headers */
+  font-size: 2rem;
+  color: #fff; 
+  margin-bottom: 20px; 
 }
 
 .second-slider {
-  background-color: #ff9800; /* Bright orange color for the second slider */
+  background-color: #ff9800; 
+}
+
+
+.header-content {
+  text-align: center;
+  padding: 50px;
+  background-color: #000000;
+}
+
+.header-content h1 {
+  font-size: 3.5em;
+  background: linear-gradient(90deg, #8a2be2, #ffff00); 
+    background-clip: text;
+    color: transparent;
+  margin-bottom: 20px;
+}
+
+.header-content p {
+  font-size: 2.2em;
+  color: #666;
+  margin-bottom: 30px;
+}
+
+.shop-now-button {
+  display: inline-block;
+  padding: 15px 30px;
+  font-size: 1.2em;
+  text-align: center;
+  text-decoration: none;
+  background-color: #ff6600;
+  color: #fff;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.shop-now-button:hover {
+  background-color: #cc5500;
+}
+
+
+
+.original-price {
+  color: #999;
+  text-decoration: line-through;
+  font-size: 1.2em;
+ 
+}
+
+.discounted-price {
+  color: #ff0000; 
+  font-weight: bold;
+  font-size: 1.2em;
+  
+}
+
+
+.brands {
+  display: flex;
+  justify-content: space-between; 
+  align-items: center;
+}
+
+.brands img {
+  max-width: 190px; 
+  height: auto; 
 }

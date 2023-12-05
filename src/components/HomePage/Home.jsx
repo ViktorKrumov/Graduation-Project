@@ -149,60 +149,89 @@ const Home = () => {
     <div>
       <div className="home-page">
       <section className="intro-section">
+
+
+      <div className="brands">
+    <div>
+      <img src="https://github.com/ViktorKrumov/Images-Graduation-Project/blob/main/Cyber-week.png?raw=true" />
+    </div>
+    <div>
+      <img src="https://github.com/ViktorKrumov/Images-Graduation-Project/blob/main/Nvidia.jpg?raw=true" />
+    </div>
+    <div>
+      <img src="https://github.com/ViktorKrumov/Images-Graduation-Project/blob/main/pngegg.png?raw=true" />
+    </div>
+    <div>
+      <img src="https://github.com/ViktorKrumov/Images-Graduation-Project/blob/main/Cyber-week.png?raw=true" />
+    </div>
+    <div>
+      <img src="https://github.com/ViktorKrumov/Images-Graduation-Project/blob/main/Cyber-week.png?raw=true" />
+    </div>
+  </div>
+  
   <header className="black-friday-header">
-    <img
-      className="header-image"
-      src="https://github.com/ViktorKrumov/Images-Graduation-Project/blob/main/BalckFridayBannerr.png?raw=true"
-      alt="Black Friday Banner"
-    />
-    <div className="header-content">
+  <div className="header-content">
       <h1>Unbeatable Deals on Black Friday</h1>
       <p>Discover exclusive discounts and savings for a limited time!</p>
-      <a href="/shop" className="shop-now-button">Shop Now</a>
+      <a href="/store" className="shop-now-button">Shop Now</a>
     </div>
+   
+   
   </header>
 </section>
 
 
-        <div className="slider-container">
-          <section className="featured-products">
-            <h2>Featured Computers</h2>
-            <Slider {...settings}>
-              {computers.map((computer) => (
-                <div className="product-card" key={computer.id}>
-                  <img src={computer.photo_url} alt={computer.name} />
-                  <h3>{computer.name}</h3>
-                  <p>Processor: {computer.processor}</p>
-                  <p>Memory: {computer.memory}</p>
-                  <p>Storage: {computer.storage}</p>
-                  <p>Graphics Card: {computer.graphics_card}</p>
-                  <p>Operating System: {computer.operating_system}</p>
-                  <button>Buy Now</button>
-                </div>
-              ))}
-            </Slider>
-          </section>
+<div className="slider-container">
+  <section className="featured-products">
+    <h2>Second Slider (Reverse Direction)</h2>
+    <Slider {...settings}>
+      {computers.map((computer) => (
+        <div className="product-card" key={computer.id}>
+          <img src={computer.photo_url} alt={computer.name} />
+          <h3>{computer.name}</h3>
+          <p>Processor: {computer.processor}</p>
+          <p>Memory: {computer.memory}</p>
+          <p>Storage: {computer.storage}</p>
+          <p>Graphics Card: {computer.graphics_card}</p>
+          <p>Operating System: {computer.operating_system}</p>
+          
+          <p className="original-price">
+            <del>{computer.original_price} лв</del>
+          </p>
+          
+          <p className="discounted-price">{computer.discounted_price} лв</p>
+          <button>Buy Now</button>
         </div>
+      ))}
+    </Slider>
+  </section>
+</div>
 
         <div className="slider-container">
-          <section className="featured-products">
-            <h2>Second Slider (Reverse Direction)</h2>
-            <Slider {...reverseSettings}>
-              {computers.map((computer) => (
-                <div className="product-card" key={computer.id}>
-                  <img src={computer.photo_url} alt={computer.name} />
-                  <h3>{computer.name}</h3>
-                  <p>Processor: {computer.processor}</p>
-                  <p>Memory: {computer.memory}</p>
-                  <p>Storage: {computer.storage}</p>
-                  <p>Graphics Card: {computer.graphics_card}</p>
-                  <p>Operating System: {computer.operating_system}</p>
-                  <button>Buy Now</button>
-                </div>
-              ))}
-            </Slider>
-          </section>
+  <section className="featured-products">
+    <h2>Second Slider (Reverse Direction)</h2>
+    <Slider {...reverseSettings}>
+      {computers.map((computer) => (
+        <div className="product-card" key={computer.id}>
+          <img src={computer.photo_url} alt={computer.name} />
+          <h3>{computer.name}</h3>
+          <p>Processor: {computer.processor}</p>
+          <p>Memory: {computer.memory}</p>
+          <p>Storage: {computer.storage}</p>
+          <p>Graphics Card: {computer.graphics_card}</p>
+          <p>Operating System: {computer.operating_system}</p>
+          
+          <p className="original-price">
+            <del>{computer.original_price} лв</del>
+          </p>
+          
+          <p className="discounted-price">{computer.discounted_price} лв</p>
+          <button>Buy Now</button>
         </div>
+      ))}
+    </Slider>
+  </section>
+</div>
 
         <section className="about-us">
           <h2>About Us</h2>

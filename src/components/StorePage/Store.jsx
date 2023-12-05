@@ -1,10 +1,13 @@
 import React from 'react';
+import './Store.css';
 
 const Store =() => {
     return(
-        <>
-        <h1>Store page</h1>
-        </>
+        <img
+        className="header-image"
+        src="https://github.com/ViktorKrumov/Images-Graduation-Project/blob/main/Cyber-week.png?raw=true"
+        alt="Black Friday Banner"
+      />
     )
 
 }
