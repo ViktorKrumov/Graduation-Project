@@ -7,9 +7,9 @@ import NavBar from './components/NavBarPage/NavBar';
 import Login from './components/Login/Login';
 import Footer from './components/Footer/FooterF';
 import Profile from './components/Profile/Profile';
-import Header from './components/Header/Header'
 import LogoutConfirmation from './components/Profile/LogoutConfirmation';
 import { getAuth, onAuthStateChanged, signOut } from 'firebase/auth';
+import styled from "styled-components";
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -75,24 +75,45 @@ const App = () => {
     setShowLogoutConfirmation(false);
   };
 
+  const Container = styled.div`
+  height: 100vh;
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+  overflow-y: auto;
+  scrollbar-width: none;
+  color: white;
+  background: url("https://github.com/ViktorKrumov/Images-Graduation-Project/raw/main/Background-Site.jpg");
+`;
+
+
   return (
     <>
-    <NavBar toggleLoginForm={toggleLoginForm} isLoggedIn={isLoggedIn} handleLogout={handleLogout} />
     
-    <Routes>
-      <Route path="/" element={<>{ <Header />} <Home /> </>} />
-      <Route path="/trendy" element={<Trendy />} />
-      <Route path="/store" element={<Store />} />
-      <Route
-        path="/profile"
-        element={<Profile isLoggedIn={isLoggedIn} handleLogout={handleLogout} toggleLoginForm={toggleLoginForm} />}
-      />
-    </Routes>
+    
+    <Container>
+    <NavBar toggleLoginForm={toggleLoginForm} isLoggedIn={isLoggedIn} handleLogout={handleLogout} />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/trendy" element={<Trendy />} />
+          <Route path="/store" element={<Store />} />
+          <Route
+            path="/profile"
+            element={
+              <Profile
+                isLoggedIn={isLoggedIn}
+                handleLogout={handleLogout}
+                toggleLoginForm={toggleLoginForm}
+              />
+            }
+          />
+        </Routes>
+        <Footer />
+      </Container>
     
     {isLoginFormVisible && <Login closeLoginForm={closeLoginForm} handleLoginSuccess={handleLoginSuccess} />}
     {showLogoutConfirmation && <LogoutConfirmation confirmLogout={confirmLogout} closeModal={closeModal} />}
     
-    <Footer />
+    
   </>
   );
 };
