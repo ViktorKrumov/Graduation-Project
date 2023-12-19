@@ -18,7 +18,7 @@ const Header = () => {
 
   const Container = styled.div`
     display: flex;
-    flex-direction: column; /* Change to column for smaller screens */
+    flex-direction: column;
     width: 100%;
 
     @media only screen and (min-width: 768px) {
@@ -44,7 +44,7 @@ const Header = () => {
   const Title = styled.h1`
     font-size: 28px;
     font-weight: bold;
-    font-family: 'Pacifico', cursive; /* Example: Use a custom font for title */
+    font-family: 'Pacifico', cursive;
 
     @media only screen and (min-width: 768px) {
       font-size: 36px;
@@ -65,13 +65,13 @@ const Header = () => {
     color: #da4ea2;
     font-size: 20px;
     font-weight: bold;
-    font-family: 'Quicksand', sans-serif; /* Example: Use a different font for subtitle */
+    font-family: 'Quicksand', sans-serif;
   `;
 
   const Desc = styled.p`
     font-size: 16px;
     line-height: 1.5;
-    font-family: 'Open Sans', sans-serif; /* Example: Use a different font for description */
+    font-family: 'Open Sans', sans-serif; 
     @media only screen and (min-width: 768px) {
       font-size: 18px;
     }
@@ -87,7 +87,7 @@ const Header = () => {
     border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
-    font-family: 'Roboto', sans-serif; /* Example: Use a different font for button */
+    font-family: 'Roboto', sans-serif; 
   `;
 
   const MoreButton = styled.button`
@@ -100,7 +100,7 @@ const Header = () => {
     border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
-    font-family: 'Roboto', sans-serif; /* Example: Use a different font for button */
+    font-family: 'Roboto', sans-serif;
   `;
 
   const Icon = styled.i`
