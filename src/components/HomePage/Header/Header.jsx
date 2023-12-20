@@ -9,10 +9,25 @@ const Header = () => {
     align-items: center;
     justify-content: center;
     color: #ffffff;
+    margin-top: 20px;
     
 
-    @media only screen and (min-width: 768px) {
+    @media only screen and (max-width: 768px) {
       flex-direction: row;
+      margin-top: 60px;
+     
+    }
+
+    @media only screen and (max-height: 400px) {
+      margin-top: 370px;
+    }
+
+    @media only screen and (max-height: 390px) {
+      margin-top: 170px;
+    }
+
+    @media only screen and (max-height: 360px) {
+      margin-top: 270px;
     }
   `;
 
