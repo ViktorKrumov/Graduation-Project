@@ -85,7 +85,7 @@ const App = () => {
   overflow-y: auto;
   scrollbar-width: none;
   color: white;
-   background: url("https://static.vecteezy.com/system/resources/thumbnails/023/960/165/original/galaxy-and-nebula-abstract-space-background-endless-universe-with-stars-and-galaxies-in-outer-space-cosmos-art-motion-design-video.jpg");
+   //background: url("https://static.vecteezy.com/system/resources/thumbnails/023/960/165/original/galaxy-and-nebula-abstract-space-background-endless-universe-with-stars-and-galaxies-in-outer-space-cosmos-art-motion-design-video.jpg");
 `;
 
 
@@ -93,7 +93,7 @@ const App = () => {
     <>
     
     
-    <Container>
+    
     <NavBar toggleLoginForm={toggleLoginForm} isLoggedIn={isLoggedIn} handleLogout={handleLogout} />
         <Routes>
           <Route path="/" element={<Home />} />
@@ -111,7 +111,7 @@ const App = () => {
           />
         </Routes>
         <Footer />
-      </Container>
+      
     
     {isLoginFormVisible && <Login closeLoginForm={closeLoginForm} handleLoginSuccess={handleLoginSuccess} />}
     {showLogoutConfirmation && <LogoutConfirmation confirmLogout={confirmLogout} closeModal={closeModal} />}

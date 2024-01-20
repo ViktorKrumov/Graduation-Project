@@ -1,4 +1,5 @@
 import React from 'react';
+import './Category.css';
 
 
 const Category =() => {
@@ -11,18 +12,22 @@ const Category =() => {
                 <label className='sidebar-label-container'>
                     <input type="radio" name="test"/>
                     <span className="checkmark"></span>All
-
-                    <input type="radio" name="test"/>
-                    <span className="checkmark"></span>CritpoMining
-
+                </label>
+                <label className='sidebar-label-container'>
                     <input type="radio" name="test"/>
                     <span className="checkmark"></span>Gaming
-
+                </label>
+                <label className='sidebar-label-container'>
                     <input type="radio" name="test"/>
-                    <span className="checkmark"></span>Measaring
-
+                    <span className="checkmark"></span>CryptoMining
+                </label>
+                <label className='sidebar-label-container'>
                     <input type="radio" name="test"/>
-                    <span className="checkmark"></span>Filmproducing
+                    <span className="checkmark"></span>Rendering
+                </label>
+                <label className='sidebar-label-container'>
+                    <input type="radio" name="test"/>
+                    <span className="checkmark"></span>Editing
                 </label>
             </div>
         </div>

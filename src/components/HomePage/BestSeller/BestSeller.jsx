@@ -3,11 +3,9 @@ import styled from "styled-components";
 
 
 const data = [
-  { name: "Gaming tech", link: "https://github.com/ViktorKrumov/Images-Graduation-Project/blob/main/Gaming-periferia-removebg.png?raw=true", buttonText: "See more Gaming Tech", buttonLink: "/web-design" },
-  { name: "Office tech", link: "https://github.com/ViktorKrumov/Images-Graduation-Project/blob/main/Office-removebg.png?raw=true", buttonText: "See more Office tech", buttonLink: "/development" },
-  { name: "Home tech", link: "https://github.com/ViktorKrumov/Images-Graduation-Project/blob/main/Home-removebg.png?raw=true", buttonText: "See more Illustration", buttonLink: "/illustration" },
-  { name: "Product Design", link: "product-design-photo.jpg", buttonText: "See more Product Design", buttonLink: "/product-design" },
-  { name: "Social Media", link: "social-media-photo.jpg", buttonText: "See more Social Media", buttonLink: "/social-media" },
+  { name: "Gaming", link: "https://github.com/ViktorKrumov/Images-Graduation-Project/blob/main/Gaming-periferia-removebg.png?raw=true", buttonText: "See more Gaming Tech", buttonLink: "/web-design" },
+  { name: "Office", link: "https://github.com/ViktorKrumov/Images-Graduation-Project/blob/main/Office-removebg.png?raw=true", buttonText: "See more Office tech", buttonLink: "/development" },
+  { name: "Home", link: "https://github.com/ViktorKrumov/Images-Graduation-Project/blob/main/Home-removebg.png?raw=true", buttonText: "See more Illustration", buttonLink: "/illustration" },
 ];
 
 const Section = styled.div`
@@ -142,11 +140,11 @@ const BestSeller = () => {
           </List>
         </Left>
         <Right>
-          {work === "Gaming tech" ? (
+          {work === "Gaming" ? (
             <Image src={data[0].link} alt="Web Design" />
-          ) : work === "Office tech" ? (
+          ) : work === "Office" ? (
             <Image src={data[1].link} alt="Development" />
-          ) : work === "Home tech" ? (
+          ) : work === "Home" ? (
             <Image src={data[2].link} alt="Illustration" />
           ) : work === "Product Design" ? (
             <Image src={data[3].link} alt="Product Design" />

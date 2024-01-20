@@ -6,9 +6,10 @@
 
 .sidebar {
     width: 15%;
-    position: fixed;
+    margin-left: -3rem;
+    position: absolute;
     height: 100%;
-    border-radius: 2px solid #f3f3f3;
+    border: 3px solid #f3f3f3;
     z-index: 3;
     display: flex;
     flex-direction: column;

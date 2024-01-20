@@ -8,8 +8,8 @@ import{ AiOutlineShoppingCart, AiOutlineUserAdd} from "react-icons/ai"
 function Nav () {
     return(
         <>
-        <nav>
-            <div className = "navContainer">
+        <nav className = "navContainer">
+            <div>
                 <input type = "text" classname = "search-input" placeholder="Enter a computer"/>   
             </div>
 
