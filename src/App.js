@@ -2,7 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { Routes, Route, useNavigate } from 'react-router-dom';
 import Home from './components/HomePage/Home';
 import Trendy from './components/TrendyPage/Trendy';
+
 import Store from './components/StorePage/Store';
+import Store2 from './components/SorePageAlt/StoreAlt';
+
 import NavBar from './components/NavBarPage/NavBar';
 import Login from './components/Login/Login';
 import Footer from './components/Footer/FooterF';
@@ -82,7 +85,7 @@ const App = () => {
   overflow-y: auto;
   scrollbar-width: none;
   color: white;
-  background: url("https://github.com/ViktorKrumov/Images-Graduation-Project/raw/main/Background-Site.jpg");
+   background: url("https://static.vecteezy.com/system/resources/thumbnails/023/960/165/original/galaxy-and-nebula-abstract-space-background-endless-universe-with-stars-and-galaxies-in-outer-space-cosmos-art-motion-design-video.jpg");
 `;
 
 
@@ -95,7 +98,7 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/trendy" element={<Trendy />} />
-          <Route path="/store" element={<Store />} />
+          <Route path="/store" element={<Store2 />} />
           <Route
             path="/profile"
             element={
