@@ -13,6 +13,7 @@ function Card ({photo_url, name, processor, memory, storage, graphics_card, oper
         
           <div className="card">
             <img className="card-img" src={photo_url} alt={name} />
+            <h3 className="stat">{name}</h3>
             <div className='card-details'>
               <p className="stat">Processor: {processor}</p>
               <p className="stat">Memory: {memory}</p>

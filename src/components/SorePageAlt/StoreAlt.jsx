@@ -32,8 +32,9 @@ const StoreAlt =() => {
         setQuery(event.target.value)
     }
 
-    const fillteredItems = computers.filter((computers) => 
-    computers.name.toLowerCase().indexOf(query.toLocaleLowerCase !== -1)
+    const fillteredItems = computers.filter((computer) => 
+    computer.name.toLocaleLowerCase().indexOf(query.toLocaleLowerCase())!== -1
+
     );
 
     //Radio filter
