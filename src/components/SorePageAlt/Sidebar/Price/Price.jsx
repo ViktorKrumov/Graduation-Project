@@ -1,6 +1,6 @@
 import React from 'react';
 import './Price.css';
-import Input from '../../../Input';
+import Input from '../../../input';
 
 
 const Price =({handleChange}) => {

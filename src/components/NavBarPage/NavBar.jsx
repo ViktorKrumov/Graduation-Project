@@ -1,69 +1,87 @@
-import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import './NavBar.css';
-import './loginbutton.css';
-
-const logo = 'https://github.com/ViktorKrumov/Images-Graduation-Project/raw/main/TechnoS-removebg-preview.png';
+import { Button } from './Button';
 
 const NavBar = ({ toggleLoginForm, isLoggedIn, handleLogout }) => {
-  const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [click, setClick] = useState(false);
+  const [button, setButton] = useState(true);
 
-  const handleMobileMenuToggle = () => {
-    setMobileMenuOpen(!isMobileMenuOpen);
+  const handleClick = () => setClick(!click);
+  const closeMobileMenu = () => setClick(false);
+
+  const showButton = () => {
+    if (window.innerWidth <= 960) {
+      setButton(false);
+    } else {
+      setButton(true);
+    }
   };
 
-  const closeMobileMenu = () => {
-    setMobileMenuOpen(false);
-  };
+  useEffect(() => {
+    showButton();
+  }, []);
+
+  window.addEventListener('resize', showButton);
+
+
+  
 
   return (
-    <header>
-      <nav className={`navbar ${isMobileMenuOpen ? 'mobile-open' : ''}`}>
-        <div className="logoContainer">
-          <img src={logo} alt="logo" className="logo" />
-        </div>
-        <div className="mobile-menu-toggle" onClick={handleMobileMenuToggle}>
-          <div className="bar"></div>
-          <div className="bar"></div>
-          <div className="bar"></div>
-        </div>
+    <>
+      <nav className='navbar'>
+        <div className='navbar-container'>
+          <Link to='/' className='navbar-logo' onClick={closeMobileMenu}>
+            TechnoShack
+          </Link>
+          <div className='menu-icon' onClick={handleClick}>
+            <i className={click ? 'fas fa-times' : 'fas fa-bars'} />
+          </div>
+          <ul className={click ? 'nav-menu active' : 'nav-menu'}>
+            <li className='nav-item'>
+              <Link to='/' className='nav-links' onClick={closeMobileMenu}>
+                Home
+              </Link>
+            </li>
+            <li className='nav-item'>
+              <Link
+                to='/services'
+                className='nav-links'
+                onClick={closeMobileMenu}
+              >
+                Services
+              </Link>
+            </li>
+            <li className='nav-item'>
+              <Link
+                to='/store'
+                className='nav-links'
+                onClick={closeMobileMenu}
+              >
+                Products
+              </Link>
+            </li>
 
-        <ul className={`nav-list ${isMobileMenuOpen ? 'mobile-open' : ''}`}>
-          <li>
-            <NavLink exact to="/" className="listItem" activeClassName="active" onClick={closeMobileMenu}>
-              Home
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/store" className="listItem" activeClassName="active" onClick={closeMobileMenu}>
-              Store
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/trendy" className="listItem" activeClassName="active" onClick={closeMobileMenu}>
-              Trendy
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/laboratory" className="listItem" activeClassName="active" onClick={closeMobileMenu}>
-              Laboratory
-            </NavLink>
-          </li>
-          <li>
-            {isLoggedIn ? (
-              <NavLink to="/profile" className="ProfileBtn" activeClassName="active" onClick={closeMobileMenu}>
-              Profile
-            </NavLink>
-            ) : (
-              <button className="LoginBtn" onClick={toggleLoginForm}>
-                Login/Register
-              </button>
-            )}
-          </li>
-        </ul>
+
+            <li className='nav-item'>
+              {isLoggedIn ? (
+                <Link to="/profile" className="nav-links" activeClassName="active" onClick={closeMobileMenu}>
+                  Profile
+                </Link>
+              ) : (
+                <Button buttonStyle='btn--outline' onClick={toggleLoginForm}>
+                  Login/Register
+                </Button>
+              )}
+            </li>
+
+
+          </ul>
+          {/* {button && <Button buttonStyle='btn--outline'>SIGN UP</Button>} */}
+        </div>
       </nav>
-    </header>
+    </>
   );
-};
+}
 
 export default NavBar;

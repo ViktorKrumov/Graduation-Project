@@ -15,7 +15,7 @@ scroll-behavior: smooth;
 const Home = () => {
   return (
     <>
-      <Section>
+      
         <Header />
       
       
@@ -23,7 +23,7 @@ const Home = () => {
       
       
         <About />
-      </Section>
+      
     </>
   );
 };
