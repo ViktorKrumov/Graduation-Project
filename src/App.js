@@ -7,7 +7,9 @@ import Store from './components/StorePage/Store';
 import Store2 from './components/SorePageAlt/StoreAlt';
 
 import NavBar from './components/NavBarPage/NavBar';
-import Navigation from './components/SorePageAlt/Navigation/Nav'
+import Navigation from './components/Navigation/Nav'
+
+import Cart from './components/CartPage/Cart'
 
 import Login from './components/Login/Login';
 import Footer from './components/Footer/FooterF';
@@ -102,6 +104,7 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="/trendy" element={<Trendy />} />
           <Route path="/store" element={<Store2 />} />
+          <Route path="/cart" element={<Cart />} />
           <Route
             path="/profile"
             element={

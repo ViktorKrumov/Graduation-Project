@@ -1,0 +1,112 @@
+
+.navContainer {
+  display: flex;
+  border-bottom: 2px solid #000000;
+  justify-content: space-around;
+  align-items: center;
+  padding: 20px;
+  z-index: 999;
+  background-color: #c5c4c4;
+}
+
+
+.nav-magnifier {
+  width: 20px;
+  height: 20px;
+  margin-left: -30px;
+  color: #333;
+  cursor: pointer;
+}
+
+
+.search-container {
+  display: flex;
+  align-items: center;
+  width: 700px;
+}
+
+
+input {
+  padding: 14px;
+  border: none;
+  background-size: 20px;
+  border-radius: 5px;
+  margin: 0 auto; 
+  
+}
+
+
+.nav-icons {
+  width: 1.5rem;
+  height: 1.5rem;
+  margin-left: 2rem;
+  color: black;
+}
+  
+  
+
+  
+  
+  .suggestions-container {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    background-color: #fff;
+    z-index: 999;
+    max-height: 400px; 
+    overflow-y: auto;
+  }
+  
+  
+  .suggestions-container li {
+    display: flex;
+    align-items: center;
+    padding: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out; 
+  }
+  
+ 
+  .suggestions-container li img {
+    width: 120px;
+    height: 90px;
+    border-radius: 5px;
+    margin-right: 12px;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+ 
+  .suggestions-container li div {
+    display: flex;
+    flex-direction: column;
+  }
+  
+ 
+  .suggestions-container li .suggestion-name {
+    font-size: 24px;
+  }
+  
+
+  .suggestions-container li .suggestion-price {
+    font-weight: bold;
+    font-size: 15px;
+    color: #777;
+  }
+  
+  
+  .suggestions-container li:hover {
+    background-color: #f5f5f5; 
+  }
+  
+
+  .suggestions-container li:not(:last-child) {
+    margin-bottom: 8px;
+  }
+  
+ 
+  .suggestions-container li:hover img {
+    transform: scale(1.1);
+  }
