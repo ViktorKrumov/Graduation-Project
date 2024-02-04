@@ -2,7 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 import Header from './Header/Header';
 import BestSeller from './BestSeller/BestSeller';
-import About from './About';
+import ProductOfTheYear from './ProductOfTheYear/ProductOfTheYear'
+import NewArrivals from './NewArrivals/NewArrivals';
+import SpecialOffer from './SpecialOffers/SpecialOffers';
 
 const Section = styled.section`
 scroll-behavior: smooth;
@@ -22,8 +24,13 @@ const Home = () => {
         <BestSeller />
       
       
-        <About />
-      
+        
+        <ProductOfTheYear />
+
+        <NewArrivals />
+
+        <SpecialOffer />
+       
     </>
   );
 };

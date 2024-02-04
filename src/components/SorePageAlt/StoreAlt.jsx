@@ -86,7 +86,7 @@ const StoreAlt =() => {
     return(
         <>
         <Sidebar handleChange={handleChange}/>
-        <Navigation query={query} handleInputChange={handleInputChange}/>
+        {/* <Navigation query={query} handleInputChange={handleInputChange}/> */}
         <Recommended handleChange={handleClick}/>
         <Products result={result}/>
         </>

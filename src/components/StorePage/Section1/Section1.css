@@ -1,4 +1,4 @@
-
+/* 
 .home-page {
     padding: 30px;
     text-align: center;
@@ -26,7 +26,7 @@
     justify-content: space-around;
     flex-wrap: wrap;
     margin-top: 30px;
-  } */
+  } 
   
   .product-card {
     border: 1px solid #ccc;
@@ -169,4 +169,4 @@
   
   
   
-  
+   */

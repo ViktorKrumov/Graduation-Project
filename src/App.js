@@ -7,6 +7,8 @@ import Store from './components/StorePage/Store';
 import Store2 from './components/SorePageAlt/StoreAlt';
 
 import NavBar from './components/NavBarPage/NavBar';
+import Navigation from './components/SorePageAlt/Navigation/Nav'
+
 import Login from './components/Login/Login';
 import Footer from './components/Footer/FooterF';
 import Profile from './components/Profile/Profile';
@@ -95,6 +97,7 @@ const App = () => {
     
     
     <NavBar toggleLoginForm={toggleLoginForm} isLoggedIn={isLoggedIn} handleLogout={handleLogout} />
+    <Navigation />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/trendy" element={<Trendy />} />
