@@ -1,9 +1,8 @@
-
 import React, { useState } from 'react';
 import { FiHeart } from 'react-icons/fi';
 import { AiOutlineShoppingCart, AiOutlineUserAdd } from 'react-icons/ai';
 import { SlMagnifier } from 'react-icons/sl';
-import { fetchData } from '../api'
+import { fetchData } from '../api';
 import { Link } from 'react-router-dom';
 import './Nav.css';
 
@@ -24,24 +23,22 @@ function Nav() {
   };
 
   const handleSuggestionClick = (computer) => {
-    
     console.log(`Clicked on ${computer.photo_url}`);
-   
   };
 
   const handleInputChange = (e) => {
     const inputValue = e.target.value;
-
-   
     setQuery(inputValue);
-
-    
     if (inputValue.trim() !== '') {
       fetchSuggestions(inputValue);
     } else {
-      
       setSuggestions([]);
     }
+  };
+
+  const toggleDropdown = () => {
+    const dropdownMenu = document.querySelector('.dropdown-content');
+    dropdownMenu.classList.toggle('show');
   };
 
   return (
@@ -63,30 +60,35 @@ function Nav() {
             <FiHeart className="nav-icons" />
           </a>
           <Link to="/cart">
-              <AiOutlineShoppingCart className="nav-icons" />
+            <AiOutlineShoppingCart className="nav-icons" />
           </Link>
-            
-          
-          <a href="#">
-            <AiOutlineUserAdd className="nav-icons" />
-          </a>
+          <div className="dropdown" onClick={toggleDropdown}>
+            <a href="#" className="dropbtn">
+              <AiOutlineUserAdd className="nav-icons" />
+            </a>
+            <div className="dropdown-content">
+              <Link to="/profile">Profile</Link>
+              <Link to="/login">Log in</Link>
+              <Link to="/signin">Sign in</Link>
+              <Link to="/others">Others</Link>
+            </div>
+          </div>
         </div>
       </nav>
 
-      
       {suggestions.length > 0 && (
         <div className="suggestions-container">
           <ul className="suggestions-container">
-  {suggestions.map((computer) => (
-    <li key={computer.id} onClick={() => handleSuggestionClick(computer)}>
-      <img src={computer.photo_url} alt={computer.name} />
-      <div>
-        <span className="suggestion-name">{computer.name}</span>
-        <span className="suggestion-price">Price: {computer.original_price} лв</span>
-      </div>
-    </li>
-  ))}
-</ul>
+            {suggestions.map((computer) => (
+              <li key={computer.id} onClick={() => handleSuggestionClick(computer)}>
+                <img src={computer.photo_url} alt={computer.name} />
+                <div>
+                  <span className="suggestion-name">{computer.name}</span>
+                  <span className="suggestion-price">Price: {computer.original_price} лв</span>
+                </div>
+              </li>
+            ))}
+          </ul>
         </div>
       )}
     </>

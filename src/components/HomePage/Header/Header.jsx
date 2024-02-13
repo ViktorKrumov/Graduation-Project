@@ -15,9 +15,9 @@ const Header = () => {
   };
 
   const images = [
-    "https://i.pinimg.com/736x/f0/f9/e4/f0f9e45724771f16745ad3f6f640d3ce.jpg",
-    "https://img.freepik.com/premium-psd/special-office-discount-shopping-post-design-black-friday_351527-1209.jpg",
-    "https://img.freepik.com/premium-psd/social-media-banner-design-with-3d-rendering-shopping-instrument_351527-1226.jpg",
+    "https://www.shutterstock.com/image-vector/black-friday-sale-banner-modern-600nw-1830876314.jpg",
+    "https://img.freepik.com/free-vector/black-friday-sale-attractive-modern-banner-design_1017-34753.jpg",
+    "https://www.thepavilions.co.uk/wp-content/uploads/2017/03/BW4654-The-Pavilions-Uxbridge-Black-Friday-Web-Banner-AW.jpg",
   ];
 
   return (

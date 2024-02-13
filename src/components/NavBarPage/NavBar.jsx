@@ -63,17 +63,7 @@ const NavBar = ({ toggleLoginForm, isLoggedIn, handleLogout }) => {
             </li>
 
 
-            <li className='nav-item'>
-              {isLoggedIn ? (
-                <Link to="/profile" className="nav-links" activeClassName="active" onClick={closeMobileMenu}>
-                  Profile
-                </Link>
-              ) : (
-                <Button buttonStyle='btn--outline' onClick={toggleLoginForm}>
-                  Login/Register
-                </Button>
-              )}
-            </li>
+            
 
 
           </ul>
