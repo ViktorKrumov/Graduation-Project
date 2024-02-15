@@ -135,18 +135,17 @@
     font-size: 2rem;
   }
 
-  .nav-links-mobile {
+  .nav-item {
     display: block;
     text-align: center;
-    margin: 2rem auto;
+    margin: 1rem auto;
     border-radius: 4px;
     width: 80%;
     text-decoration: none;
     font-size: 1.5rem;
     background-color: transparent;
     color: #fff;
-    padding: 14px 20px;
-    border: 1px solid #fff;
+    margin-bottom: 5rem;
     transition: all 0.3s ease-out;
   }
 
