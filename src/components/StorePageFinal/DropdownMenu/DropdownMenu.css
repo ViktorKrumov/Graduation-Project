@@ -1,0 +1,42 @@
+.product-card_wrapper {
+    position: relative; 
+    z-index: 1; 
+  }
+  
+  .product-card_wrapper:hover .dropdown-menu {
+    display: block;
+    animation: fadeIn 0.3s ease-in-out; 
+  }
+  
+  .product-card_wrapper .dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 200px; 
+    left: 0;
+    width: 200px; 
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: opacity 0.3s ease-in-out; 
+    z-index: 2; 
+  }
+  
+  .product-card_wrapper .dropdown-menu-item {
+    padding: 10px;
+    cursor: pointer;
+  }
+  
+  .product-card_wrapper .dropdown-menu-item:hover {
+    background-color: #f5f5f5;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
