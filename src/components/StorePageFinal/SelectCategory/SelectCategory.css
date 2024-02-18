@@ -15,10 +15,18 @@
   .category-option {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 20px;
     font-size: 1.4rem;
     padding-top: 10px;
   }
+  
+  
+  .category-option label {
+    flex-grow: 1; 
+    min-width: 150px; 
+  }
+  
+  
   
   @media (max-width: 800px) {
     .select-category_container {
@@ -59,3 +67,27 @@
   }
   @media (max-width: 550px) {
   }
+
+
+  .category-option.category-0 {
+    color: blue;
+  }
+  
+  .category-option.category-1 {
+    color: green;
+  }
+  
+  .category-option.category-2 {
+    color: red;
+  }
+  
+  .category-option.category-3 {
+    color: orange;
+  }
+  
+  .category-option.category-4 {
+    color: purple;
+  }
+  
+
+  

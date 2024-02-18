@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import "./SelectCategory.css";
 
@@ -13,8 +12,8 @@ function SelectCategory({ categories, checkBoxState, handleCheckBox }) {
     <div className="select-category_container">
       <h4 onClick={handleCategoryClick}>Category</h4>
       <div className={isOpen ? "open" : ""}>
-        {categories.map((category) => (
-          <span className="category-option" key={category}>
+        {categories.map((category, index) => (
+          <span className={`category-option category-${index % 5}`} key={category}> 
             <input
               type="checkbox"
               id={`category-${category}`}

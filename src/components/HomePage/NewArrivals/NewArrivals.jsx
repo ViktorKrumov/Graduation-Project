@@ -100,7 +100,7 @@ const NewArrivals = () => {
                     <div className="dropdown-menu-item">Add to wishlist <FaHeart /></div>
                   </div>
                   <p className="original-price">
-                    {computer.original_price} лв
+                    ${computer.original_price}
                   </p>
                 
                 </div>

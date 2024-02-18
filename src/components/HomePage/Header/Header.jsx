@@ -15,7 +15,7 @@ const Header = () => {
   };
 
   const images = [
-    "https://www.shutterstock.com/image-vector/black-friday-sale-banner-modern-600nw-1830876314.jpg",
+    "https://github.com/ViktorKrumov/Images-Graduation-Project/blob/main/vecteezy_black-friday-sale-banner-modern-minimal-design-with-black_14471835.jpg?raw=true",
     "https://img.freepik.com/free-vector/black-friday-sale-attractive-modern-banner-design_1017-34753.jpg",
     "https://www.thepavilions.co.uk/wp-content/uploads/2017/03/BW4654-The-Pavilions-Uxbridge-Black-Friday-Web-Banner-AW.jpg",
   ];

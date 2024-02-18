@@ -29,7 +29,7 @@ const SpecialOffer = () => {
                   <div className="dropdown-menu-item">Add to wishlist <FaHeart /></div>
                 </div>
                 <h3>{product.name}</h3>
-                <p className="original-price">{product.original_price} лв</p>
+                <p className="original-price">${product.original_price} </p>
                 
             
                 
