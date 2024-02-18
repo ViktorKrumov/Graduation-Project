@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import Home from './components/HomePage/Home';
-import Trendy from './components/TrendyPage/Trendy';
+import Services from './components/ServicesPage/Services';
 import Store from './components/StorePage/Store';
 import Store2 from './components/SorePageAlt/StoreAlt';
 import Store3 from './components/StorePageFinal/StorePageFinal';
@@ -45,6 +45,7 @@ const App = () => {
           <Route path="/login" element={<Login />} />
           <Route path="/store" element={<Store3 />} />
           <Route path="/cart" element={<Cart />} />
+          <Route path="/services" element={<Services />} />
           <Route
             path="/profile"
             element={<Profile />}
