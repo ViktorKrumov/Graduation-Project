@@ -1,19 +1,17 @@
-
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import ProductCard from "../StorePageFinal/ProductCard/ProductCard";
 import { fetchData } from "../api";
 import "./StorePageFinal.css";
 
-import SelectCategory from "../StorePageFinal/SelectCategory/SelectCategory";
+import Sidebar from "./Sidebar/Sidebar";
 import PriceFilter from "./PriceFilter/PriceFilter";
-import ColorFilter from "./ColorFIlter/ColorFIlter"
 
 function StorePageFinal() {
   const [originalProducts, setOriginalProducts] = useState([]);
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [categoryFilters, setCategoryFilters] = useState({});
-  const [colorFilters, setColorFilters] = useState({}); 
+  const [colorFilters, setColorFilters] = useState({});
   const [priceFilter, setPriceFilter] = useState("default");
 
   useEffect(() => {
@@ -89,24 +87,20 @@ function StorePageFinal() {
 
   return (
     <main className="product-main">
-      <>
-        <SelectCategory
-          categories={categories}
-          checkBoxState={categoryFilters}
-          handleCheckBox={handleCategoryFilterChange}
-        />
-        <ColorFilter 
-          colors={colors}
-          colorFilters={colorFilters}
-          handleColorFilterChange={handleColorFilterChange}
-        />
-        <PriceFilter priceFilter={priceFilter} handlePriceFilter={handlePriceFilter} />
-        <div className="products-container">
-          {products.map((product) => (
-            <ProductCard product={product} key={product.id} />
-          ))}
-        </div>
-      </>
+      <Sidebar
+        categories={categories}
+        checkBoxState={categoryFilters}
+        handleCheckBox={handleCategoryFilterChange}
+        colors={colors}
+        colorFilters={colorFilters}
+        handleColorFilterChange={handleColorFilterChange}
+      />
+      <PriceFilter priceFilter={priceFilter} handlePriceFilter={handlePriceFilter} />
+      <div className="products-container">
+        {products.map((product) => (
+          <ProductCard product={product} key={product.id} />
+        ))}
+      </div>
     </main>
   );
 }
