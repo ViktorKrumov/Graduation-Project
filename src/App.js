@@ -12,6 +12,7 @@ import Profile from './components/Profile/Profile';
 import LogoutConfirmation from './components/Profile/LogoutConfirmation';
 import NavBar from './components/NavBarPage/NavBar';
 import Navigation from './components/Navigation/Nav';
+import ProductDetailsPage from './components/ProductDetailsPage/ProductDetailsPage'; 
 
 import { getAuth } from 'firebase/auth';
 import styled from "styled-components";
@@ -36,24 +37,21 @@ const App = () => {
   }, [location]);
 
   return (
-    
-      <>
-        {showNavBar && <NavBar />}
-        {showNavigation && <Navigation />}
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/store" element={<Store3 />} />
-          <Route path="/cart" element={<Cart />} />
-          <Route path="/services" element={<Services />} />
-          <Route
-            path="/profile"
-            element={<Profile />}
-          />
-        </Routes>
-        {showFooter && <Footer />}
-      </>
-    
+    <>
+      {showNavBar && <NavBar />}
+      {showNavigation && <Navigation />}
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/store/pc" element={<Store3 />} />
+        <Route path="/store/laptops" element={<Store2 />} />
+        <Route path="/product/:id" element={<ProductDetailsPage />} /> 
+        <Route path="/cart" element={<Cart />} />
+        <Route path="/services" element={<Services />} />
+        <Route path="/profile" element={<Profile />} />
+      </Routes>
+      {showFooter && <Footer />}
+    </>
   );
 };
 

@@ -4,6 +4,7 @@ import { fetchData } from "../api";
 import "./StorePageFinal.css";
 
 import Sidebar from "./Sidebar/Sidebar";
+import PriceRangeFilter from "./Sidebar/PriceRangeFilter/PriceRangeFIlter";
 import PriceFilter from "./PriceFilter/PriceFilter";
 
 function StorePageFinal() {
@@ -12,6 +13,7 @@ function StorePageFinal() {
   const [loading, setLoading] = useState(true);
   const [categoryFilters, setCategoryFilters] = useState({});
   const [colorFilters, setColorFilters] = useState({});
+  const [priceRange, setPriceRange] = useState({ minPrice: "", maxPrice: "" });
   const [priceFilter, setPriceFilter] = useState("default");
 
   useEffect(() => {
@@ -54,7 +56,15 @@ function StorePageFinal() {
         );
       }
 
-      // Apply price filter
+      // Apply price range filter
+      filteredProducts = filteredProducts.filter((product) => {
+        const productPrice = parseFloat(product.original_price);
+        const minPrice = priceRange.minPrice === "" ? Number.MIN_VALUE : parseFloat(priceRange.minPrice);
+        const maxPrice = priceRange.maxPrice === "" ? Number.MAX_VALUE : parseFloat(priceRange.maxPrice);
+        return productPrice >= minPrice && productPrice <= maxPrice;
+      });
+
+      // Sort products by price if a price sort option is selected
       switch (priceFilter) {
         case "low-to-high":
           filteredProducts.sort((a, b) => a.original_price - b.original_price);
@@ -68,8 +78,9 @@ function StorePageFinal() {
 
       setProducts(filteredProducts);
     }
+
     filterProducts();
-  }, [categoryFilters, colorFilters, originalProducts, priceFilter]);
+  }, [categoryFilters, colorFilters, originalProducts, priceRange, priceFilter]);
 
   function handleCategoryFilterChange(e) {
     const { name, checked } = e.target;
@@ -79,6 +90,10 @@ function StorePageFinal() {
   function handleColorFilterChange(e) {
     const { name, checked } = e.target;
     setColorFilters((prevFilters) => ({ ...prevFilters, [name]: checked }));
+  }
+
+  function handlePriceRangeFilter(minPrice, maxPrice) {
+    setPriceRange({ minPrice, maxPrice });
   }
 
   function handlePriceFilter(e) {
@@ -94,6 +109,7 @@ function StorePageFinal() {
         colors={colors}
         colorFilters={colorFilters}
         handleColorFilterChange={handleColorFilterChange}
+        handlePriceRangeFilter={handlePriceRangeFilter}
       />
       <PriceFilter priceFilter={priceFilter} handlePriceFilter={handlePriceFilter} />
       <div className="products-container">

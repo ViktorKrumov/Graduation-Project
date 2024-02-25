@@ -1,31 +1,20 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './NavBar.css';
 import { Button } from './Button';
 
 const NavBar = ({ toggleLoginForm, isLoggedIn, handleLogout }) => {
   const [click, setClick] = useState(false);
-  const [button, setButton] = useState(true);
+  const [productClick, setProductClick] = useState(false); 
 
-  const handleClick = () => setClick(!click);
-  const closeMobileMenu = () => setClick(false);
-
-  const showButton = () => {
-    if (window.innerWidth <= 960) {
-      setButton(false);
-    } else {
-      setButton(true);
-    }
+  const handleProductsClick = () => {
+    setProductClick(!productClick); 
   };
 
-  useEffect(() => {
-    showButton();
-  }, []);
-
-  window.addEventListener('resize', showButton);
-
-
-  
+  const closeMobileMenu = () => {
+    setClick(false);
+    setProductClick(false); 
+  };
 
   return (
     <>
@@ -34,7 +23,7 @@ const NavBar = ({ toggleLoginForm, isLoggedIn, handleLogout }) => {
           <Link to='/' className='navbar-logo' onClick={closeMobileMenu}>
             TechnoShack
           </Link>
-          <div className='menu-icon' onClick={handleClick}>
+          <div className='menu-icon' onClick={() => setClick(!click)}>
             <i className={click ? 'fas fa-times' : 'fas fa-bars'} />
           </div>
           <ul className={click ? 'nav-menu active' : 'nav-menu'}>
@@ -43,29 +32,29 @@ const NavBar = ({ toggleLoginForm, isLoggedIn, handleLogout }) => {
                 Home
               </Link>
             </li>
+
             <li className='nav-item'>
-              <Link
-                to='/services'
-                className='nav-links'
-                onClick={closeMobileMenu}
-              >
+              <div className='nav-links' onClick={handleProductsClick}>
+                Products <i className='fas fa-caret-down' />
+              </div>
+              <ul className={productClick ? 'dropdown-menu active' : 'dropdown-menu'}>
+                <li className='dropdown-item'>
+                  <Link to='/store/pc' className='dropdown-link' onClick={closeMobileMenu}>PC</Link>
+                </li>
+                <li className='dropdown-item'>
+                  <Link to='/store/laptops' className='dropdown-link' onClick={closeMobileMenu}>Laptops</Link>
+                </li>
+                <li className='dropdown-item'>
+                  <Link to='/store/gaming-gears' className='dropdown-link' onClick={closeMobileMenu}>Gaming Gears</Link>
+                </li>
+              </ul>
+            </li>
+            <li className='nav-item'>
+              <Link to='/services' className='nav-links' onClick={closeMobileMenu}>
                 Services
               </Link>
             </li>
-            <li className='nav-item'>
-              <Link
-                to='/store'
-                className='nav-links'
-                onClick={closeMobileMenu}
-              >
-                Products
-              </Link>
-            </li>
-
-
             
-
-
           </ul>
           {/* {button && <Button buttonStyle='btn--outline'>SIGN UP</Button>} */}
         </div>
