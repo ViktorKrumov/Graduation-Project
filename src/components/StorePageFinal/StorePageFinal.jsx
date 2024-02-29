@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import ProductCard from "../StorePageFinal/ProductCard/ProductCard";
-import { fetchData } from "../api";
+import { fetchData } from "../api2";
 import "./StorePageFinal.css";
 
 import Sidebar from "./Sidebar/Sidebar";
