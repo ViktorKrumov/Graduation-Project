@@ -15,6 +15,8 @@ import Navigation from './components/Navigation/Nav';
 import ProductDetailsPage from './components/ProductDetailsPage/ProductDetailsPage'; 
 import Register from './components/RegisterPage/RegisterPage'
 
+import Store4 from './components/StorePageFinal 2/StorePageFinal2'
+
 import { getAuth } from 'firebase/auth';
 import styled from "styled-components";
 
@@ -54,7 +56,7 @@ const App = () => {
         <Route path="/login" element={<Login handleLoginSuccess={handleLoginSuccess} />} />
         <Route path="/register" element={<Register />} />
         <Route path="/store/pc" element={<Store3 />} />
-        <Route path="/store/laptops" element={<Store2 />} />
+        <Route path="/store/laptops" element={<Store4 />} />
         <Route path="/product/:id" element={<ProductDetailsPage />} /> 
         <Route path="/cart" element={<Cart />} />
         <Route path="/services" element={<Services />} />

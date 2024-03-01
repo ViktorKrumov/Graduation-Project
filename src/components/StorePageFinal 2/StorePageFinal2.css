@@ -7,7 +7,7 @@
 
 .products-container {
   display: grid;
-  width: calc(100% - 300px); 
+  width: calc(90% - 300px); 
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   place-items: center;
   gap: 16px;

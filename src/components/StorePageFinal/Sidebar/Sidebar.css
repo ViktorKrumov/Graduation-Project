@@ -1,46 +1,56 @@
 .sidebar {
-    width: 300px;
-    height: fit-content;
-    padding: 20px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-  }
+  width: 300px;
+  padding: 20px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  transition: width 0.3s ease;
+}
+
+.sidebar.open {
+  width: 100%;
+}
+
+.toggle-btn {
+  display: none; 
+}
+.toggle-btn {
   
-  .sidebar h2 {
-    font-size: 18px;
+  margin-bottom: 10px;
+  padding: 10px 20px; 
+  background-color: #007bff; 
+  color: #fff; 
+  border: none; 
+  border-radius: 5px; 
+  cursor: pointer;
+  font-size: 16px; 
+}
+
+.toggle-btn:hover {
+  background-color: #0056b3; 
+}
+
+@media (max-width: 800px) {
+  .toggle-btn {
+    display: block;
     margin-bottom: 10px;
   }
-  
-  .sidebar .filter-group {
-    margin-bottom: 20px;
+
+  .sidebar {
+    width: 100%;
+    box-shadow: none;
+    padding: 0;
+    overflow: hidden;
   }
-  
-  .sidebar label {
+
+  .sidebar.open {
+    height: auto;
+  }
+
+  .sidebar-content {
+    display: none;
+    background-color: #f9f9f9;
+  }
+
+  .sidebar.open .sidebar-content {
     display: block;
-    margin-bottom: 5px;
   }
-  
-  .sidebar input[type="checkbox"] {
-    margin-right: 5px;
-  }
-  
-  @media (max-width: 800px) {
-    .sidebar {
-      width: 100%;
-     
-      box-shadow: none;
-      padding: 0;
-    }
-    
-    .sidebar h2 {
-      font-size: 16px;
-    }
-    
-    .sidebar .filter-group {
-      margin-bottom: 10px;
-    }
-    
-    .sidebar input[type="checkbox"] {
-      margin-right: 5px;
-    }
-  }
-  
+}
