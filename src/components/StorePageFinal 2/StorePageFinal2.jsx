@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import ProductCard from "./ProductCard2/ProductCard2";
 import { fetchData } from "../api3";
+import PriceFilter2 from "./PriceFilter2/PriceFilter2"; 
 
 function StorePageFinal() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [priceFilter, setPriceFilter] = useState("default");
 
   useEffect(() => {
     async function getData() {
@@ -20,16 +22,33 @@ function StorePageFinal() {
     getData();
   }, []);
 
+  const handlePriceFilter = (event) => {
+    setPriceFilter(event.target.value);
+  };
+
+  const sortedProducts = () => {
+    if (priceFilter === "high-to-low") {
+      return [...products].sort((a, b) => b.original_price - a.original_price);
+    } else if (priceFilter === "low-to-high") {
+      return [...products].sort((a, b) => a.original_price - b.original_price);
+    } else {
+      return products;
+    }
+  };
+
   return (
-    <div className="products-container">
-      {loading ? (
-        <p>Loading...</p>
-      ) : (
-        products.map((product, index) => (
-          <ProductCard product={product} key={index} />
-        ))
-      )}
-    </div>
+    <main className="product-main">
+      <PriceFilter2 priceFilter={priceFilter} handlePriceFilter={handlePriceFilter} /> {/* PriceFilter2 component */}
+      <div className="products-container">
+        {loading ? (
+          <p>Loading...</p>
+        ) : (
+          sortedProducts().map((product, index) => (
+            <ProductCard product={product} key={index} />
+          ))
+        )}
+      </div>
+    </main>
   );
 }
 
