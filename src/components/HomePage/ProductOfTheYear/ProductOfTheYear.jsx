@@ -16,7 +16,7 @@ const ProductOfTheYear = () => {
                         <h1>Product of the year</h1>
                         <small>The Mi Smart Band 4 features a 39.9% larger (than Mi Band 3) AMOLED color full-touch display with adjustable brightness, so everything is clear as can Yas ae</small>
                         <div className="buy-now-container">
-                            <Link to="/buy-now" className="buy-now-button">Buy Now</Link>
+                            <Link to="/product/8" className="buy-now-button">See more</Link>
                         </div>
                     </div>
                 </div>

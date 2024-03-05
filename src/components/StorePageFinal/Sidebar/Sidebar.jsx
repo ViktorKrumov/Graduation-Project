@@ -2,9 +2,11 @@ import React, { useState } from "react";
 import SelectCategory from "./SelectCategory/SelectCategory";
 import ColorFilter from "./ColorFIlter/ColorFIlter";
 import PriceRangeFilter from "./PriceRangeFilter/PriceRangeFIlter";
+import ProcessorFilter from "./ProcessorFilter/ProcessorFilter"; 
+import GraphicsCardFilter from "./GraphicCard/GraphicCard"; 
 import "./Sidebar.css";
 
-function Sidebar({ categories, checkBoxState, handleCheckBox, colors, colorFilters, handleColorFilterChange, handlePriceRangeFilter }) {
+function Sidebar({ categories, checkBoxState, handleCheckBox, colors, colorFilters, handleColorFilterChange, handlePriceRangeFilter, processors, selectedProcessor, handleProcessorChange, graphicCards, selectedGraphicCard, handleGraphicCardChange }) { // Include graphicsCards, selectedGraphicsCard, and handleGraphicsCardChange props
   const [sidebarVisible, setSidebarVisible] = useState(false);
 
   const toggleSidebar = () => {
@@ -28,6 +30,16 @@ function Sidebar({ categories, checkBoxState, handleCheckBox, colors, colorFilte
           handleColorFilterChange={handleColorFilterChange}
         />
         <PriceRangeFilter handlePriceRangeFilter={handlePriceRangeFilter} />
+        <ProcessorFilter 
+          processors={processors}
+          selectedProcessor={selectedProcessor}
+          handleProcessorChange={handleProcessorChange}
+        />
+        <GraphicsCardFilter 
+          graphicsCards={graphicCards}
+          graphicCardFilters={selectedGraphicCard}
+          handleGraphicCardChange={handleGraphicCardChange}
+        />
       </div>
     </div>
   );

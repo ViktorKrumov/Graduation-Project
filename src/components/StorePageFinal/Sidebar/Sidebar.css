@@ -1,10 +1,11 @@
 .sidebar {
-  width: 300px;
+  width: 320px;
   padding: 20px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
   transition: width 0.3s ease;
+  /* position: relative; */
+  
 }
-
 .sidebar.open {
   width: 100%;
 }

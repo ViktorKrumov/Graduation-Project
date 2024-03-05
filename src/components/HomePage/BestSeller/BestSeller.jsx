@@ -13,13 +13,13 @@ const BestSeller = () => {
               src='https://github.com/ViktorKrumov/Images-Graduation-Project/blob/main/Pc7.jpg?raw=true'
               text='Discover the latest gaming PC with high-end graphics'
               label='Gaming'
-              path='/store'
+              path='/product/7'
             />
             <CardItem
               src='https://github.com/ViktorKrumov/Images-Graduation-Project/blob/main/Pc4.png?raw=true'
               text='Upgrade your workstation with cutting-edge technology'
               label='Professional'
-              path='/store'
+              path='/product/4'
             />
           </ul>
           <ul className='cards__items'>
@@ -27,19 +27,19 @@ const BestSeller = () => {
               src='https://github.com/ViktorKrumov/Images-Graduation-Project/blob/main/Pc5.png?raw=true'
               text='Explore powerful servers for your business needs'
               label='Business'
-              path='/store'
+              path='/product/5'
             />
             <CardItem
               src='https://github.com/ViktorKrumov/Images-Graduation-Project/blob/main/Pc2.png?raw=true'
               text='Enjoy sleek and slim laptops for on-the-go productivity'
               label='Portable'
-              path='/store'
+              path='/product/2'
             />
             <CardItem
               src='https://github.com/ViktorKrumov/Images-Graduation-Project/blob/main/Pc6.jpg?raw=true'
               text='Build your custom PC for ultimate performance'
               label='Custom Builds'
-              path='/store'
+              path='/product/6'
             />
           </ul>
         </div>

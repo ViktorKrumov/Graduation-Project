@@ -4,7 +4,6 @@ import { fetchData } from "../api2";
 import "./StorePageFinal.css";
 
 import Sidebar from "./Sidebar/Sidebar";
-import PriceRangeFilter from "./Sidebar/PriceRangeFilter/PriceRangeFIlter";
 import PriceFilter from "./PriceFilter/PriceFilter";
 
 function StorePageFinal() {
@@ -13,8 +12,15 @@ function StorePageFinal() {
   const [loading, setLoading] = useState(true);
   const [categoryFilters, setCategoryFilters] = useState({});
   const [colorFilters, setColorFilters] = useState({});
+
   const [priceRange, setPriceRange] = useState({ minPrice: "", maxPrice: "" });
   const [priceFilter, setPriceFilter] = useState("default");
+
+  const [processors, setProcessors] = useState(["Intel Core i5", "Intel Core i7", "Intel Core i9", "AMD Ryzen 5", "AMD Ryzen 7"]);
+  const [selectedProcessor, setSelectedProcessor] = useState({});
+
+  const [graphicCards, setGraphicCards] = useState(["GeForce RTX 3050", "GeForce RTX 3060", "GeForce RTX 3060 Ti", "GeForce RTX 3070"]);
+  const [selectedGraphicCard, setSelectedGraphicCard] = useState({});
 
   useEffect(() => {
     async function getData() {
@@ -64,6 +70,22 @@ function StorePageFinal() {
         return productPrice >= minPrice && productPrice <= maxPrice;
       });
 
+      // Filter by processor brand
+      const selectedProcessors = Object.keys(selectedProcessor).filter((processor) => selectedProcessor[processor]);
+      if (selectedProcessors.length > 0) {
+        filteredProducts = filteredProducts.filter((product) =>
+          selectedProcessors.includes(product.processor.split(" ")[0]) 
+        );
+      }
+
+      // Filter by graphic card
+      const selectedGraphicCards = Object.keys(selectedGraphicCard).filter((card) => selectedGraphicCard[card]);
+      if (selectedGraphicCards.length > 0) {
+        filteredProducts = filteredProducts.filter((product) =>
+          selectedGraphicCards.includes(product.graphics_card.split(" ")[0])
+        );
+      }
+
       // Sort products by price if a price sort option is selected
       switch (priceFilter) {
         case "low-to-high":
@@ -80,7 +102,7 @@ function StorePageFinal() {
     }
 
     filterProducts();
-  }, [categoryFilters, colorFilters, originalProducts, priceRange, priceFilter]);
+  }, [categoryFilters, colorFilters, originalProducts, priceRange, priceFilter, selectedProcessor, selectedGraphicCard]);
 
   function handleCategoryFilterChange(e) {
     const { name, checked } = e.target;
@@ -100,6 +122,20 @@ function StorePageFinal() {
     setPriceFilter(e.target.value);
   }
 
+  function handleProcessorChange(processor) {
+    setSelectedProcessor((prevProcessorFilters) => ({
+      ...prevProcessorFilters,
+      [processor]: !prevProcessorFilters[processor],
+    }));
+  }
+
+  function handleGraphicCardChange(card) {
+    setSelectedGraphicCard((prevCardFilters) => ({
+      ...prevCardFilters,
+      [card]: !prevCardFilters[card],
+    }));
+  }
+
   return (
     <main className="product-main">
       <Sidebar
@@ -110,6 +146,12 @@ function StorePageFinal() {
         colorFilters={colorFilters}
         handleColorFilterChange={handleColorFilterChange}
         handlePriceRangeFilter={handlePriceRangeFilter}
+        processors={processors}
+        processorFilters={selectedProcessor}
+        handleProcessorChange={handleProcessorChange}
+        graphicCards={graphicCards}
+        selectedGraphicCard={selectedGraphicCard}
+        handleGraphicCardChange={handleGraphicCardChange}
       />
       <PriceFilter priceFilter={priceFilter} handlePriceFilter={handlePriceFilter} />
       <div className="products-container">
