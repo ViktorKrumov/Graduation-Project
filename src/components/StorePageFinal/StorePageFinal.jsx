@@ -12,15 +12,14 @@ function StorePageFinal() {
   const [loading, setLoading] = useState(true);
   const [categoryFilters, setCategoryFilters] = useState({});
   const [colorFilters, setColorFilters] = useState({});
-
   const [priceRange, setPriceRange] = useState({ minPrice: "", maxPrice: "" });
   const [priceFilter, setPriceFilter] = useState("default");
-
   const [processors, setProcessors] = useState(["Intel Core i5", "Intel Core i7", "Intel Core i9", "AMD Ryzen 3", "AMD Ryzen 5", "AMD Ryzen 7"]);
   const [selectedProcessor, setSelectedProcessor] = useState({});
-
   const [graphicCards, setGraphicCards] = useState(["GeForce RTX 2080", "GeForce RTX 3050", "GeForce RTX 3060", "GeForce RTX 3060 Ti", "GeForce RTX 3070", "Radeon RX"]);
   const [selectedGraphicCard, setSelectedGraphicCard] = useState({});
+
+  const [selectedCompany, setSelectedCompany] = useState({});
 
   useEffect(() => {
     async function getData() {
@@ -39,6 +38,7 @@ function StorePageFinal() {
 
   const categories = Array.from(new Set(originalProducts.map((product) => product.category)));
   const colors = Array.from(new Set(originalProducts.map((product) => product.color)));
+  const companies = Array.from(new Set(originalProducts.map((product) => product.company)));
 
   useEffect(() => {
     function filterProducts() {
@@ -86,6 +86,14 @@ function StorePageFinal() {
         );
       }
 
+      // Filter by company
+      const selectedCompanies = Object.keys(selectedCompany).filter((company) => selectedCompany[company]);
+      if (selectedCompanies.length > 0) {
+        filteredProducts = filteredProducts.filter((product) =>
+          selectedCompanies.some(selectedCompany => product.company.includes(selectedCompany))
+        );
+      }
+
       // Sort products by price if a price sort option is selected
       switch (priceFilter) {
         case "low-to-high":
@@ -102,7 +110,7 @@ function StorePageFinal() {
     }
 
     filterProducts();
-  }, [categoryFilters, colorFilters, originalProducts, priceRange, priceFilter, selectedProcessor, selectedGraphicCard]);
+  }, [categoryFilters, colorFilters, originalProducts, priceRange, priceFilter, selectedProcessor, selectedGraphicCard, selectedCompany]);
 
   function handleCategoryFilterChange(e) {
     const { name, checked } = e.target;
@@ -136,7 +144,13 @@ function StorePageFinal() {
     }));
   }
 
- 
+  function handleCompanyChange(company) {
+    setSelectedCompany((prevCompanyFilters) => ({
+      ...prevCompanyFilters,
+      [company]: !prevCompanyFilters[company],
+    }));
+  }
+
   const noProductsImageUrl = "https://www.bagbazaars.com/assets/img/no-product-found.png";
 
   return (
@@ -150,12 +164,16 @@ function StorePageFinal() {
         handleColorFilterChange={handleColorFilterChange}
         handlePriceRangeFilter={handlePriceRangeFilter}
         processors={processors}
-        processorFilters={selectedProcessor}
+        selectedProcessor={selectedProcessor}
         handleProcessorChange={handleProcessorChange}
         graphicCards={graphicCards}
         selectedGraphicCard={selectedGraphicCard}
         handleGraphicCardChange={handleGraphicCardChange}
+        companies={companies} 
+        selectedCompany={selectedCompany}
+        handleCompanyChange={handleCompanyChange}
       />
+
       <PriceFilter priceFilter={priceFilter} handlePriceFilter={handlePriceFilter} />
       {products.length === 0 ? (
         <div className="products-container">

@@ -56,7 +56,7 @@ const App = () => {
         <Route path="/login" element={<Login handleLoginSuccess={handleLoginSuccess} />} />
         <Route path="/register" element={<Register />} />
         <Route path="/store/pc" element={<Store3 />} />
-        <Route path="/store/laptops" element={<Store4 />} />
+        <Route path="/store/monitors" element={<Store4 />} />
         <Route path="/product/:id" element={<ProductDetailsPage />} /> 
         <Route path="/cart" element={<Cart />} />
         <Route path="/services" element={<Services />} />

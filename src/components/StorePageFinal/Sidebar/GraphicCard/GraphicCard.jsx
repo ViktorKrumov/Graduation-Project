@@ -1,13 +1,13 @@
 import React from "react";
 import "./GraphicCard.css";
 
-function GraphicCardFilter({ graphicsCards, graphicCardFilters, handleGraphicCardChange }) {
+function GraphicCardFilter({ graphicCards, graphicCardFilters, handleGraphicCardChange }) {
 
   return (
     <div className="graphic-card-filter-container">
       <h4>Graphics Card</h4>
       <div className="graphic-card-options">
-        {graphicsCards.map((graphicCard) => (
+        {graphicCards.map((graphicCard) => (
           <span key={graphicCard} className="graphic-card-option">
             <input
               type="checkbox"
