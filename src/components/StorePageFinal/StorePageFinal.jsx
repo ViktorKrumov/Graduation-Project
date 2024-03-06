@@ -16,10 +16,10 @@ function StorePageFinal() {
   const [priceRange, setPriceRange] = useState({ minPrice: "", maxPrice: "" });
   const [priceFilter, setPriceFilter] = useState("default");
 
-  const [processors, setProcessors] = useState(["Intel Core i5", "Intel Core i7", "Intel Core i9", "AMD Ryzen 5", "AMD Ryzen 7"]);
+  const [processors, setProcessors] = useState(["Intel Core i5", "Intel Core i7", "Intel Core i9", "AMD Ryzen 3", "AMD Ryzen 5", "AMD Ryzen 7"]);
   const [selectedProcessor, setSelectedProcessor] = useState({});
 
-  const [graphicCards, setGraphicCards] = useState(["GeForce RTX 3050", "GeForce RTX 3060", "GeForce RTX 3060 Ti", "GeForce RTX 3070"]);
+  const [graphicCards, setGraphicCards] = useState(["GeForce RTX 2080", "GeForce RTX 3050", "GeForce RTX 3060", "GeForce RTX 3060 Ti", "GeForce RTX 3070", "Radeon RX"]);
   const [selectedGraphicCard, setSelectedGraphicCard] = useState({});
 
   useEffect(() => {
@@ -74,7 +74,7 @@ function StorePageFinal() {
       const selectedProcessors = Object.keys(selectedProcessor).filter((processor) => selectedProcessor[processor]);
       if (selectedProcessors.length > 0) {
         filteredProducts = filteredProducts.filter((product) =>
-          selectedProcessors.includes(product.processor.split(" ")[0]) 
+          selectedProcessors.some(selectedProcessor => product.processor.includes(selectedProcessor))
         );
       }
 
@@ -82,7 +82,7 @@ function StorePageFinal() {
       const selectedGraphicCards = Object.keys(selectedGraphicCard).filter((card) => selectedGraphicCard[card]);
       if (selectedGraphicCards.length > 0) {
         filteredProducts = filteredProducts.filter((product) =>
-          selectedGraphicCards.includes(product.graphics_card.split(" ")[0])
+          selectedGraphicCards.some(selectedCard => product.graphics_card.includes(selectedCard))
         );
       }
 
@@ -136,6 +136,9 @@ function StorePageFinal() {
     }));
   }
 
+ 
+  const noProductsImageUrl = "https://www.bagbazaars.com/assets/img/no-product-found.png";
+
   return (
     <main className="product-main">
       <Sidebar
@@ -154,11 +157,17 @@ function StorePageFinal() {
         handleGraphicCardChange={handleGraphicCardChange}
       />
       <PriceFilter priceFilter={priceFilter} handlePriceFilter={handlePriceFilter} />
-      <div className="products-container">
-        {products.map((product) => (
-          <ProductCard product={product} key={product.id} />
-        ))}
-      </div>
+      {products.length === 0 ? (
+        <div className="products-container">
+          <img src={noProductsImageUrl} alt="No products found" />
+        </div>
+      ) : (
+        <div className="products-container">
+          {products.map((product) => (
+            <ProductCard product={product} key={product.id} />
+          ))}
+        </div>
+      )}
     </main>
   );
 }

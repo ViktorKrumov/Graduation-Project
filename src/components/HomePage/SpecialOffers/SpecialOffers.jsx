@@ -8,10 +8,10 @@ import { FaHeart } from "react-icons/fa";
 const SpecialOffer = () => {
 
   const products = [
-    { id: 1, image: 'https://github.com/ViktorKrumov/Images-Graduation-Project/blob/main/Pc8.png?raw=true', name: 'Product 1', original_price: 100, isNew: true },
-    { id: 2, image: 'https://github.com/ViktorKrumov/Images-Graduation-Project/blob/main/Pc8.png?raw=true', name: 'Product 2', original_price: 120 },
-    { id: 3, image: 'https://github.com/ViktorKrumov/Images-Graduation-Project/blob/main/Pc8.png?raw=true', name: 'Product 3', original_price: 90, isNew: true },
-    { id: 4, image: 'https://github.com/ViktorKrumov/Images-Graduation-Project/blob/main/Pc8.png?raw=true', name: 'Product 4', original_price: 80 },
+    { id: 1, image: 'https://github.com/ViktorKrumov/Images-Graduation-Project/blob/main/Pc4.png?raw=true', name: 'Product 1', original_price: 100, isNew: true },
+    { id: 2, image: 'https://github.com/ViktorKrumov/Images-Graduation-Project/blob/main/Pc3.png?raw=true', name: 'Product 2', original_price: 120 },
+    { id: 3, image: 'https://github.com/ViktorKrumov/Images-Graduation-Project/blob/main/Pc2.png?raw=true', name: 'Product 3', original_price: 90, isNew: true },
+    { id: 4, image: 'https://github.com/ViktorKrumov/Images-Graduation-Project/blob/main/Pc5.png?raw=true', name: 'Product 4', original_price: 80 },
   ];
 
   return (

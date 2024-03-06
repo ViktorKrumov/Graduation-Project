@@ -13,17 +13,6 @@ const Footer = () => {
         <p className='footer-subscription-text'>
           Stay updated with the latest trends and innovations. Unsubscribe anytime.
         </p>
-        <div className='input-areas'>
-          <form>
-            <input
-              className='footer-input'
-              name='email'
-              type='email'
-              placeholder='Your Email'
-            />
-            {/* <Button buttonStyle='btn--outline'>Subscribe</Button> */}
-          </form>
-        </div>
       </section>
       <div className='footer-links'>
         <div className='footer-link-wrapper'>
