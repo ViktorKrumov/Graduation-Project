@@ -1,0 +1,54 @@
+.company-filter-container {
+    width: 20%;
+    margin-left: 50px;
+    top: 0px;
+    margin-top: 40px;
+    width: fit-content;
+  }
+  
+.company-filter-container h4 {
+    font-weight: 500;
+    font-size: 1.5rem;
+    width: fit-content;
+    letter-spacing: 1px;
+    border-bottom: 1px solid #c2c2c2;
+    padding-bottom: 4px;
+    cursor: pointer; 
+  }
+  
+  .company-options {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .company-options {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    font-size: 1.1rem;
+    padding-top: 10px;
+  }
+  
+  .company-options input[type="checkbox"] {
+    width: 24px;
+    height: 24px;
+    margin-right: 10px;
+  }
+  
+  .company-options label {
+    flex-grow: 1;
+    min-width: 150px;
+  }
+  
+  .company-options {
+    top: 100%;
+    left: 0;
+    width: 100%; 
+    padding: 15px;
+    
+  }
+  
+  .company-options.open {
+    display: block; 
+  }
+
