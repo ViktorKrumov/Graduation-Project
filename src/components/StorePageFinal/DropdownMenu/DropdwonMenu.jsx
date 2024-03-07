@@ -9,7 +9,7 @@ function DropdownMenu({ onAddToCart, onViewDetails, onAddToWishlist, product }) 
     <div className="dropdown-menu">
       <div className="dropdown-menu-item" onClick={onAddToCart}>Add to cart 🛒</div>
       
-      <Link to={`/product/${product.id}`}>
+      <Link to={`/product/${product.name}`}>
         <div className="dropdown-menu-item">View Details <SlActionRedo /></div>
       </Link>
      

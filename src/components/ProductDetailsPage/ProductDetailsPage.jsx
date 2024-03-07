@@ -8,13 +8,13 @@ function ProductDetailsPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const { id } = useParams();
+  const { name } = useParams();
 
   useEffect(() => {
     async function fetchDataAndSetProduct() {
       try {
         const products = await fetchData();
-        const foundProduct = products.find(item => item.id.toString() === id);
+        const foundProduct = products.find(item => item.name.toString() === name);
         if (foundProduct) {
           setProduct(foundProduct);
           setLoading(false);
@@ -28,7 +28,7 @@ function ProductDetailsPage() {
       }
     }
     fetchDataAndSetProduct();
-  }, [id]);
+  }, [name]);
 
   if (loading) {
     return <div>Loading...</div>;
@@ -46,7 +46,7 @@ function ProductDetailsPage() {
     <div className="product-details-container">
       <h2>{product.name}</h2>
       <div className="product-images">
-        <img src={product.photo_url} alt={product.name} className="main-image" />
+        <img src={product.photo} alt={product.name} className="main-image" />
         <div className="additional-images">
           <div className="image-placeholder"></div>
           <div className="image-placeholder"></div>
