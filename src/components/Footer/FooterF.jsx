@@ -52,9 +52,9 @@ const Footer = () => {
       <section className='social-media'>
         <div className='social-media-wrap'>
           <div className='footer-logo'>
-            <Link to='/' className='social-logo'>
+            <Link to='/' className='navbar-logo'>
+              <img src='https://firebasestorage.googleapis.com/v0/b/technoshack-cbd13.appspot.com/o/SmallLogoTechnoShack.png?alt=media&token=ccbd69d5-bb5a-405c-a41f-48b76766c76a' alt='Logo' className='logo' />
               TechnoShack
-              <i className='fab fa-typo3' />
             </Link>
           </div>
           <small className='website-rights'>TechnoShack © 2023</small>

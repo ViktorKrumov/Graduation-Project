@@ -65,7 +65,7 @@ const Login = ({ handleLoginSuccess }) => {
     <div className="login-page-container">
       <div className="left-content">
         <Link to="/">
-          <img alt="logoImg" className="w-28" />
+          <img src = 'https://firebasestorage.googleapis.com/v0/b/technoshack-cbd13.appspot.com/o/SmallLogoTechnoShack.png?alt=media&token=ccbd69d5-bb5a-405c-a41f-48b76766c76a'alt="navbar-logo" className="logo" />
         </Link>
         <div className="flex flex-col gap-1 -mt-1">
           <h1 className="font-titleFont text-xl font-medium">

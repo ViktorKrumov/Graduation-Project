@@ -21,6 +21,7 @@ const NavBar = ({ toggleLoginForm, isLoggedIn, handleLogout }) => {
       <nav className='navbar'>
         <div className='navbar-container'>
           <Link to='/' className='navbar-logo' onClick={closeMobileMenu}>
+          <img src="https://firebasestorage.googleapis.com/v0/b/technoshack-cbd13.appspot.com/o/SmallLogoTechnoShack.png?alt=media&token=ccbd69d5-bb5a-405c-a41f-48b76766c76a" alt='Logo' className='logo' /> 
             TechnoShack
           </Link>
           <div className='menu-icon' onClick={() => setClick(!click)}>

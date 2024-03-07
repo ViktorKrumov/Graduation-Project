@@ -82,7 +82,6 @@ function Nav() {
             <div className="dropdown-content">
               <Link to="/profile">Profile</Link>
               <Link to="/login">Log in</Link>
-              <Link to="/register">Register</Link>
               <Link to="/others">Others</Link>
             </div>
           </div>
