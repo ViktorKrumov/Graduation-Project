@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 
 import PriceRangeFilter from "./PriceRangeFilter/PriceRangeFIlter";
-
+import ColorFilter from "../../StorePageFinal/Sidebar/ColorFIlter/ColorFIlter";
 import CompanyFilter from "./CompanyFIlter3/CompanyFIlter";
+import ConnectionFilter from "./ConnectionFilter/ConnectionFilter";
 import "./Sidebar3.css";
 
-function Sidebar({ categories, checkBoxState, handleCheckBox, colors, colorFilters, handleColorFilterChange, handlePriceRangeFilter, processors, selectedProcessor, handleProcessorChange, graphicCards, selectedGraphicCard, handleGraphicCardChange, companies, selectedCompany, handleCompanyChange }) {
+function Sidebar({ colors, colorFilters, handleColorFilterChange, handlePriceRangeFilter,  companies, selectedCompany, handleCompanyChange, connections, selectedConnections, handleConnectionChange }) { 
+
   const [sidebarVisible, setSidebarVisible] = useState(false);
 
   const toggleSidebar = () => {
@@ -24,6 +26,16 @@ function Sidebar({ categories, checkBoxState, handleCheckBox, colors, colorFilte
           companies={companies}
           selectedCompany={selectedCompany}
           handleCompanyChange={handleCompanyChange}
+        />
+        <ConnectionFilter 
+          connections={connections}
+          selectedConnections={selectedConnections}
+          handleConnectionChange={handleConnectionChange}
+        />
+        <ColorFilter 
+          colors={colors}
+          colorFilters={colorFilters}
+          handleColorFilterChange={handleColorFilterChange}
         />
       </div>
     </div>

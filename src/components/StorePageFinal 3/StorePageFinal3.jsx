@@ -13,9 +13,9 @@ function StorePageFinal() {
  
   const [priceRange, setPriceRange] = useState({ minPrice: "", maxPrice: "" });
   const [priceFilter, setPriceFilter] = useState("default");
-
-
   const [selectedCompany, setSelectedCompany] = useState({});
+  const [colorFilters, setColorFilters] = useState({});
+  const [selectedConnections, setSelectedConnections] = useState({});
 
   useEffect(() => {
     async function getData() {
@@ -32,16 +32,20 @@ function StorePageFinal() {
     getData();
   }, []);
 
-
   const companies = Array.from(new Set(originalProducts.map((product) => product.company)));
+  const colors = Array.from(new Set(originalProducts.map((product) => product.color)));
+  const connections = Array.from(new Set(originalProducts.map((product) => product.connection))); 
 
   useEffect(() => {
     function filterProducts() {
       let filteredProducts = [...originalProducts];
-
      
-
-      
+      const selectedColors = Object.keys(colorFilters).filter((color) => colorFilters[color]);
+      if (selectedColors.length > 0) {
+        filteredProducts = filteredProducts.filter((product) =>
+          selectedColors.includes(product.color)
+        );
+      }
 
       // Apply price range filter
       filteredProducts = filteredProducts.filter((product) => {
@@ -51,13 +55,19 @@ function StorePageFinal() {
         return productPrice >= minPrice && productPrice <= maxPrice;
       });
 
-     
-
       // Filter by company
       const selectedCompanies = Object.keys(selectedCompany).filter((company) => selectedCompany[company]);
       if (selectedCompanies.length > 0) {
         filteredProducts = filteredProducts.filter((product) =>
           selectedCompanies.some(selectedCompany => product.company.includes(selectedCompany))
+        );
+      }
+
+      // Filter by connection
+      const selectedConnectionsKeys = Object.keys(selectedConnections).filter((connection) => selectedConnections[connection]);
+      if (selectedConnectionsKeys.length > 0) {
+        filteredProducts = filteredProducts.filter((product) =>
+          selectedConnectionsKeys.some(selectedConnection => product.connection.includes(selectedConnection))
         );
       }
 
@@ -76,10 +86,12 @@ function StorePageFinal() {
     }
 
     filterProducts();
-  }, [originalProducts, priceRange, priceFilter,selectedCompany]);
+  }, [originalProducts, colorFilters, priceRange, priceFilter, selectedCompany, selectedConnections]);
 
-  
-
+  function handleColorFilterChange(e) {
+    const { name, checked } = e.target;
+    setColorFilters((prevFilters) => ({ ...prevFilters, [name]: checked }));
+  }
 
   function handlePriceRangeFilter(minPrice, maxPrice) {
     setPriceRange({ minPrice, maxPrice });
@@ -89,11 +101,17 @@ function StorePageFinal() {
     setPriceFilter(e.target.value);
   }
 
-
   function handleCompanyChange(company) {
     setSelectedCompany((prevCompanyFilters) => ({
       ...prevCompanyFilters,
       [company]: !prevCompanyFilters[company],
+    }));
+  }
+
+  function handleConnectionChange(connection) {
+    setSelectedConnections((prevConnectionFilters) => ({
+      ...prevConnectionFilters,
+      [connection]: !prevConnectionFilters[connection],
     }));
   }
 
@@ -102,11 +120,16 @@ function StorePageFinal() {
   return (
     <main className="product-main">
       <Sidebar
-       
         handlePriceRangeFilter={handlePriceRangeFilter}
         companies={companies} 
         selectedCompany={selectedCompany}
         handleCompanyChange={handleCompanyChange}
+        colors={colors}
+        colorFilters={colorFilters}
+        handleColorFilterChange={handleColorFilterChange}
+        connections={connections}
+        selectedConnections={selectedConnections}
+        handleConnectionChange={handleConnectionChange}
       />
 
       <PriceFilter priceFilter={priceFilter} handlePriceFilter={handlePriceFilter} />
