@@ -8,7 +8,7 @@ import { fetchData as fetchMiceData } from '../api4';
 import { Link } from 'react-router-dom';
 import './Nav.css';
 
-function Nav() {
+function Nav({ isLoggedIn }) {
   const [query, setQuery] = useState('');
   const [suggestions, setSuggestions] = useState([]);
 
@@ -56,7 +56,7 @@ function Nav() {
 
   return (
     <>
-      <nav className="navContainer">
+       <nav className="navContainer">
         <div className="search-container">
           <input
             type="text"
@@ -69,20 +69,26 @@ function Nav() {
         </div>
 
         <div className="profile-container">
-          <a href="#">
-            <FiHeart className="nav-icons" />
-          </a>
-          <Link to="/cart">
-            <AiOutlineShoppingCart className="nav-icons" />
-          </Link>
+          {isLoggedIn && (
+            <Link to="/cart">
+              <AiOutlineShoppingCart className="nav-icons" />
+            </Link>
+          )}
+          {isLoggedIn && (
+            <Link to="/wishlist">
+              <FiHeart className="nav-icons" />
+            </Link>
+          )}
           <div className="dropdown" onClick={toggleDropdown}>
             <a href="#" className="dropbtn">
               <AiOutlineUserAdd className="nav-icons" />
             </a>
             <div className="dropdown-content">
-              <Link to="/profile">Profile</Link>
-              <Link to="/login">Log in</Link>
-              <Link to="/others">Others</Link>
+              {isLoggedIn ? (
+                <Link to="/profile">Profile</Link>
+              ) : (
+                <Link to="/login">Log in</Link>
+              )}
             </div>
           </div>
         </div>

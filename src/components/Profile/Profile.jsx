@@ -1,15 +1,13 @@
-
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const Profile = ({ isLoggedIn, handleLogout, toggleLoginForm }) => {
+const Profile = ({ handleLogout, userEmail }) => {
   const navigate = useNavigate();
 
   return (
     <div>
-      
-      <button onClick={() => handleLogout()}>Logout</button>
-      <button onClick={() => toggleLoginForm()}>Toggle Login Form</button>
+      {userEmail && <p>Hello {userEmail}</p>}
+      <button onClick={handleLogout}>Logout</button>
     </div>
   );
 };

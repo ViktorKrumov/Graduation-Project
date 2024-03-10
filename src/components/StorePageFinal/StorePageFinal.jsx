@@ -6,7 +6,7 @@ import "./StorePageFinal.css";
 import Sidebar from "./Sidebar/Sidebar";
 import PriceFilter from "./PriceFilter/PriceFilter";
 
-function StorePageFinal() {
+function StorePageFinal({isLoggedIn}) {
   const [originalProducts, setOriginalProducts] = useState([]);
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -151,7 +151,7 @@ function StorePageFinal() {
     }));
   }
 
-  const noProductsImageUrl = "https://www.bagbazaars.com/assets/img/no-product-found.png";
+  const noProductsImageUrl = "https://firebasestorage.googleapis.com/v0/b/technoshack-cbd13.appspot.com/o/noProductsFound.jpg?alt=media&token=5f250185-2745-40aa-9b2a-71dcebbeb56d";
 
   return (
     <main className="product-main">
@@ -182,7 +182,7 @@ function StorePageFinal() {
       ) : (
         <div className="products-container">
           {products.map((product) => (
-            <ProductCard product={product} key={product.id} />
+            <ProductCard product={product} key={product.id} isLoggedIn = {isLoggedIn} />
           ))}
         </div>
       )}

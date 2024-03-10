@@ -3,10 +3,10 @@ import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 
 import toast from "react-hot-toast";
-import DropdownMenu from "../DropdownMenu/DropdwonMenu";
+import DropdownMenu from "../../DropdownMenu/DropdwonMenu";
 import "./ProductCard.css";
 
-function ProductCard({ product }) {
+function ProductCard({ product, isLoggedIn }) {
   const [showDropdown, setShowDropdown] = useState(false);
 
   function handleAddToCart() {
@@ -32,6 +32,7 @@ function ProductCard({ product }) {
         {showDropdown && (
           <DropdownMenu
             // onAddToCart={handleAddToCart}
+            isLoggedIn={isLoggedIn}
             product={product} 
           />
         )}

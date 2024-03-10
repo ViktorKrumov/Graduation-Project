@@ -142,7 +142,7 @@ function StorePageFinal() {
     setWeightRange({ minWeight, maxWeight });
   }
 
-  const noProductsImageUrl = "https://www.bagbazaars.com/assets/img/no-product-found.png";
+  const noProductsImageUrl = "https://firebasestorage.googleapis.com/v0/b/technoshack-cbd13.appspot.com/o/noProductsFound.jpg?alt=media&token=5f250185-2745-40aa-9b2a-71dcebbeb56d";
 
   return (
     <main className="product-main">

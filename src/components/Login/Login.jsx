@@ -12,6 +12,7 @@ const Login = ({ handleLoginSuccess }) => {
   const [emailForPasswordReset, setEmailForPasswordReset] = useState('');
   const [showPasswordWarning, setShowPasswordWarning] = useState(false);
   const [successMessage, setSuccessMessage] = useState('');
+  const [userEmail, setUserEmail] = useState(null); // State to hold user's email after successful login
 
   const toggleForm = () => {
     setIsRegister(!isRegister);
@@ -37,6 +38,8 @@ const Login = ({ handleLoginSuccess }) => {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user;
+        setUserEmail(user.email); // Set the userEmail state with the user's email
+        console.log("User email in Login component:", user.email);
         setSuccessMessage('You have successfully logged in!');
         handleLoginSuccess();
       })
@@ -47,6 +50,8 @@ const Login = ({ handleLoginSuccess }) => {
         setShowPasswordWarning(true);
       });
   };
+  
+  
 
   const handleResetPassword = () => {
     sendPasswordResetEmail(auth, emailForPasswordReset)
@@ -65,7 +70,7 @@ const Login = ({ handleLoginSuccess }) => {
     <div className="login-page-container">
       <div className="left-content">
         <Link to="/">
-          <img src = 'https://firebasestorage.googleapis.com/v0/b/technoshack-cbd13.appspot.com/o/SmallLogoTechnoShack.png?alt=media&token=ccbd69d5-bb5a-405c-a41f-48b76766c76a'alt="navbar-logo" className="logo" />
+          <img src = 'https://firebasestorage.googleapis.com/v0/b/technoshack-cbd13.appspot.com/o/SmallLogoTechnoShack.png?alt=media&token=ccbd69d5-bb5a-405c-a41f-48b76766c76a' alt="navbar-logo" className="logo" />
         </Link>
         <div className="flex flex-col gap-1 -mt-1">
           <h1 className="font-titleFont text-xl font-medium">
@@ -92,6 +97,7 @@ const Login = ({ handleLoginSuccess }) => {
           {successMessage ? (
             <div>
               <p>{successMessage}</p>
+              {userEmail && <p>Your email: {userEmail}</p>} 
               <Link to="/">Go to Home Page</Link>
             </div>
           ) : (
