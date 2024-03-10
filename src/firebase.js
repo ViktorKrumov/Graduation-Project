@@ -1,6 +1,8 @@
 import { initializeApp } from 'firebase/app';
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, sendPasswordResetEmail } from 'firebase/auth';
 import { getDatabase, ref, get } from 'firebase/database';
+import { getFirestore, collection, addDoc } from 'firebase/firestore';
+
 
 const firebaseConfig = {
   apiKey: "AIzaSyDlb-kd6pQy8mCf4Y19X98tqCFseg2bT6A",
@@ -13,8 +15,23 @@ const firebaseConfig = {
   measurementId: "G-93RE6G13KP"
 };
 
+async function addToCart(email, productName, productPhoto) {
+  const db = getFirestore();
+  try {
+    const docRef = await addDoc(collection(db, 'Orders'), {
+      email: email,
+      product: productName,
+      productPhoto: productPhoto,
+      createdAt: new Date()
+    });
+    console.log("Order added with ID: ", docRef.id);
+  } catch (e) {
+    console.error("Error adding order: ", e);
+  }
+}
+
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
 
-export { auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, sendPasswordResetEmail, firebaseConfig};
+export { auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, sendPasswordResetEmail, firebaseConfig, addToCart};

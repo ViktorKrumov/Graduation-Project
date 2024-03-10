@@ -6,7 +6,7 @@ import toast from "react-hot-toast";
 import DropdownMenu from "../../DropdownMenu/DropdwonMenu";
 import "./ProductCard.css";
 
-function ProductCard({ product, isLoggedIn }) {
+function ProductCard({ product, isLoggedIn, userEmail }) {
   const [showDropdown, setShowDropdown] = useState(false);
 
   function handleAddToCart() {
@@ -34,6 +34,7 @@ function ProductCard({ product, isLoggedIn }) {
             // onAddToCart={handleAddToCart}
             isLoggedIn={isLoggedIn}
             product={product} 
+            userEmail={userEmail}
           />
         )}
         <span className="product-card_bottom">

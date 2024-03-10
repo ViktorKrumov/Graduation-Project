@@ -85,11 +85,11 @@ const App = () => {
         <Route path="/register" element={<Register />} />
        
           <>
-            <Route path="/store/pc" element={<Store3 isLoggedIn={isLoggedIn} />} />
+            <Route path="/store/pc" element={<Store3 isLoggedIn={isLoggedIn} userEmail={userEmail} />} />
             <Route path="/store/monitors" element={<Store4 />} />
             <Route path="/store/mice" element={<Store5 />} />
             <Route path="/product/:name" element={<ProductDetailsPage />} /> 
-            <Route path="/cart" element={<Cart />} />
+            <Route path="/cart" element={<Cart userEmail={userEmail}/>} />
             <Route path="/services" element={<Services />} />
             <Route path="/profile" element={<Profile handleLogout={handleLogout} userEmail={userEmail} />} />
 
