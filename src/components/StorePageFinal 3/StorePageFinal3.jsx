@@ -17,6 +17,9 @@ function StorePageFinal() {
   const [colorFilters, setColorFilters] = useState({});
   const [selectedConnections, setSelectedConnections] = useState({});
 
+  const [DPIRange, setDPIRange] = useState({ minDPI: "", maxDPI: "" });
+  const [weightRange, setWeightRange] = useState({ minWeight: "", maxWeight: "" });
+
   useEffect(() => {
     async function getData() {
       try {
@@ -71,6 +74,22 @@ function StorePageFinal() {
         );
       }
 
+        // Filter by DPI range
+        filteredProducts = filteredProducts.filter((product) => {
+          const productDPI = parseInt(product.DPI);
+          const minDPIValue = DPIRange.minDPI === "" ? Number.MIN_VALUE : DPIRange.minDPI;
+          const maxDPIValue = DPIRange.maxDPI === "" ? Number.MAX_VALUE : DPIRange.maxDPI;
+          return productDPI >= minDPIValue && productDPI <= maxDPIValue;
+        });
+
+
+        filteredProducts = filteredProducts.filter((product) => {
+          const productWeight = parseInt(product.weight);
+          const minWeight = weightRange.minWeight === "" ? 0 : parseInt(weightRange.minWeight);
+          const maxWeight = weightRange.maxWeight === "" ? Infinity : parseInt(weightRange.maxWeight);
+          return productWeight >= minWeight && productWeight <= maxWeight;
+        });
+
       switch (priceFilter) {
         case "low-to-high":
           filteredProducts.sort((a, b) => a.original_price - b.original_price);
@@ -86,7 +105,7 @@ function StorePageFinal() {
     }
 
     filterProducts();
-  }, [originalProducts, colorFilters, priceRange, priceFilter, selectedCompany, selectedConnections]);
+  }, [originalProducts, colorFilters, priceRange, priceFilter, selectedCompany, selectedConnections, DPIRange, weightRange]);
 
   function handleColorFilterChange(e) {
     const { name, checked } = e.target;
@@ -115,6 +134,14 @@ function StorePageFinal() {
     }));
   }
 
+  function handleDPIFilter(minDPI, maxDPI) {
+    setDPIRange({ minDPI, maxDPI });
+  }
+
+  function handleWeightFilter(minWeight, maxWeight) {
+    setWeightRange({ minWeight, maxWeight });
+  }
+
   const noProductsImageUrl = "https://www.bagbazaars.com/assets/img/no-product-found.png";
 
   return (
@@ -130,6 +157,9 @@ function StorePageFinal() {
         connections={connections}
         selectedConnections={selectedConnections}
         handleConnectionChange={handleConnectionChange}
+
+        handleDPIFilter={handleDPIFilter}
+        handleWeightFilter={handleWeightFilter}
       />
 
       <PriceFilter priceFilter={priceFilter} handlePriceFilter={handlePriceFilter} />

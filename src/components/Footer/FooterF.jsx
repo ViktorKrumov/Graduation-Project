@@ -26,26 +26,22 @@ const Footer = () => {
           </div>
           <div className='footer-link-items'>
             <h2>Contact Us</h2>
-            <Link to='/'>Contact</Link>
-            <Link to='/'>Support</Link>
-            <Link to='/'>Product Catalog</Link>
-            <Link to='/'>Sponsorships</Link>
+            <Link to='/contact'>Contact</Link>
+            <Link to='/support'>Support</Link>
+            <Link to='/store'>Product Catalog</Link>
+            <Link to='/sponsorships'>Sponsorships</Link>
           </div>
         </div>
         <div className='footer-link-wrapper'>
           <div className='footer-link-items'>
-            <h2>Videos</h2>
-            <Link to='/'>Submit Video</Link>
-            <Link to='/'>Tech Demos</Link>
-            <Link to='/'>Product Reviews</Link>
-            <Link to='/'>Influencer</Link>
+            <h2>Product Categories</h2>
+            <Link to='/store/computers'>Computers</Link>
+            <Link to='/store/mice'>PC Mice</Link>
+            <Link to='/store/monitors'>Monitors</Link>
           </div>
           <div className='footer-link-items'>
-            <h2>Social Media</h2>
-            <Link to='/'>Instagram</Link>
-            <Link to='/'>Facebook</Link>
-            <Link to='/'>YouTube</Link>
-            <Link to='/'>Twitter</Link>
+            <h2>Services</h2>
+            <Link to='/services'>Services</Link>
           </div>
         </div>
       </div>
@@ -59,46 +55,21 @@ const Footer = () => {
           </div>
           <small className='website-rights'>TechnoShack © 2023</small>
           <div className='social-icons'>
-            <Link
-              className='social-icon-link facebook'
-              to='/'
-              target='_blank'
-              aria-label='Facebook'
-            >
-              <i className='fab fa-facebook-f' />
-            </Link>
-            <Link
-              className='social-icon-link instagram'
-              to='/'
-              target='_blank'
-              aria-label='Instagram'
-            >
+            <a className='social-icon-link' href='https://www.instagram.com/YourPage' target='_blank' rel='noopener noreferrer' aria-label='Instagram'>
               <i className='fab fa-instagram' />
-            </Link>
-            <Link
-              className='social-icon-link youtube'
-              to='/'
-              target='_blank'
-              aria-label='YouTube'
-            >
+            </a>
+            <a className='social-icon-link' href='https://www.facebook.com/YourPage' target='_blank' rel='noopener noreferrer' aria-label='Facebook'>
+              <i className='fab fa-facebook-f' />
+            </a>
+            <a className='social-icon-link' href='https://www.youtube.com/YourPage' target='_blank' rel='noopener noreferrer' aria-label='YouTube'>
               <i className='fab fa-youtube' />
-            </Link>
-            <Link
-              className='social-icon-link twitter'
-              to='/'
-              target='_blank'
-              aria-label='Twitter'
-            >
+            </a>
+            <a className='social-icon-link' href='https://www.twitter.com/YourPage' target='_blank' rel='noopener noreferrer' aria-label='Twitter'>
               <i className='fab fa-twitter' />
-            </Link>
-            <Link
-              className='social-icon-link linkedin'
-              to='/'
-              target='_blank'
-              aria-label='LinkedIn'
-            >
+            </a>
+            <a className='social-icon-link' href='https://www.linkedin.com/YourPage' target='_blank' rel='noopener noreferrer' aria-label='LinkedIn'>
               <i className='fab fa-linkedin' />
-            </Link>
+            </a>
           </div>
         </div>
       </section>

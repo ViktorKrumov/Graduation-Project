@@ -1,12 +1,26 @@
 import React, { useState } from "react";
-
 import PriceRangeFilter from "./PriceRangeFilter/PriceRangeFIlter";
 import ColorFilter from "../../StorePageFinal/Sidebar/ColorFIlter/ColorFIlter";
 import CompanyFilter from "./CompanyFIlter3/CompanyFIlter";
 import ConnectionFilter from "./ConnectionFilter/ConnectionFilter";
+import DPIFilter from "./DPIFilter/DPIFilter"; 
+import WeightFilter from "./WeightFilter/WeightFilter";
 import "./Sidebar3.css";
 
-function Sidebar({ colors, colorFilters, handleColorFilterChange, handlePriceRangeFilter,  companies, selectedCompany, handleCompanyChange, connections, selectedConnections, handleConnectionChange }) { 
+function Sidebar({ 
+  colors, 
+  colorFilters, 
+  handleColorFilterChange, 
+  handlePriceRangeFilter,  
+  companies, 
+  selectedCompany, 
+  handleCompanyChange, 
+  connections, 
+  selectedConnections, 
+  handleConnectionChange,
+  handleDPIFilter,
+  handleWeightFilter
+}) { 
 
   const [sidebarVisible, setSidebarVisible] = useState(false);
 
@@ -22,6 +36,8 @@ function Sidebar({ colors, colorFilters, handleColorFilterChange, handlePriceRan
       <div className="sidebar-content">
         
         <PriceRangeFilter handlePriceRangeFilter={handlePriceRangeFilter} />
+        <DPIFilter handleDPIFilter={handleDPIFilter} />
+        
         <CompanyFilter 
           companies={companies}
           selectedCompany={selectedCompany}
@@ -37,6 +53,8 @@ function Sidebar({ colors, colorFilters, handleColorFilterChange, handlePriceRan
           colorFilters={colorFilters}
           handleColorFilterChange={handleColorFilterChange}
         />
+
+        <WeightFilter handleWeightFilter={handleWeightFilter} />
       </div>
     </div>
   );
