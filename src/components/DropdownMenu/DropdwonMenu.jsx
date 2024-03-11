@@ -10,8 +10,9 @@ function DropdownMenu({ isLoggedIn, onAddToCart, onViewDetails, onAddToWishlist,
     console.log(product.name)
     console.log(userEmail)
     console.log(product.photo)
+    console.log(product.original_price)
     if (isLoggedIn) {
-      addToCart(userEmail, product.name, product.photo);
+      addToCart(userEmail, product.name, product.photo, product.original_price);
     } else {
       onAddToCart(); 
     }

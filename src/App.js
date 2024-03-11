@@ -86,7 +86,7 @@ const App = () => {
        
           <>
             <Route path="/store/pc" element={<Store3 isLoggedIn={isLoggedIn} userEmail={userEmail} />} />
-            <Route path="/store/monitors" element={<Store4 />} />
+            <Route path="/store/monitors" element={<Store4 isLoggedIn={isLoggedIn} userEmail={userEmail}/>} />
             <Route path="/store/mice" element={<Store5 />} />
             <Route path="/product/:name" element={<ProductDetailsPage />} /> 
             <Route path="/cart" element={<Cart userEmail={userEmail}/>} />

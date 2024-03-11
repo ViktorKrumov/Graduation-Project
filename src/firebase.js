@@ -15,13 +15,14 @@ const firebaseConfig = {
   measurementId: "G-93RE6G13KP"
 };
 
-async function addToCart(email, productName, productPhoto) {
+async function addToCart(email, productName, productPhoto, productPrice) {
   const db = getFirestore();
   try {
     const docRef = await addDoc(collection(db, 'Orders'), {
       email: email,
       product: productName,
       productPhoto: productPhoto,
+      productPrice: productPrice,
       createdAt: new Date()
     });
     console.log("Order added with ID: ", docRef.id);

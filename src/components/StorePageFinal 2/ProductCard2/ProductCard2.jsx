@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import toast from "react-hot-toast";
 import "./ProductCard2.css";
 
-function ProductCard({ product }) {
+function ProductCard({ product, isLoggedIn, userEmail }) {
   const [showDropdown, setShowDropdown] = useState(false);
 
   function handleAddToCart() {
@@ -25,7 +25,14 @@ function ProductCard({ product }) {
         <p>Refresh Rate: {product.refresh_rate}</p>
         <p>Resolution: {product.resolution}</p>
         <p>Screen Size: {product.screen}</p>
-       
+        {showDropdown && (
+          <DropdownMenu
+            // onAddToCart={handleAddToCart}
+            isLoggedIn={isLoggedIn}
+            product={product} 
+            userEmail={userEmail}
+          />
+        )}
         <span className="product-card_bottom">
           <b className="product-card_price">${product.original_price}</b>
         </span>
