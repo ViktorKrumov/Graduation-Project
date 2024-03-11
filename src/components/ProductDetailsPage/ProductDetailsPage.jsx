@@ -4,8 +4,11 @@ import './ProductDetailsPage.css';
 import { fetchData as fetchApi2Data } from "../api2";
 import { fetchData as fetchApi3Data } from "../api3";
 import { fetchData as fetchApi4Data } from "../api4";
+import { addToCart } from '../../firebase'; 
+import { Link } from 'react-router-dom';
+import { FaHeart } from 'react-icons/fa';
 
-function ProductDetailsPage() {
+function ProductDetailsPage({ isLoggedIn, userEmail }) {
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -36,6 +39,18 @@ function ProductDetailsPage() {
     fetchDataAndSetProduct();
   }, [name]);
 
+  const handleAddToCart = () => {
+    console.log(product.name);
+    console.log(userEmail);
+    console.log(product.photo);
+    console.log(product.original_price);
+    if (isLoggedIn) {
+      addToCart(userEmail, product.name, product.photo, product.original_price);
+    } else {
+      
+    }
+  };
+
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -50,17 +65,11 @@ function ProductDetailsPage() {
 
   return (
     <div className="product-details-container">
-      <h2>{product.name}</h2>
       <div className="product-images">
         <img src={product.photo} alt={product.name} className="main-image" />
-        <div className="additional-images">
-          <div className="image-placeholder"></div>
-          <div className="image-placeholder"></div>
-          <div className="image-placeholder"></div>
-        </div>
       </div>
       <div className="product-info">
-        <p><strong>Description:</strong> {product.description}</p>
+        <h2>{product.name}</h2>
         {product.processor && ( 
           <div>
             <p><strong>Processor:</strong> {product.processor}</p>
@@ -86,9 +95,18 @@ function ProductDetailsPage() {
             <p><strong>Weight:</strong> {product.weight}</p>
           </div>
         )}
-        <br/>
-        <p><strong>Original Price:</strong> ${product.original_price}</p>
-        <p><strong>Company:</strong> {product.company}</p>
+        <p className="Company">Company: {product.company}</p>
+        <p className="price">${product.original_price}</p>
+        {isLoggedIn ? (
+          <div className="buttons">
+            <button className="add-to-cart" onClick={handleAddToCart}>Add to Cart</button>
+            <button className="add-to-wishlist">Add to Wishlist</button>
+          </div>
+        ) : (
+          <div>
+            <Link to="/login">Login</Link> to add to cart or wishlist.
+          </div>
+        )}
       </div>
     </div>
   );
