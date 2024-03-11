@@ -6,7 +6,7 @@ import "./StorePageFinal3.css";
 import Sidebar from "./Sidebar3/Sidebar3";
 import PriceFilter from "./PriceFilter3/PriceFilter3";
 
-function StorePageFinal() {
+function StorePageFinal({isLoggedIn, userEmail}) {
   const [originalProducts, setOriginalProducts] = useState([]);
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -170,7 +170,7 @@ function StorePageFinal() {
       ) : (
         <div className="products-container">
           {products.map((product) => (
-            <ProductCard product={product} key={product.id} />
+              <ProductCard product={product} key={product.id} isLoggedIn = {isLoggedIn} userEmail={userEmail}/>
           ))}
         </div>
       )}

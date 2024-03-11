@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import './ProductDetailsPage.css';
 import { fetchData as fetchApi2Data } from "../api2";
 import { fetchData as fetchApi3Data } from "../api3";
+import { fetchData as fetchApi4Data } from "../api4";
 
 function ProductDetailsPage() {
   const [product, setProduct] = useState(null);
@@ -14,12 +15,11 @@ function ProductDetailsPage() {
   useEffect(() => {
     async function fetchDataAndSetProduct() {
       try {
-        
-        const [api2Products, api3Products] = await Promise.all([fetchApi2Data(), fetchApi3Data()]);
-
+        const [api2Products, api3Products, api4Products] = await Promise.all([fetchApi2Data(), fetchApi3Data(), fetchApi4Data()]);
 
         const foundProduct = api2Products.find(item => item.name.toString() === name) || 
-                            api3Products.find(item => item.name.toString() === name);
+                            api3Products.find(item => item.name.toString() === name) || 
+                            api4Products.find(item => item.name.toString() === name);
 
         if (foundProduct) {
           setProduct(foundProduct);
@@ -78,6 +78,15 @@ function ProductDetailsPage() {
             <p><strong>Screen Size:</strong> {product.screen_size}</p>
           </div>
         )}
+        {product.DPI && ( 
+          <div>
+            <p><strong>DPI:</strong> {product.DPI}</p>
+            <p><strong>Color:</strong> {product.color}</p>
+            <p><strong>Connection:</strong> {product.connection}</p>
+            <p><strong>Weight:</strong> {product.weight}</p>
+          </div>
+        )}
+        <br/>
         <p><strong>Original Price:</strong> ${product.original_price}</p>
         <p><strong>Company:</strong> {product.company}</p>
       </div>
