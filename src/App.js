@@ -17,6 +17,7 @@ import ProductDetailsPage from './components/ProductDetailsPage/ProductDetailsPa
 import Register from './components/RegisterPage/RegisterPage'
 import Store4 from './components/StorePageFinal 2/StorePageFinal2'
 import Store5 from './components/StorePageFinal 3/StorePageFinal3'
+import Wishlist from './components/Wishlist/Wishlist';
 
 import { getAuth, onAuthStateChanged, signOut } from 'firebase/auth';
 import styled from "styled-components";
@@ -90,6 +91,7 @@ const App = () => {
             <Route path="/store/mice" element={<Store5 isLoggedIn={isLoggedIn} userEmail={userEmail}/>} />
             <Route path="/product/:name" element={<ProductDetailsPage isLoggedIn={isLoggedIn} userEmail={userEmail} />} /> 
             <Route path="/cart" element={<Cart userEmail={userEmail}/>} />
+            <Route path="/wishlist" element={<Wishlist isLoggedIn={isLoggedIn} userEmail={userEmail}/>} />
             <Route path="/services" element={<Services />} />
             <Route path="/profile" element={<Profile handleLogout={handleLogout} userEmail={userEmail} />} />
 

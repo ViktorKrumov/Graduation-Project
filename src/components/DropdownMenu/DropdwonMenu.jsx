@@ -4,6 +4,7 @@ import { FaHeart } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import './DropdownMenu.css';
 import { addToCart } from '../../firebase'; 
+import { addToWishlist } from '../../firebase'; 
 
 function DropdownMenu({ isLoggedIn, onAddToCart, onViewDetails, onAddToWishlist, product, userEmail }) {
   const handleAddToCart = () => {
@@ -18,6 +19,18 @@ function DropdownMenu({ isLoggedIn, onAddToCart, onViewDetails, onAddToWishlist,
     }
   };
 
+  const handleAddToWishlist = () => {
+    console.log(product.name)
+    console.log(userEmail)
+    console.log(product.photo)
+    console.log(product.original_price)
+    if (isLoggedIn) {
+      addToWishlist(userEmail, product.name, product.photo, product.original_price);
+    } else {
+      onAddToWishlist(); 
+    }
+  };
+
   return (
     <div className="dropdown-menu">
       {isLoggedIn && (
@@ -29,7 +42,7 @@ function DropdownMenu({ isLoggedIn, onAddToCart, onViewDetails, onAddToWishlist,
       </Link>
      
       {isLoggedIn && (
-        <div className="dropdown-menu-item" onClick={onAddToWishlist}>Add to wishlist <FaHeart /></div>
+        <div className="dropdown-menu-item" onClick={handleAddToWishlist}>Add to wishlist <FaHeart /></div>
       )}
     </div>
   );
