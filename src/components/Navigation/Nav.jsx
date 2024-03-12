@@ -68,7 +68,7 @@ function Nav({ isLoggedIn }) {
           <SlMagnifier className="nav-magnifier" />
         </div>
 
-        <div className="profile-container">
+        <div className="nav-profile-container">
           {isLoggedIn && (
             <Link to="/cart">
               <AiOutlineShoppingCart className="nav-icons" />

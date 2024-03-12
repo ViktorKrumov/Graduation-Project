@@ -1,26 +1,81 @@
-.profile-container {
-    text-align: center;
-  }
-  
-  .greeting-text {
-    font-size: 24px;
-  }
-  
-  .square-container {
-    display: flex;
-    justify-content: center;
-    margin-top: 20px;
-  }
-  
-  .square {
-    width: 100px;
-    height: 100px;
-    background-color: lightblue;
-    margin: 0 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 18px;
-    cursor: pointer;
-  }
-  
+.profile-info-container {
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.profile-info-container h2 {
+  margin-bottom: 10px;
+}
+
+.profile-info-container p {
+  margin-bottom: 5px;
+}
+
+.profile-info-container button {
+  margin-top: 10px;
+  padding: 8px 16px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.profile-info-container button:hover {
+  background-color: #0056b3;
+}
+
+
+
+.edit-profile-form-container {
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.edit-profile-form-container h2 {
+  margin-bottom: 10px;
+}
+
+.edit-profile-form-container label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.edit-profile-form-container input,
+.edit-profile-form-container textarea {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.edit-profile-form-container button {
+  margin-top: 10px;
+  padding: 8px 16px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.edit-profile-form-container button:hover {
+  background-color: #0056b3;
+}
+
+
+
+
+.profile-photo {
+  width: 150px;
+  height: 150px; 
+  border-radius: 50%;
+  margin-bottom: 10px;
+}

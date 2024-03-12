@@ -31,6 +31,24 @@ async function addToCart(email, productName, productPhoto, productPrice) {
   }
 }
 
+async function addUserDetails(email, fullName,userPhoto, phoneNumber, dateOfBirth, adress) {
+  const db = getFirestore();
+  try {
+    const docRef = await addDoc(collection(db, 'UserDetails'), {
+      email: email,
+      fullName: fullName,
+      phoneNumber: phoneNumber,
+      dateOfBirth: dateOfBirth,
+      adress:adress,
+      userPhoto:userPhoto,
+      createdAt: new Date()
+    });
+    console.log("Order added with ID: ", docRef.id);
+  } catch (e) {
+    console.error("Error adding order: ", e);
+  }
+}
+
 async function addToWishlist(email, productName, productPhoto, productPrice) {
   const db = getFirestore();
   try {
@@ -51,4 +69,4 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
 
-export { auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, sendPasswordResetEmail, firebaseConfig, addToCart, addToWishlist};
+export { auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, sendPasswordResetEmail, firebaseConfig, addToCart, addToWishlist, addUserDetails};
