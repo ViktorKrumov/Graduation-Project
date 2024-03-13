@@ -3,13 +3,14 @@ import { useNavigate } from 'react-router-dom';
 import ProfileInfo from './ProfileInfo';
 import EditProfileForm from './EditProfileForm';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
-import { getFirestore, collection, query, where, getDocs, setDoc, doc } from 'firebase/firestore';
+import { getFirestore, collection, query, where, getDocs, setDoc, doc, getDoc } from 'firebase/firestore';
 import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
-import "./Profile.css";
+import "./Profile.css"; 
 
 const Profile = () => {
   const [userData, setUserData] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
   const auth = getAuth();
   const db = getFirestore();
@@ -18,34 +19,36 @@ const Profile = () => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
       if (user) {
-        const querySnapshot = await getDocs(query(collection(db, 'UserDetails'), where('email', '==', user.email)));
-        if (querySnapshot.empty) {
-          try {
-            await setDoc(doc(db, 'UserDetails', user.uid), {
+        try {
+          const querySnapshot = await getDocs(query(collection(db, 'UserDetails'), where('email', '==', user.email)));
+          if (querySnapshot.empty) {
+            const userDataRef = doc(db, 'UserDetails', user.uid);
+            await setDoc(userDataRef, {
               email: user.email,
-              fullName: ' ',
-              bio: ' ',
-              phoneNumber: ' ',
-              dateOfBirth: ' ',
-              address: ' ',
+              fullName: '',
+              bio: '',
+              phoneNumber: '',
+              dateOfBirth: '',
+              address: '',
               createdAt: new Date()
             });
-            setUserData({
-              email: user.email,
-              fullName: ' ',
-              bio: ' ',
-              phoneNumber: ' ',
-              dateOfBirth: ' ',
-              address: ' ',
-              createdAt: new Date()
+            const userDataDoc = await getDoc(userDataRef);
+            if (userDataDoc.exists()) {
+              setUserData({ ...userDataDoc.data(), id: userDataDoc.id });
+              setLoading(false);
+            } else {
+              console.error('User data not found after creation');
+              setLoading(false);
+            }
+          } else {
+            querySnapshot.forEach((doc) => {
+              setUserData({ ...doc.data(), id: doc.id });
+              setLoading(false);
             });
-          } catch (error) {
-            console.error('Error creating user data:', error);
           }
-        } else {
-          querySnapshot.forEach((doc) => {
-            setUserData({ ...doc.data(), id: doc.id });
-          });
+        } catch (error) {
+          console.error('Error fetching user data:', error);
+          setLoading(false);
         }
       } else {
         navigate('/login');
@@ -60,8 +63,8 @@ const Profile = () => {
 
   const handleSave = async (updatedUserData, photo) => {
     try {
-      if (!userData) {
-        console.error('Error saving user data: userData is undefined or null');
+      if (!userData || !userData.id) {
+        console.error('Error saving user data: userData is undefined, null, or does not have an id');
         return;
       }
 
@@ -71,7 +74,7 @@ const Profile = () => {
         const photoURL = await getDownloadURL(ref(storage, `userPhotos/${userData.id}`));
         updatedUserData.photo = photoURL;
       }
-  
+
       await setDoc(doc(db, 'UserDetails', userData.id), updatedUserData);
       setIsEditing(false);
       setUserData(updatedUserData);
@@ -79,27 +82,32 @@ const Profile = () => {
       console.error('Error saving user data:', error);
     }
   };
-  
 
   return (
     <div>
-      {userData ? (
+      {loading ? (
+        <p>Loading...</p>
+      ) : (
         <>
-          {isEditing ? (
-            <EditProfileForm
-              userData={userData}
-              onSave={handleSave}
-              onCancel={() => setIsEditing(false)}
-            />
+          {userData ? (
+            <>
+              {isEditing ? (
+                <EditProfileForm
+                  userData={userData}
+                  onSave={handleSave}
+                  onCancel={() => setIsEditing(false)}
+                />
+              ) : (
+                <ProfileInfo
+                  userData={userData}
+                  onEdit={handleEdit}
+                />
+              )}
+            </>
           ) : (
-            <ProfileInfo
-              userData={userData}
-              onEdit={handleEdit}
-            />
+            <p>No user data found</p>
           )}
         </>
-      ) : (
-        <p>Loading...</p>
       )}
     </div>
   );
