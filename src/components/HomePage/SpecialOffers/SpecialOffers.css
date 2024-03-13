@@ -102,3 +102,18 @@
 .product-card2:hover .dropdown-menu {
   display: block;
 }
+
+
+.view-details-button {
+  background-color: #000000;
+  color: #fff;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.view-details-button:hover {
+  background-color: #0056b3;
+}

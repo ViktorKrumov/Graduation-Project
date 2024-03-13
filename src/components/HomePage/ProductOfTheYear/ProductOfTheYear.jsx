@@ -13,7 +13,7 @@ const ProductOfTheYear = () => {
                         <img src="https://github.com/ViktorKrumov/Images-Graduation-Project/blob/main/Pc8.png?raw=true" alt="Product Image" className="offer-img" />
                     </div>
                     <div className="col-2">
-                        <h1>Product of the year</h1>
+                        <h1>Computer of the year</h1>
                         <small>The Mi Smart Band 4 features a 39.9% larger (than Mi Band 3) AMOLED color full-touch display with adjustable brightness, so everything is clear as can Yas ae</small>
                         <div className="buy-now-container">
                             <Link to="/product/Budget Gaming PC" className="buy-now-button">See more</Link>

@@ -1,0 +1,63 @@
+.product-of-the-year-container {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    max-width: 1420px;
+    width: 90%;
+    margin: 100px auto; 
+    background-color: #f0f0f0; 
+}
+
+.product-of-the-year-inner-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.product-of-the-year-row {
+    display: flex;
+    align-items: center;
+}
+
+.product-of-the-year-column {
+    flex: 1;
+    padding: 0 20px;
+}
+
+.product-of-the-year-img {
+    max-width: 80%; 
+    margin-bottom: 20px; 
+}
+
+@media (max-width: 768px) {
+    .product-of-the-year-container {
+        margin: 20px; 
+    }
+
+    .product-of-the-year-inner-container {
+        flex-direction: column; 
+    }
+
+    .product-of-the-year-column {
+        padding: 0; 
+    }
+}
+
+.product-of-the-year-buy-container {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.product-of-the-year-buy-button {
+    display: inline-block;
+    background-color: black; 
+    color: #fff;
+    padding: 10px 20px;
+    text-decoration: none;
+    font-size: 1rem;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.product-of-the-year-buy-button:hover {
+    background-color: #333; 
+}

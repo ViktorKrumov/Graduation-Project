@@ -16,8 +16,8 @@ const Header = () => {
 
   const images = [
     "https://github.com/ViktorKrumov/Images-Graduation-Project/blob/main/vecteezy_black-friday-sale-banner-modern-minimal-design-with-black_14471835.jpg?raw=true",
-    "https://img.freepik.com/free-vector/black-friday-sale-attractive-modern-banner-design_1017-34753.jpg",
-    "https://www.thepavilions.co.uk/wp-content/uploads/2017/03/BW4654-The-Pavilions-Uxbridge-Black-Friday-Web-Banner-AW.jpg",
+    "https://firebasestorage.googleapis.com/v0/b/technoshack-cbd13.appspot.com/o/y2020-09-10-16_generated.jpg?alt=media&token=47401b95-201b-4a32-8ff6-2405d728f660",
+    "https://firebasestorage.googleapis.com/v0/b/technoshack-cbd13.appspot.com/o/banner%23.jpg?alt=media&token=38c8cc51-537c-4281-be22-dfe457112524",
   ];
 
   return (

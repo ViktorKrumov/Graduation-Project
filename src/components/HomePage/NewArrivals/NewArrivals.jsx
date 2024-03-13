@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './NewArrivals.css';
 import Slider from 'react-slick';
-import { SlActionRedo } from "react-icons/sl";
-import { FaHeart } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const NewArrivals = () => {
   const [computers, setComputers] = useState([]);
@@ -92,17 +91,12 @@ const NewArrivals = () => {
             <Slider {...settings}>
               {computers.map((computer) => (
                 <div className="product-card" key={computer.id}>
-                  <img src={computer.photo_url} alt={computer.name} />
+                  <img src={computer.photo} alt={computer.name} />
                   <h3>{computer.name}</h3>
-                  <div className="dropdown-menu">
-                    <div className="dropdown-menu-item">Add to cart 🛒</div>
-                    <div className="dropdown-menu-item">View Details <SlActionRedo /></div>
-                    <div className="dropdown-menu-item">Add to wishlist <FaHeart /></div>
-                  </div>
-                  <p className="original-price">
-                    ${computer.original_price}
-                  </p>
-                
+                  <p className="original-price">${computer.original_price}</p>
+                  <Link to={`/product/${computer.name}`}>
+                    <button className="see-more-button">See More</button>
+                  </Link>
                 </div>
               ))}
             </Slider>

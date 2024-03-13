@@ -14,6 +14,7 @@ function Nav({ isLoggedIn, handleLogout, userEmail }) {
   const [suggestions, setSuggestions] = useState([]);
   const [wishlistCount, setWishlistCount] = useState(0);
   const [cartCount, setCartCount] = useState(0);
+  const [showSuggestions, setShowSuggestions] = useState(true); 
 
   useEffect(() => {
     const fetchWishlistCount = async () => {
@@ -57,6 +58,7 @@ function Nav({ isLoggedIn, handleLogout, userEmail }) {
     }
   }, [isLoggedIn, userEmail]);
 
+
   const toggleDropdown = () => {
     const dropdownMenu = document.querySelector('.dropdown-content');
     dropdownMenu.classList.toggle('show');
@@ -82,14 +84,17 @@ function Nav({ isLoggedIn, handleLogout, userEmail }) {
 
   const handleSuggestionClick = (product) => {
     console.log(`Clicked on ${product.name}`);
+    setShowSuggestions(false); 
   };
 
   const handleInputChange = (e) => {
     const inputValue = e.target.value;
     setQuery(inputValue);
     if (inputValue.trim() !== '') {
+      setShowSuggestions(true); 
       fetchSuggestions(inputValue);
     } else {
+      setShowSuggestions(false); 
       setSuggestions([]);
     }
   };
@@ -143,7 +148,7 @@ function Nav({ isLoggedIn, handleLogout, userEmail }) {
         </div>
       </nav>
 
-      {suggestions.length > 0 && (
+      {showSuggestions && suggestions.length > 0 && (
         <div className="suggestions-container">
           <ul className="suggestions-container">
             {suggestions.map((product) => (

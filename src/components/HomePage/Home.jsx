@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import Header from './Header/Header';
 import BestSeller from './BestSeller/BestSeller';
 import ProductOfTheYear from './ProductOfTheYear/ProductOfTheYear'
+import ProductOfTheYearMonitor from './ProductOfTheYear/ProductOfTheYearMonitor'
 import NewArrivals from './NewArrivals/NewArrivals';
 import SpecialOffer from './SpecialOffers/SpecialOffers';
 
@@ -14,7 +15,7 @@ scroll-behavior: smooth;
 
 
 
-const Home = () => {
+const Home = ({isLoggedIn, userEmail}) => {
   return (
     <>
       
@@ -27,9 +28,11 @@ const Home = () => {
         
         <ProductOfTheYear />
 
-        <NewArrivals />
+        <NewArrivals isLoggedIn={isLoggedIn} userEmail={userEmail}/>
 
         <SpecialOffer />
+
+        <ProductOfTheYearMonitor />
        
     </>
   );
