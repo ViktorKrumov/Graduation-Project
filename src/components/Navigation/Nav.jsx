@@ -1,16 +1,61 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { SlMagnifier } from 'react-icons/sl';
 import { FiHeart } from 'react-icons/fi';
 import { AiOutlineShoppingCart, AiOutlineUserAdd } from 'react-icons/ai';
+import { Link } from 'react-router-dom';
+import { getFirestore, collection, query, where, getDocs, onSnapshot } from 'firebase/firestore';
 import { fetchData as fetchComputersData } from '../api2';
 import { fetchData as fetchMonitorsData } from '../api3';
 import { fetchData as fetchMiceData } from '../api4';
-import { Link } from 'react-router-dom';
 import './Nav.css';
 
-function Nav({ isLoggedIn, handleLogout }) {
-  const [query, setQuery] = useState('');
+function Nav({ isLoggedIn, handleLogout, userEmail }) {
+  const [queryTest, setQuery] = useState('');
   const [suggestions, setSuggestions] = useState([]);
+  const [wishlistCount, setWishlistCount] = useState(0);
+  const [cartCount, setCartCount] = useState(0);
+
+  useEffect(() => {
+    const fetchWishlistCount = async () => {
+      try {
+        const db = getFirestore();
+        const q = query(collection(db, 'Wishlist'), where('email', '==', userEmail));
+
+        const unsubscribe = onSnapshot(q, (snapshot) => {
+          setWishlistCount(snapshot.size);
+        });
+
+        return unsubscribe;
+      } catch (error) {
+        console.error('Error fetching wishlist count:', error);
+      }
+    };
+
+    const fetchCartCount = async () => {
+      try {
+        const db = getFirestore();
+        const q = query(collection(db, 'Orders'), where('email', '==', userEmail));
+
+        const unsubscribe = onSnapshot(q, (snapshot) => {
+          setCartCount(snapshot.size);
+        });
+
+        return unsubscribe;
+      } catch (error) {
+        console.error('Error fetching cart count:', error);
+      }
+    };
+
+    if (isLoggedIn && userEmail) {
+      const unsubscribeWishlist = fetchWishlistCount();
+      const unsubscribeCart = fetchCartCount();
+
+      return () => {
+        unsubscribeWishlist();
+        unsubscribeCart();
+      };
+    }
+  }, [isLoggedIn, userEmail]);
 
   const toggleDropdown = () => {
     const dropdownMenu = document.querySelector('.dropdown-content');
@@ -37,11 +82,6 @@ function Nav({ isLoggedIn, handleLogout }) {
 
   const handleSuggestionClick = (product) => {
     console.log(`Clicked on ${product.name}`);
-   
-     <Link to={`/product/${product.id}`}>
-       <div className="dropdown-menu-item">View Details</div>
-     </Link>
-    
   };
 
   const handleInputChange = (e) => {
@@ -56,13 +96,13 @@ function Nav({ isLoggedIn, handleLogout }) {
 
   return (
     <>
-       <nav className="navContainer">
+      <nav className="navContainer">
         <div className="search-container">
           <input
             type="text"
             className="search-input"
             placeholder="Search your products here"
-            value={query}
+            value={queryTest}
             onChange={handleInputChange}
           />
           <SlMagnifier className="nav-magnifier" />
@@ -71,12 +111,18 @@ function Nav({ isLoggedIn, handleLogout }) {
         <div className="nav-profile-container">
           {isLoggedIn && (
             <Link to="/cart">
-              <AiOutlineShoppingCart className="nav-icons" />
+              <div className="cart-container">
+                <AiOutlineShoppingCart className="nav-icons" />
+                {cartCount > 0 && <span className="cart-counter">{cartCount}</span>}
+              </div>
             </Link>
           )}
           {isLoggedIn && (
             <Link to="/wishlist">
-              <FiHeart className="nav-icons" />
+              <div className="wishlist-container">
+                <FiHeart className="nav-icons" />
+                {wishlistCount > 0 && <span className="wishlist-counter">{wishlistCount}</span>}
+              </div>
             </Link>
           )}
           <div className="dropdown" onClick={toggleDropdown}>

@@ -79,7 +79,7 @@ const App = () => {
      
       <NavBar /> 
       {user ? null : <WarningMessage>Please log in to access all features</WarningMessage>}
-      <Navigation isLoggedIn={isLoggedIn} handleLogout={handleLogout}/>
+      <Navigation isLoggedIn={isLoggedIn} handleLogout={handleLogout} userEmail={userEmail}/>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login handleLoginSuccess={handleLoginSuccess} />} />

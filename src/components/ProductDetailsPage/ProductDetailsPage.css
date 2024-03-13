@@ -91,3 +91,18 @@
     padding-left: 0;
   }
 }
+
+
+.wishlist-icon,
+.shopping-cart-icon {
+  font-size: 20px; 
+  margin-left: 5px;
+}
+
+
+.add-to-cart,
+.add-to-wishlist {
+  align-items: center; 
+  font-size: 18px;
+}
+

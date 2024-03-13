@@ -9,6 +9,40 @@
   background-color: #c5c4c4;
 }
 
+.wishlist-container {
+  position: relative;
+  display: inline-block;
+}
+
+.wishlist-counter {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background-color: red;
+  color: white;
+  border-radius: 50%;
+  padding: 4px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.cart-container {
+  position: relative;
+  display: inline-block;
+}
+
+.cart-counter {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background-color: red;
+  color: white;
+  border-radius: 50%;
+  padding: 4px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
 
 .nav-magnifier {
   width: 20px;

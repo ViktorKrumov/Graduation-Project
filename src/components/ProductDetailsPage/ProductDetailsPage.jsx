@@ -4,9 +4,10 @@ import './ProductDetailsPage.css';
 import { fetchData as fetchApi2Data } from "../api2";
 import { fetchData as fetchApi3Data } from "../api3";
 import { fetchData as fetchApi4Data } from "../api4";
-import { addToCart } from '../../firebase'; 
+import { addToCart, addToWishlist } from '../../firebase'; 
 import { Link } from 'react-router-dom';
-import { FaHeart } from 'react-icons/fa';
+import { FiHeart } from 'react-icons/fi';
+import { AiOutlineShoppingCart, AiOutlineUserAdd } from 'react-icons/ai';
 
 function ProductDetailsPage({ isLoggedIn, userEmail }) {
   const [product, setProduct] = useState(null);
@@ -48,6 +49,12 @@ function ProductDetailsPage({ isLoggedIn, userEmail }) {
       addToCart(userEmail, product.name, product.photo, product.original_price);
     } else {
       
+    }
+  };
+
+  const handleAddToWishlist = () => {
+    if (isLoggedIn) {
+      addToWishlist(userEmail, product.name, product.photo, product.original_price);
     }
   };
 
@@ -99,8 +106,8 @@ function ProductDetailsPage({ isLoggedIn, userEmail }) {
         <p className="price">${product.original_price}</p>
         {isLoggedIn ? (
           <div className="buttons">
-            <button className="add-to-cart" onClick={handleAddToCart}>Add to Cart</button>
-            <button className="add-to-wishlist">Add to Wishlist</button>
+            <button className="add-to-cart" onClick={handleAddToCart}>Add to Cart<AiOutlineShoppingCart className="wishlist-icon" /></button>
+            <button className="add-to-wishlist" onClick={handleAddToWishlist}>Add to Wishlist<FiHeart className="wishlist-icon" /></button>
           </div>
         ) : (
           <div>
