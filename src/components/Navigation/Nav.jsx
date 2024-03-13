@@ -17,46 +17,46 @@ function Nav({ isLoggedIn, handleLogout, userEmail }) {
   const [showSuggestions, setShowSuggestions] = useState(true); 
 
   useEffect(() => {
+    let unsubscribeWishlist;
+    let unsubscribeCart;
+  
     const fetchWishlistCount = async () => {
       try {
         const db = getFirestore();
         const q = query(collection(db, 'Wishlist'), where('email', '==', userEmail));
-
-        const unsubscribe = onSnapshot(q, (snapshot) => {
+  
+        unsubscribeWishlist = onSnapshot(q, (snapshot) => {
           setWishlistCount(snapshot.size);
         });
-
-        return unsubscribe;
       } catch (error) {
         console.error('Error fetching wishlist count:', error);
       }
     };
-
+  
     const fetchCartCount = async () => {
       try {
         const db = getFirestore();
         const q = query(collection(db, 'Orders'), where('email', '==', userEmail));
-
-        const unsubscribe = onSnapshot(q, (snapshot) => {
+  
+        unsubscribeCart = onSnapshot(q, (snapshot) => {
           setCartCount(snapshot.size);
         });
-
-        return unsubscribe;
       } catch (error) {
         console.error('Error fetching cart count:', error);
       }
     };
-
+  
     if (isLoggedIn && userEmail) {
-      const unsubscribeWishlist = fetchWishlistCount();
-      const unsubscribeCart = fetchCartCount();
-
-      return () => {
-        unsubscribeWishlist();
-        unsubscribeCart();
-      };
+      fetchWishlistCount();
+      fetchCartCount();
     }
+  
+    return () => {
+      if (unsubscribeWishlist) unsubscribeWishlist();
+      if (unsubscribeCart) unsubscribeCart();
+    };
   }, [isLoggedIn, userEmail]);
+  
 
 
   const toggleDropdown = () => {
@@ -138,7 +138,7 @@ function Nav({ isLoggedIn, handleLogout, userEmail }) {
               {isLoggedIn ? (
                 <>
                   <Link to="/profile">Profile</Link>
-                  <a href="#" onClick={handleLogout}>Log out</a>
+                  <Link to="/" onClick={handleLogout}>Log out</Link>
                 </>
               ) : (
                 <Link to="/login">Log in</Link>

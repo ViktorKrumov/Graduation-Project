@@ -60,12 +60,18 @@ const Profile = () => {
 
   const handleSave = async (updatedUserData, photo) => {
     try {
+      if (!userData) {
+        console.error('Error saving user data: userData is undefined or null');
+        return;
+      }
+
       if (photo) {
         const storageRef = ref(storage, `userPhotos/${userData.id}`);
         await uploadBytes(storageRef, photo);
         const photoURL = await getDownloadURL(ref(storage, `userPhotos/${userData.id}`));
         updatedUserData.photo = photoURL;
       }
+  
       await setDoc(doc(db, 'UserDetails', userData.id), updatedUserData);
       setIsEditing(false);
       setUserData(updatedUserData);
@@ -73,6 +79,7 @@ const Profile = () => {
       console.error('Error saving user data:', error);
     }
   };
+  
 
   return (
     <div>
