@@ -7,7 +7,7 @@ import { getFirestore, collection, query, where, getDocs, setDoc, doc } from 'fi
 import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import "./Profile.css";
 
-const Profile = ({ handleLogout }) => {
+const Profile = () => {
   const [userData, setUserData] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
   const navigate = useNavigate();
@@ -23,20 +23,20 @@ const Profile = ({ handleLogout }) => {
           try {
             await setDoc(doc(db, 'UserDetails', user.uid), {
               email: user.email,
-              fullName: 'N/A',
-              bio: 'N/A',
-              phoneNumber: 'N/A',
-              dateOfBirth: 'N/A',
-              address: 'N/A',
+              fullName: ' ',
+              bio: ' ',
+              phoneNumber: ' ',
+              dateOfBirth: ' ',
+              address: ' ',
               createdAt: new Date()
             });
             setUserData({
               email: user.email,
-              fullName: 'N/A',
-              bio: 'N/A',
-              phoneNumber: 'N/A',
-              dateOfBirth: 'N/A',
-              address: 'N/A',
+              fullName: ' ',
+              bio: ' ',
+              phoneNumber: ' ',
+              dateOfBirth: ' ',
+              address: ' ',
               createdAt: new Date()
             });
           } catch (error) {
@@ -94,7 +94,6 @@ const Profile = ({ handleLogout }) => {
       ) : (
         <p>Loading...</p>
       )}
-      <button onClick={handleLogout}>Logout</button>
     </div>
   );
 };

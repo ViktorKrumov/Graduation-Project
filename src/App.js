@@ -79,7 +79,7 @@ const App = () => {
      
       <NavBar /> 
       {user ? null : <WarningMessage>Please log in to access all features</WarningMessage>}
-      <Navigation isLoggedIn={isLoggedIn}/>
+      <Navigation isLoggedIn={isLoggedIn} handleLogout={handleLogout}/>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login handleLoginSuccess={handleLoginSuccess} />} />
@@ -93,7 +93,7 @@ const App = () => {
             <Route path="/cart" element={<Cart userEmail={userEmail}/>} />
             <Route path="/wishlist" element={<Wishlist isLoggedIn={isLoggedIn} userEmail={userEmail}/>} />
             <Route path="/services" element={<Services />} />
-            <Route path="/profile" element={<Profile handleLogout={handleLogout} userEmail={userEmail} />} />
+            <Route path="/profile" element={<Profile userEmail={userEmail} />} />
 
           </>
      

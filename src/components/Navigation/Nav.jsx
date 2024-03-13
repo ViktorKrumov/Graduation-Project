@@ -8,7 +8,7 @@ import { fetchData as fetchMiceData } from '../api4';
 import { Link } from 'react-router-dom';
 import './Nav.css';
 
-function Nav({ isLoggedIn }) {
+function Nav({ isLoggedIn, handleLogout }) {
   const [query, setQuery] = useState('');
   const [suggestions, setSuggestions] = useState([]);
 
@@ -85,7 +85,10 @@ function Nav({ isLoggedIn }) {
             </a>
             <div className="dropdown-content">
               {isLoggedIn ? (
-                <Link to="/profile">Profile</Link>
+                <>
+                  <Link to="/profile">Profile</Link>
+                  <a href="#" onClick={handleLogout}>Log out</a>
+                </>
               ) : (
                 <Link to="/login">Log in</Link>
               )}
