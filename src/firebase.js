@@ -18,11 +18,29 @@ const firebaseConfig = {
 async function addToCart(email, productName, productPhoto, productPrice) {
   const db = getFirestore();
   try {
-    const docRef = await addDoc(collection(db, 'Orders'), {
+    const docRef = await addDoc(collection(db, 'Cart'), {
       email: email,
       product: productName,
       productPhoto: productPhoto,
       productPrice: productPrice,
+      createdAt: new Date()
+    });
+    console.log("Order added with ID: ", docRef.id);
+  } catch (e) {
+    console.error("Error adding order: ", e);
+  }
+}
+
+async function addToOrders(fullName, email, address, city, zipCode, items) {
+  const db = getFirestore();
+  try {
+    const docRef = await addDoc(collection(db, 'Orders'), {
+      fullName: fullName,
+      email: email,
+      address: address,
+      city: city,
+      zipCode: zipCode,
+      items: items,
       createdAt: new Date()
     });
     console.log("Order added with ID: ", docRef.id);
@@ -69,4 +87,4 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
 
-export { auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, sendPasswordResetEmail, firebaseConfig, addToCart, addToWishlist, addUserDetails};
+export { auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, sendPasswordResetEmail, firebaseConfig, addToCart, addToWishlist, addUserDetails, addToOrders};

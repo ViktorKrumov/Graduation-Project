@@ -1,17 +1,20 @@
 import React, { useState, useEffect } from 'react';
-import { getFirestore, collection, query, where, getDocs, deleteDoc, doc } from 'firebase/firestore';
-import './Cart.css'; 
+import { getFirestore, collection, query, where, getDocs, deleteDoc, doc, addDoc } from 'firebase/firestore';
+import './Cart.css';
+import CheckoutForm from './CheckoutForm/CheckoutForm';
+import { addToOrders } from '../../firebase';
 
 const Cart = ({ userEmail }) => {
   const [userProducts, setUserProducts] = useState([]);
   const [finalPrice, setFinalPrice] = useState(0);
   const [isEmpty, setIsEmpty] = useState(false);
-  
+  const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
+
   useEffect(() => {
     const fetchUserProducts = async () => {
       const db = getFirestore();
-      const q = query(collection(db, 'Orders'), where('email', '==', userEmail));
-      
+      const q = query(collection(db, 'Cart'), where('email', '==', userEmail));
+
       try {
         const querySnapshot = await getDocs(q);
         const products = querySnapshot.docs.map(doc => ({
@@ -26,9 +29,9 @@ const Cart = ({ userEmail }) => {
         console.error('Error fetching user products:', error);
       }
     };
-      
+
     fetchUserProducts();
-  }, [userEmail]); 
+  }, [userEmail]);
 
   useEffect(() => {
     const totalPrice = userProducts.reduce((acc, curr) => acc + curr.price, 0);
@@ -37,7 +40,7 @@ const Cart = ({ userEmail }) => {
 
   const handleRemoveFromCart = async (productId) => {
     const db = getFirestore();
-    const orderRef = doc(db, 'Orders', productId);
+    const orderRef = doc(db, 'Cart', productId);
 
     try {
       await deleteDoc(orderRef);
@@ -48,8 +51,44 @@ const Cart = ({ userEmail }) => {
     }
   };
 
+  const toggleCheckoutForm = () => {
+    setIsCheckoutOpen(prevState => !prevState);
+  };
+
+  const handleSubmitForm = async (formData) => {
+    const { fullName, email, address, city, zipcode } = formData;
+    const items = userProducts.map(product => ({
+      productName: product.data,
+      productPhoto: product.photo,
+      productPrice: product.price
+    }));
+    try {
+      await addToOrders(fullName, email, address, city, zipcode, items);
+      console.log('Order placed successfully!');
+      clearCart();
+    } catch (error) {
+      console.error('Error placing order:', error);
+    }
+  };
+
+  const clearCart = async () => {
+    const db = getFirestore();
+    const q = query(collection(db, 'Cart'), where('email', '==', userEmail));
+
+    try {
+      const querySnapshot = await getDocs(q);
+      querySnapshot.forEach(async doc => {
+        await deleteDoc(doc.ref);
+      });
+      setUserProducts([]);
+      setIsEmpty(true);
+    } catch (error) {
+      console.error('Error clearing cart:', error);
+    }
+  };
+
   return (
-    <div className="cart"> 
+    <div className="cart">
       <h1>Cart</h1>
       <div className="header-line">
         <span className="header-text">Product</span>
@@ -73,11 +112,13 @@ const Cart = ({ userEmail }) => {
                   </div>
                   <span className="product-price">${product.price}</span>
                 </div>
-                <br/>
+                <br />
               </li>
             ))}
           </ul>
           <div className="total-price">Total Price: ${finalPrice}</div>
+          <button className="proceed-to-checkout-button" onClick={toggleCheckoutForm}>Proceed to Checkout</button>
+          {isCheckoutOpen && <CheckoutForm onSubmit={handleSubmitForm} />}
         </div>
       )}
     </div>

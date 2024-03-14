@@ -36,7 +36,7 @@ function Nav({ isLoggedIn, handleLogout, userEmail }) {
     const fetchCartCount = async () => {
       try {
         const db = getFirestore();
-        const q = query(collection(db, 'Orders'), where('email', '==', userEmail));
+        const q = query(collection(db, 'Cart'), where('email', '==', userEmail));
   
         unsubscribeCart = onSnapshot(q, (snapshot) => {
           setCartCount(snapshot.size);
