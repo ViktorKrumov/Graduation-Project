@@ -48,9 +48,12 @@ const App = () => {
         setUserEmail(null); // Clear userEmail state when user is logged out
         setIsLoggedIn(false); // Update login status
       }
+    }, (error) => {
+      console.error('Authentication error:', error);
+      
     });
-
-    return () => unsubscribe();
+  
+    return unsubscribe; 
   }, []);
 
 
