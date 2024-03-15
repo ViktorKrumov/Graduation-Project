@@ -10,6 +10,7 @@ import Cart from './components/CartPage/Cart';
 import Login from './components/Login/Login';
 import Footer from './components/Footer/FooterF';
 import Profile from './components/Profile/Profile';
+import ContactUs from './components/ContactUs/ContactUs'
 import LogoutConfirmation from './components/Profile/LogoutConfirmation';
 import NavBar from './components/NavBarPage/NavBar';
 import Navigation from './components/Navigation/Nav';
@@ -97,6 +98,7 @@ const App = () => {
             <Route path="/wishlist" element={<Wishlist isLoggedIn={isLoggedIn} userEmail={userEmail}/>} />
             <Route path="/services" element={<Services />} />
             <Route path="/profile" element={<Profile userEmail={userEmail} />} />
+            <Route path="/contactUs" element={<ContactUs userEmail={userEmail} />} />
 
           </>
      

@@ -55,6 +55,12 @@ const NavBar = ({ toggleLoginForm, isLoggedIn, handleLogout }) => {
                 Services
               </Link>
             </li>
+
+            <li className='nav-item'>
+              <Link to='/contactUs' className='nav-links' onClick={closeMobileMenu}>
+                Contact Us
+              </Link>
+            </li>
             
           </ul>
           {/* {button && <Button buttonStyle='btn--outline'>SIGN UP</Button>} */}

@@ -4,7 +4,6 @@ import { MemoryRouter as Router, Routes } from 'react-router-dom';
 import App from './App';
 import Home from './components/HomePage/Home';
 import Login from './components/Login/Login';
-import Register from './components/RegisterPage/RegisterPage';
 import Store3 from './components/StorePageFinal/StorePageFinal';
 import Store4 from './components/StorePageFinal 2/StorePageFinal2';
 import Store5 from './components/StorePageFinal 3/StorePageFinal3';
@@ -14,6 +13,7 @@ import Wishlist from './components/Wishlist/Wishlist';
 import Services from './components/ServicesPage/Services';
 import Profile from './components/Profile/Profile';
 import Footer from './components/Footer/FooterF';
+import ContactUs from './components/ContactUs/ContactUs'
 
 jest.mock('react-slick', () => ({
     __esModule: true,
@@ -112,6 +112,15 @@ test('renders Profile component when path is "/profile"', () => {
     </Router>
   );
 //   expect(screen.getByText(/Profile Page/i)).toBeInTheDocument();
+});
+
+test('renders Contact Us component when path is "/contactUs"', () => {
+  render(
+    <Router initialEntries={['/contactUs']}>
+      <ContactUs />
+    </Router>
+  );
+//   expect(screen.getByText(/PC Store Page/i)).toBeInTheDocument();
 });
 
 test('renders Footer component in all cases', () => {

@@ -1,0 +1,126 @@
+.contact-page {
+    background-color: #f9f9f9;
+    padding: 50px 0;
+  }
+  
+  .contact-info-container {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  
+  .contact-info-container h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .contact-details {
+    display: inline-block;
+    text-align: left;
+  }
+  
+  .contact-detail {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .contact-detail i {
+    margin-right: 10px;
+    color: #007bff;
+    font-size: 24px;
+  }
+  
+  .contact-detail p {
+    font-size: 16px;
+  }
+  
+  .contact-container {
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap; 
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 20px;
+    background-color: #fff;
+  }
+  
+  .gif-container {
+    width: 100%;
+    border-bottom: 1px solid #ccc; 
+    padding-bottom: 20px; 
+  }
+  
+  .gif-container img {
+    width: 100%;
+    border-radius: 10px;
+  }
+  
+  .contact-form {
+    width: 100%;
+    padding: 0 20px; 
+  }
+  
+  .contact-form h3 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .contact-form input,
+  .contact-form textarea {
+    width: 100%;
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  
+  .contact-form textarea {
+    resize: vertical;
+  }
+  
+  .contact-form button {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .contact-form button:hover {
+    background-color: #0056b3;
+  }
+  
+  .result-message {
+    display: block;
+    margin-top: 10px;
+    color: #007bff;
+    font-size: 14px;
+  }
+  
+ 
+  
+  @media screen and (min-width: 768px) {
+    .contact-container {
+      flex-wrap: nowrap; 
+    }
+    
+    .gif-container {
+      width: 45%;
+      border-right: 1px solid #ccc; 
+      border-bottom: none; 
+      padding-bottom: 0; 
+    }
+  
+    .contact-form {
+      width: 55%;
+    }
+  }
+  
