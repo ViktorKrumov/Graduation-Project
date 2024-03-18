@@ -16,12 +16,6 @@ function Nav({ isLoggedIn, handleLogout, userEmail }) {
   const [cartCount, setCartCount] = useState(0);
   const [showSuggestions, setShowSuggestions] = useState(true); 
 
-  const [isSearchOpen, setIsSearchOpen] = useState(false);
-
-  const toggleSearch = () => {
-    setIsSearchOpen(!isSearchOpen);
-  };
-
   useEffect(() => {
     let unsubscribeWishlist;
     let unsubscribeCart;
@@ -111,12 +105,12 @@ function Nav({ isLoggedIn, handleLogout, userEmail }) {
       <div className="search-container">
           <input
             type="text"
-            className={`search-input ${isSearchOpen ? 'open' : ''}`}
+            className="search-input"
             placeholder="Search your products here"
             value={queryTest}
             onChange={handleInputChange}
           />
-          <SlMagnifier className="nav-magnifier" onClick={toggleSearch} />
+          <SlMagnifier className="nav-magnifier" />
         </div>
 
         <div className="nav-profile-container">
