@@ -39,3 +39,47 @@ Join us on our journey to redefine the way people shop for tech products. From c
 
 - **Testing**:
   - <img src="https://jestjs.io/img/favicon/favicon.ico" alt="Jest" width="20"/> Jest
+ 
+# Pages 📄
+
+This section provides an overview of the various pages in the application and the corresponding permissions required.
+
+## Home 🏠
+
+The Home page is the gateway to TechnoShack, offering visitors a glimpse into the world of cutting-edge technology and innovation. Scroll down to discover our featured sections:
+
+![Home Page](https://github.com/ViktorKrumov/Graduation-Project/assets/80381396/8c303f47-ed61-4e48-a3ea-d74b74c22683)
+
+### Best Sellers 🌟
+
+Explore our top-selling products! The "Best Sellers" section highlights the most popular items among our customers, ensuring you stay in tune with the latest trends.
+
+![Best Sellers](https://github.com/ViktorKrumov/Graduation-Project/assets/80381396/df179852-8302-4051-97fa-9ee29ab63178)
+
+### Computer of the year 💻🏆
+
+Discover the best of the best right here on our home page! Our "Computer of the Year" section showcases top-rated products that have captured the hearts and minds of our customers.
+
+![Computer of the Year](https://github.com/ViktorKrumov/Graduation-Project/assets/80381396/5cbf067c-832d-408a-86a3-2bf4ad129fa8)
+
+### New Arrivals 🆕
+
+Stay ahead of the curve with our latest additions! The "New Arrivals" section features the newest and most exciting tech gadgets and innovations hitting the market.
+
+![New Arrivals](https://github.com/ViktorKrumov/Graduation-Project/assets/80381396/36de9e90-5a78-415e-b7c3-09f5a40e3e96)
+
+### Special Offers 💰
+
+Don't miss out on exclusive deals and discounts! Our "Special Offers" section is your go-to destination for unbeatable savings on top-notch tech products.
+
+![Special Offers](https://github.com/ViktorKrumov/Graduation-Project/assets/80381396/a5933661-33b4-4587-90fb-f10d47e0b3ea)
+
+### Monitor of the Year 🖥️🏆
+
+Experience the pinnacle of visual excellence with our "Monitor of the Year" selection! Dive into a world of stunning clarity, vibrant colors, and immersive displays that redefine your viewing experience.
+
+![image](https://github.com/ViktorKrumov/Graduation-Project/assets/80381396/7f949620-71d5-45e0-80c4-25ac0cb1aca9)
+
+
+
+
