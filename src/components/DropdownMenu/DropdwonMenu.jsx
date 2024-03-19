@@ -1,48 +1,109 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { SlActionRedo } from "react-icons/sl";
 import { FaHeart } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import './DropdownMenu.css';
-import { addToCart } from '../../firebase'; 
-import { addToWishlist } from '../../firebase'; 
+import { getFirestore, collection, query, where, getDocs, updateDoc, doc, onSnapshot } from "firebase/firestore";
+import { addToCart, addToWishlist } from "../../firebase";
+import "./DropdownMenu.css";
 
-function DropdownMenu({ isLoggedIn, onAddToCart, onViewDetails, onAddToWishlist, product, userEmail }) {
-  const handleAddToCart = () => {
-    console.log(product.name)
-    console.log(userEmail)
-    console.log(product.photo)
-    console.log(product.original_price)
+function DropdownMenu({ isLoggedIn, onAddToCart, onAddToWishlist, product, userEmail }) {
+  const [userProducts, setUserProducts] = useState([]);
+  const [isEmpty, setIsEmpty] = useState(true);
+  const [isAddingToCart, setIsAddingToCart] = useState(false); 
+
+  useEffect(() => {
+    const fetchUserProducts = async () => {
+      const db = getFirestore();
+      const q = query(collection(db, "Cart"), where("email", "==", userEmail));
+  
+      try {
+        const unsubscribe = onSnapshot(q, (snapshot) => {
+          const products = snapshot.docs.map((doc) => ({
+            id: doc.id,
+            data: doc.data().product,
+            photo: doc.data().productPhoto,
+            price: doc.data().productPrice,
+            quantity: doc.data().quantity,
+          }));
+          setUserProducts(products);
+          setIsEmpty(products.length === 0);
+        });
+  
+        return () => {
+          unsubscribe();
+        };
+      } catch (error) {
+        console.error("Error fetching user products:", error);
+      }
+    };
+  
     if (isLoggedIn) {
-      addToCart(userEmail, product.name, product.photo, product.original_price);
-    } else {
-      onAddToCart(); 
+      fetchUserProducts();
     }
+  }, [isLoggedIn, userEmail]);
+  
+
+  const handleAddToCart = async () => {
+    if (isAddingToCart) return; 
+    setIsAddingToCart(true); 
+
+    if (isLoggedIn) {
+      const existingProduct = userProducts.find((item) => item.data === product.name);
+      if (existingProduct) {
+        const newQuantity = existingProduct.quantity + 1;
+        handleQuantityChange(existingProduct.id, newQuantity);
+      } else {
+        addToCart(userEmail, product.name, product.photo, product.original_price, 1); 
+      }
+    } else {
+      onAddToCart();
+    }
+
+    setIsAddingToCart(false); 
   };
 
   const handleAddToWishlist = () => {
-    console.log(product.name)
-    console.log(userEmail)
-    console.log(product.photo)
-    console.log(product.original_price)
     if (isLoggedIn) {
       addToWishlist(userEmail, product.name, product.photo, product.original_price);
     } else {
-      onAddToWishlist(); 
+      onAddToWishlist();
+    }
+  };
+
+  const handleQuantityChange = async (productId, newQuantity) => {
+    const db = getFirestore();
+    const orderRef = doc(db, 'Cart', productId);
+
+    try {
+      await updateDoc(orderRef, { quantity: newQuantity }); 
+      setUserProducts(prevProducts =>
+        prevProducts.map(product =>
+          product.id === productId ? { ...product, quantity: newQuantity } : product
+        )
+      ); 
+    } catch (error) {
+      console.error('Error updating quantity:', error);
     }
   };
 
   return (
     <div className="dropdown-menu">
       {isLoggedIn && (
-        <div className="dropdown-menu-item" onClick={handleAddToCart}>Add to cart 🛒</div>
+        <div className="dropdown-menu-item" onClick={handleAddToCart}>
+          Add to cart 🛒
+        </div>
       )}
-      
+
       <Link to={`/product/${product.name}`}>
-        <div className="dropdown-menu-item">View Details <SlActionRedo /></div>
+        <div className="dropdown-menu-item">
+          View Details <SlActionRedo />
+        </div>
       </Link>
-     
+
       {isLoggedIn && (
-        <div className="dropdown-menu-item" onClick={handleAddToWishlist}>Add to wishlist <FaHeart /></div>
+        <div className="dropdown-menu-item" onClick={handleAddToWishlist}>
+          Add to wishlist <FaHeart />
+        </div>
       )}
     </div>
   );

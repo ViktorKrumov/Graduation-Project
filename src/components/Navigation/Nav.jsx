@@ -13,7 +13,7 @@ function Nav({ isLoggedIn, handleLogout, userEmail }) {
   const [queryTest, setQuery] = useState('');
   const [suggestions, setSuggestions] = useState([]);
   const [wishlistCount, setWishlistCount] = useState(0);
-  const [cartCount, setCartCount] = useState(0);
+  const [cartQuantity, setCartQuantity] = useState(0); 
   const [showSuggestions, setShowSuggestions] = useState(true); 
 
   useEffect(() => {
@@ -39,7 +39,11 @@ function Nav({ isLoggedIn, handleLogout, userEmail }) {
         const q = query(collection(db, 'Cart'), where('email', '==', userEmail));
   
         unsubscribeCart = onSnapshot(q, (snapshot) => {
-          setCartCount(snapshot.size);
+          let totalQuantity = 0;
+          snapshot.forEach((doc) => {
+            totalQuantity += doc.data().quantity;
+          });
+          setCartQuantity(totalQuantity);
         });
       } catch (error) {
         console.error('Error fetching cart count:', error);
@@ -118,7 +122,7 @@ function Nav({ isLoggedIn, handleLogout, userEmail }) {
             <Link to="/cart">
               <div className="cart-container">
                 <AiOutlineShoppingCart className="nav-icons" />
-                {cartCount > 0 && <span className="cart-counter">{cartCount}</span>}
+                {cartQuantity > 0 && <span className="cart-counter">{cartQuantity}</span>}
               </div>
             </Link>
           )}

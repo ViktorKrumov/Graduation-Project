@@ -23,13 +23,16 @@ async function addToCart(email, productName, productPhoto, productPrice) {
       product: productName,
       productPhoto: productPhoto,
       productPrice: productPrice,
+      quantity: 1, 
       createdAt: new Date()
     });
-    console.log("Order added with ID: ", docRef.id);
+    console.log("Product added to cart with ID: ", docRef.id);
   } catch (e) {
-    console.error("Error adding order: ", e);
+    console.error("Error adding product to cart: ", e);
   }
 }
+
+
 
 async function addToOrders(fullName, email, address, city, zipCode, items) {
   const db = getFirestore();

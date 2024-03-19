@@ -142,3 +142,30 @@
 .proceed-to-checkout-button:hover {
   background-color: #45a049; 
 }
+
+
+.quantity-control {
+  display: flex;
+  align-items: center;
+}
+
+.quantity-control button {
+  width: 30px;
+  height: 30px;
+  font-size: 16px;
+  cursor: pointer;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  border-radius: 3px;
+  margin: 0 5px;
+}
+
+.quantity-control button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.quantity-control span {
+  font-size: 16px;
+  margin: 0 5px;
+}

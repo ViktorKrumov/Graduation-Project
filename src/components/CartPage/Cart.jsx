@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { getFirestore, collection, query, where, getDocs, deleteDoc, doc, addDoc } from 'firebase/firestore';
+import { getFirestore, collection, query, where, getDocs, deleteDoc, doc, addDoc, updateDoc, increment } from 'firebase/firestore';
 import './Cart.css';
 import CheckoutForm from './CheckoutForm/CheckoutForm';
 import { addToOrders } from '../../firebase';
@@ -21,7 +21,8 @@ const Cart = ({ userEmail }) => {
           id: doc.id,
           data: doc.data().product,
           photo: doc.data().productPhoto,
-          price: doc.data().productPrice
+          price: doc.data().productPrice,
+          quantity: doc.data().quantity 
         }));
         setUserProducts(products);
         setIsEmpty(products.length === 0);
@@ -34,7 +35,7 @@ const Cart = ({ userEmail }) => {
   }, [userEmail]);
 
   useEffect(() => {
-    const totalPrice = userProducts.reduce((acc, curr) => acc + curr.price, 0);
+    const totalPrice = userProducts.reduce((acc, curr) => acc + curr.price * curr.quantity, 0); 
     setFinalPrice(totalPrice);
   }, [userProducts]);
 
@@ -51,8 +52,20 @@ const Cart = ({ userEmail }) => {
     }
   };
 
-  const toggleCheckoutForm = () => {
-    setIsCheckoutOpen(prevState => !prevState);
+  const handleQuantityChange = async (productId, newQuantity) => {
+    const db = getFirestore();
+    const orderRef = doc(db, 'Cart', productId);
+
+    try {
+      await updateDoc(orderRef, { quantity: newQuantity }); 
+      setUserProducts(prevProducts =>
+        prevProducts.map(product =>
+          product.id === productId ? { ...product, quantity: newQuantity } : product
+        )
+      ); 
+    } catch (error) {
+      console.error('Error updating quantity:', error);
+    }
   };
 
   const handleSubmitForm = async (formData) => {
@@ -60,7 +73,8 @@ const Cart = ({ userEmail }) => {
     const items = userProducts.map(product => ({
       productName: product.data,
       productPhoto: product.photo,
-      productPrice: product.price
+      productPrice: product.price,
+      quantity: product.quantity 
     }));
     try {
       await addToOrders(fullName, email, address, city, zipcode, items);
@@ -93,11 +107,11 @@ const Cart = ({ userEmail }) => {
       <div className="header-line">
         <span className="header-text">Product</span>
         <span className="header-text">Price</span>
+        <span className="header-text">Quantity</span>
       </div>
       {isEmpty ? (
         <div className="empty-cart">
-          <img src="https://firebasestorage.googleapis.com/v0/b/technoshack-cbd13.appspot.com/o/Daco_5212497.png?alt=media&token=ec5d3e3d-3190-41d0-9d20-d37666df54e2" alt="Empty Cart" />
-          <p>Your cart is empty.</p>
+           <img src="https://firebasestorage.googleapis.com/v0/b/technoshack-cbd13.appspot.com/o/Daco_5212497.png?alt=media&token=ec5d3e3d-3190-41d0-9d20-d37666df54e2" alt="Empty Cart" />
         </div>
       ) : (
         <div>
@@ -112,12 +126,17 @@ const Cart = ({ userEmail }) => {
                   </div>
                   <span className="product-price">${product.price}</span>
                 </div>
+                <div className="quantity-control">
+                  <button onClick={() => handleQuantityChange(product.id, product.quantity - 1)} disabled={product.quantity <= 1}>-</button>
+                  <span>{product.quantity}</span>
+                  <button onClick={() => handleQuantityChange(product.id, product.quantity + 1)}>+</button>
+                </div>
                 <br />
               </li>
             ))}
           </ul>
           <div className="total-price">Total Price: ${finalPrice}</div>
-          <button className="proceed-to-checkout-button" onClick={toggleCheckoutForm}>Proceed to Checkout</button>
+          <button className="proceed-to-checkout-button" onClick={() => setIsCheckoutOpen(true)}>Proceed to Checkout</button>
           {isCheckoutOpen && <CheckoutForm onSubmit={handleSubmitForm} />}
         </div>
       )}
