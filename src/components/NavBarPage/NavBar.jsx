@@ -6,6 +6,7 @@ import { Button } from './Button';
 const NavBar = ({ toggleLoginForm, isLoggedIn, handleLogout }) => {
   const [click, setClick] = useState(false);
   const [productClick, setProductClick] = useState(false); 
+  const isAdmin = localStorage.getItem('isAdmin') === 'true'; 
 
   const handleProductsClick = () => {
     setProductClick(!productClick); 
@@ -21,7 +22,7 @@ const NavBar = ({ toggleLoginForm, isLoggedIn, handleLogout }) => {
       <nav className='navbar'>
         <div className='navbar-container'>
           <Link to='/' className='navbar-logo' onClick={closeMobileMenu}>
-          <img src="https://firebasestorage.googleapis.com/v0/b/technoshack-cbd13.appspot.com/o/SmallLogoTechnoShack.png?alt=media&token=ccbd69d5-bb5a-405c-a41f-48b76766c76a" alt='Logo' className='logo' /> 
+            <img src="https://firebasestorage.googleapis.com/v0/b/technoshack-cbd13.appspot.com/o/SmallLogoTechnoShack.png?alt=media&token=ccbd69d5-bb5a-405c-a41f-48b76766c76a" alt='Logo' className='logo' /> 
             TechnoShack
           </Link>
           <div className='menu-icon' onClick={() => setClick(!click)}>
@@ -62,6 +63,14 @@ const NavBar = ({ toggleLoginForm, isLoggedIn, handleLogout }) => {
               </Link>
             </li>
             
+          
+            {isAdmin && (
+              <li className='nav-item'>
+                <Link to='/admin' className='nav-links' onClick={closeMobileMenu}>
+                  Admin
+                </Link>
+              </li>
+            )}
           </ul>
           {/* {button && <Button buttonStyle='btn--outline'>SIGN UP</Button>} */}
         </div>

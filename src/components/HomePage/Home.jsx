@@ -20,11 +20,8 @@ const Home = ({isLoggedIn, userEmail}) => {
     <>
       
         <Header />
-      
-      
+       
         <BestSeller />
-      
-      
         
         <ProductOfTheYear />
 

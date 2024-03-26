@@ -19,6 +19,7 @@ import Register from './components/RegisterPage/RegisterPage'
 import Store4 from './components/StorePageFinal 2/StorePageFinal2'
 import Store5 from './components/StorePageFinal 3/StorePageFinal3'
 import Wishlist from './components/Wishlist/Wishlist';
+import AdminPage from './components/AdminPage/AdminPage';
 
 import { getAuth, onAuthStateChanged, signOut } from 'firebase/auth';
 import styled from "styled-components";
@@ -34,6 +35,7 @@ const App = () => {
   const [userEmail, setUserEmail] = useState(null); // State to hold user's email after successful login
   const [user, setUser] = useState(null); // State to hold user authentication status
   const [isLoggedIn, setIsLoggedIn] = useState(false); // State to track login status
+  const [isAdmin, setIsAdmin] = useState(false); // State to track admin status
   const navigate = useNavigate();
 
   const location = useLocation();
@@ -51,12 +53,20 @@ const App = () => {
       }
     }, (error) => {
       console.error('Authentication error:', error);
-      
     });
+
+    // Check if the user is an admin (replace this logic with your own admin detection mechanism)
+    const adminEmails = ['admin1@example.com', 'admin2@example.com']; // Example admin email addresses
+    if (userEmail && adminEmails.includes(userEmail)) {
+      setIsAdmin(true);
+      localStorage.setItem('isAdmin', true); // Store admin status in local storage
+    } else {
+      setIsAdmin(false);
+      localStorage.removeItem('isAdmin'); // Remove admin status from local storage
+    }
   
     return unsubscribe; 
-  }, []);
-
+  }, [userEmail]);
 
   const handleLoginSuccess = () => {
     console.log('Login successful');
@@ -81,9 +91,9 @@ const App = () => {
   return (
     <>
      
-      <NavBar /> 
+      <NavBar  /> 
       {user ? null : <WarningMessage>Please log in to access all features</WarningMessage>}
-      <Navigation isLoggedIn={isLoggedIn} handleLogout={handleLogout} userEmail={userEmail}/>
+      <Navigation isLoggedIn={isLoggedIn} handleLogout={handleLogout} userEmail={userEmail} />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login handleLoginSuccess={handleLoginSuccess} />} />
@@ -100,6 +110,10 @@ const App = () => {
             <Route path="/profile" element={<Profile userEmail={userEmail} />} />
             <Route path="/contactUs" element={<ContactUs userEmail={userEmail} />} />
 
+            {/* Admin Route */}
+            {isAdmin && (
+              <Route path="/admin" element={<AdminPage />} />
+            )}
           </>
      
       </Routes>
