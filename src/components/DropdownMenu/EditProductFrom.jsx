@@ -13,7 +13,7 @@ function EditProductForm({ product, onSave, onCancel }) {
   const handleSave = async () => {
     try {
       const db = getDatabase(); // Initialize the database
-      const productRef = ref(db, `computers/${product.id}`);
+      const productRef = ref(db, `computers/${product.id - 1}`);
 
       await set(productRef, editedProduct);
       onSave(editedProduct);
