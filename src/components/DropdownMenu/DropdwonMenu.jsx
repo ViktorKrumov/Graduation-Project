@@ -2,14 +2,39 @@ import React, { useState, useEffect } from "react";
 import { SlActionRedo } from "react-icons/sl";
 import { FaHeart } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import { getFirestore, collection, query, where, getDocs, updateDoc, doc, onSnapshot } from "firebase/firestore";
+import { getFirestore, collection, query, where, getDocs, updateDoc, doc, onSnapshot} from "firebase/firestore";
 import { addToCart, addToWishlist } from "../../firebase";
+import { remove, ref } from "firebase/database";
+import { getDatabase } from "firebase/database";
+
 import "./DropdownMenu.css";
 
 function DropdownMenu({ isLoggedIn, onAddToCart, onAddToWishlist, product, userEmail }) {
   const [userProducts, setUserProducts] = useState([]);
   const [isEmpty, setIsEmpty] = useState(true);
   const [isAddingToCart, setIsAddingToCart] = useState(false); 
+
+  const [isDeleting, setIsDeleting] = useState(false);
+  const isAdmin = localStorage.getItem('isAdmin') === 'true'; 
+
+  const handleDeleteProduct = async () => {
+    
+    const db = getDatabase();
+    const productRef = ref(db, `computers/${product.id - 1}`);
+
+    try {
+      setIsDeleting(true);
+      await remove(productRef);
+      console.log("Product deleted successfully!", product.id);
+    } catch (error) {
+      console.error("Error deleting product:", error);
+    } finally {
+      setIsDeleting(false);
+    }
+  };
+  
+  
+  
 
   useEffect(() => {
     const fetchUserProducts = async () => {
@@ -103,6 +128,12 @@ function DropdownMenu({ isLoggedIn, onAddToCart, onAddToWishlist, product, userE
       {isLoggedIn && (
         <div className="dropdown-menu-item" onClick={handleAddToWishlist}>
           Add to wishlist <FaHeart />
+        </div>
+      )}
+
+      {isLoggedIn && isAdmin && (
+        <div className="dropdown-menu-item" onClick={handleDeleteProduct}>
+          Delete ❌
         </div>
       )}
     </div>
