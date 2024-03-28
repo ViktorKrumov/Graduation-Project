@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import ProductCard from "../StorePageFinal/ProductCard/ProductCard";
 import { fetchData } from "../api2";
 import "./StorePageFinal.css";
+import AddProductForm from "./AddProductForm/AddProductForm";
+import { getDatabase, ref, onValue } from 'firebase/database';
 
 import Sidebar from "./Sidebar/Sidebar";
 import PriceFilter from "./PriceFilter/PriceFilter";
@@ -18,22 +20,32 @@ function StorePageFinal({isLoggedIn, userEmail}) {
   const [selectedProcessor, setSelectedProcessor] = useState({});
   const [graphicCards, setGraphicCards] = useState(["GeForce RTX 2080", "GeForce RTX 3050", "GeForce RTX 3060", "GeForce RTX 3060 Ti", "GeForce RTX 3070", "Radeon RX"]);
   const [selectedGraphicCard, setSelectedGraphicCard] = useState({});
-
   const [selectedCompany, setSelectedCompany] = useState({});
 
+  const isAdmin = localStorage.getItem('isAdmin') === 'true'; 
+
   useEffect(() => {
-    async function getData() {
+    async function fetchDataAndListen() {
       try {
+        // Fetch initial data
         const res = await fetchData();
         setOriginalProducts(res);
         setProducts(res);
         setLoading(false);
+
+        // Listen for real-time changes in 'computers' node
+        const database = getDatabase();
+        const computersRef = ref(database, 'computers');
+        onValue(computersRef, (snapshot) => {
+          const data = snapshot.val();
+          setProducts(data ? Object.values(data) : []);
+        });
       } catch (error) {
         console.error("Error fetching or processing data:", error);
         setLoading(false);
       }
     }
-    getData();
+    fetchDataAndListen();
   }, []);
 
   const categories = Array.from(new Set(originalProducts.map((product) => product.category)));
@@ -175,6 +187,7 @@ function StorePageFinal({isLoggedIn, userEmail}) {
       />
 
       <PriceFilter priceFilter={priceFilter} handlePriceFilter={handlePriceFilter} />
+      {isLoggedIn && isAdmin && <AddProductForm />}
       {products.length === 0 ? (
         <div className="products-container">
           <img src={noProductsImageUrl} alt="No products found" />
