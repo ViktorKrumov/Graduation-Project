@@ -81,3 +81,21 @@
   .product-card_price {
     font-size: 1.8rem;
   }
+
+  .product-card_wrapper {
+    position: relative;
+  }
+  
+  .edit-form-container {
+    position: absolute;
+    top: 1%;
+    left: 0;
+    width: 100%;
+    max-height: 400px; /* Adjust the max height as needed */
+    overflow-y: auto;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 10px;
+    z-index: 999999;
+  }
+  

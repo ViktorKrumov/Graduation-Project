@@ -2,23 +2,25 @@ import React, { useState, useEffect } from "react";
 import { SlActionRedo } from "react-icons/sl";
 import { FaHeart } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import { getFirestore, collection, query, where, getDocs, updateDoc, doc, onSnapshot} from "firebase/firestore";
+import { getFirestore, collection, query, where, getDocs, updateDoc, doc, onSnapshot } from "firebase/firestore";
 import { addToCart, addToWishlist } from "../../firebase";
 import { remove, ref } from "firebase/database";
-import { getDatabase } from "firebase/database";
+import { getDatabase, set } from "firebase/database";
 
+import EditProductForm from "./EditProductFrom"; // Corrected the import name
 import "./DropdownMenu.css";
 
-function DropdownMenu({ isLoggedIn, onAddToCart, onAddToWishlist, product, userEmail }) {
+function DropdownMenu({ isLoggedIn, onAddToCart, onAddToWishlist, product, userEmail, onEdit }) {
   const [userProducts, setUserProducts] = useState([]);
   const [isEmpty, setIsEmpty] = useState(true);
-  const [isAddingToCart, setIsAddingToCart] = useState(false); 
-
+  const [isAddingToCart, setIsAddingToCart] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
-  const isAdmin = localStorage.getItem('isAdmin') === 'true'; 
+  const [isEditing, setIsEditing] = useState(false);
+  const isAdmin = localStorage.getItem('isAdmin') === 'true';
+  const [isFormOpen, setIsFormOpen] = useState(false);
 
+  
   const handleDeleteProduct = async () => {
-    
     const db = getDatabase();
     const productRef = ref(db, `computers/${product.id - 1}`);
 
@@ -32,15 +34,19 @@ function DropdownMenu({ isLoggedIn, onAddToCart, onAddToWishlist, product, userE
       setIsDeleting(false);
     }
   };
-  
-  
-  
 
+  const handleEditProduct = () => {
+    if (onEdit) {
+      onEdit(); // Invoke the onEdit function passed from the ProductCard component
+    }
+  };
+
+  
   useEffect(() => {
     const fetchUserProducts = async () => {
       const db = getFirestore();
       const q = query(collection(db, "Cart"), where("email", "==", userEmail));
-  
+
       try {
         const unsubscribe = onSnapshot(q, (snapshot) => {
           const products = snapshot.docs.map((doc) => ({
@@ -53,7 +59,7 @@ function DropdownMenu({ isLoggedIn, onAddToCart, onAddToWishlist, product, userE
           setUserProducts(products);
           setIsEmpty(products.length === 0);
         });
-  
+
         return () => {
           unsubscribe();
         };
@@ -61,16 +67,15 @@ function DropdownMenu({ isLoggedIn, onAddToCart, onAddToWishlist, product, userE
         console.error("Error fetching user products:", error);
       }
     };
-  
+
     if (isLoggedIn) {
       fetchUserProducts();
     }
   }, [isLoggedIn, userEmail]);
-  
 
   const handleAddToCart = async () => {
-    if (isAddingToCart) return; 
-    setIsAddingToCart(true); 
+    if (isAddingToCart) return;
+    setIsAddingToCart(true);
 
     if (isLoggedIn) {
       const existingProduct = userProducts.find((item) => item.data === product.name);
@@ -78,13 +83,13 @@ function DropdownMenu({ isLoggedIn, onAddToCart, onAddToWishlist, product, userE
         const newQuantity = existingProduct.quantity + 1;
         handleQuantityChange(existingProduct.id, newQuantity);
       } else {
-        addToCart(userEmail, product.name, product.photo, product.original_price, 1); 
+        addToCart(userEmail, product.name, product.photo, product.original_price, 1);
       }
     } else {
       onAddToCart();
     }
 
-    setIsAddingToCart(false); 
+    setIsAddingToCart(false);
   };
 
   const handleAddToWishlist = () => {
@@ -100,15 +105,19 @@ function DropdownMenu({ isLoggedIn, onAddToCart, onAddToWishlist, product, userE
     const orderRef = doc(db, 'Cart', productId);
 
     try {
-      await updateDoc(orderRef, { quantity: newQuantity }); 
+      await updateDoc(orderRef, { quantity: newQuantity });
       setUserProducts(prevProducts =>
         prevProducts.map(product =>
           product.id === productId ? { ...product, quantity: newQuantity } : product
         )
-      ); 
+      );
     } catch (error) {
       console.error('Error updating quantity:', error);
     }
+  };
+
+  const handleCloseForm = () => {
+    setIsFormOpen(false);
   };
 
   return (
@@ -136,6 +145,14 @@ function DropdownMenu({ isLoggedIn, onAddToCart, onAddToWishlist, product, userE
           Delete ❌
         </div>
       )}
+
+      {isLoggedIn && isAdmin && (
+        <div className="dropdown-menu-item" onClick={handleEditProduct}>
+          Edit ✏️
+        </div>
+      )}
+
+      
     </div>
   );
 }
