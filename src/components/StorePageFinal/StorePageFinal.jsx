@@ -8,7 +8,7 @@ import { getDatabase, ref, onValue } from 'firebase/database';
 import Sidebar from "./Sidebar/Sidebar";
 import PriceFilter from "./PriceFilter/PriceFilter";
 
-function StorePageFinal({isLoggedIn, userEmail}) {
+function StorePageFinal({ isLoggedIn, userEmail }) {
   const [originalProducts, setOriginalProducts] = useState([]);
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -21,8 +21,9 @@ function StorePageFinal({isLoggedIn, userEmail}) {
   const [graphicCards, setGraphicCards] = useState(["GeForce RTX 2080", "GeForce RTX 3050", "GeForce RTX 3060", "GeForce RTX 3060 Ti", "GeForce RTX 3070", "Radeon RX"]);
   const [selectedGraphicCard, setSelectedGraphicCard] = useState({});
   const [selectedCompany, setSelectedCompany] = useState({});
+  const [showAddProductForm, setShowAddProductForm] = useState(false);
 
-  const isAdmin = localStorage.getItem('isAdmin') === 'true'; 
+  const isAdmin = localStorage.getItem('isAdmin') === 'true';
 
   useEffect(() => {
     async function fetchDataAndListen() {
@@ -181,13 +182,21 @@ function StorePageFinal({isLoggedIn, userEmail}) {
         graphicCards={graphicCards}
         selectedGraphicCard={selectedGraphicCard}
         handleGraphicCardChange={handleGraphicCardChange}
-        companies={companies} 
+        companies={companies}
         selectedCompany={selectedCompany}
         handleCompanyChange={handleCompanyChange}
       />
 
       <PriceFilter priceFilter={priceFilter} handlePriceFilter={handlePriceFilter} />
-      {isLoggedIn && isAdmin && <AddProductForm />}
+      {isAdmin && (
+        <div className="add-product-form-toggle">
+          <button className="toggle-button" onClick={() => setShowAddProductForm(!showAddProductForm)}>
+            {showAddProductForm ? "Hide Form" : "Add PC"}
+          </button>
+          {showAddProductForm && <AddProductForm />}
+        </div>
+      )}
+
       {products.length === 0 ? (
         <div className="products-container">
           <img src={noProductsImageUrl} alt="No products found" />
@@ -195,7 +204,7 @@ function StorePageFinal({isLoggedIn, userEmail}) {
       ) : (
         <div className="products-container">
           {products.map((product) => (
-            <ProductCard product={product} key={product.id} isLoggedIn = {isLoggedIn} userEmail={userEmail}/>
+            <ProductCard product={product} key={product.id} isLoggedIn={isLoggedIn} userEmail={userEmail} />
           ))}
         </div>
       )}
