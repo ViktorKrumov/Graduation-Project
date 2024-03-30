@@ -1,0 +1,52 @@
+.add-mouse-form {
+    max-width: 400px;
+    margin: 0 auto;
+  }
+  
+  .add-mouse-form h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .add-mouse-form label {
+    display: block;
+    margin-bottom: 10px;
+  }
+  
+  .add-mouse-form input[type="text"],
+  .add-mouse-form input[type="number"],
+  .add-mouse-form textarea {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  
+  .add-mouse-form textarea {
+    height: 100px; 
+  }
+  
+  .add-mouse-form button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .add-mouse-form button:hover {
+    background-color: #45a049;
+  }
+  
+  .add-mouse-form button[type="submit"] {
+    width: 100%;
+  }
+  
+  .add-mouse-form button[type="submit"]:hover {
+    background-color: #45a049;
+  }
+  
+  

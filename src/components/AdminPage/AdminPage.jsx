@@ -31,7 +31,7 @@ const AdminPage = () => {
     <div className="container">
       <h1 className="header">Registered Users</h1>
       <RegisteredUsersTable registeredUsers={registeredUsers} />
-
+      <br></br>
       <h1 className="header">All Orders</h1>
       <OrdersTable orders={orders} />
     </div>

@@ -41,7 +41,7 @@ test('renders Login component when path is "/login"', () => {
 
 test('renders Store3 component when path is "/store/pc"', () => {
   render(
-    <Router initialEntries={['/store/pc']}>
+    <Router initialEntries={['/store/computers']}>
       <Store3 />
     </Router>
   );

@@ -20,6 +20,7 @@ import Store4 from './components/StorePageFinal 2/StorePageFinal2'
 import Store5 from './components/StorePageFinal 3/StorePageFinal3'
 import Wishlist from './components/Wishlist/Wishlist';
 import AdminPage from './components/AdminPage/AdminPage';
+import TermsOfService from './components/TermsOfService/TermsOfService';
 
 import { getAuth, onAuthStateChanged, signOut } from 'firebase/auth';
 import styled from "styled-components";
@@ -100,7 +101,7 @@ const App = () => {
         <Route path="/register" element={<Register />} />
        
           <>
-            <Route path="/store/pc" element={<Store3 isLoggedIn={isLoggedIn} userEmail={userEmail} />} />
+            <Route path="/store/computers" element={<Store3 isLoggedIn={isLoggedIn} userEmail={userEmail} />} />
             <Route path="/store/monitors" element={<Store4 isLoggedIn={isLoggedIn} userEmail={userEmail}/>} />
             <Route path="/store/mice" element={<Store5 isLoggedIn={isLoggedIn} userEmail={userEmail}/>} />
             <Route path="/product/:name" element={<ProductDetailsPage isLoggedIn={isLoggedIn} userEmail={userEmail} />} /> 
@@ -109,6 +110,7 @@ const App = () => {
             <Route path="/services" element={<Services />} />
             <Route path="/profile" element={<Profile userEmail={userEmail} />} />
             <Route path="/contactUs" element={<ContactUs userEmail={userEmail} />} />
+            <Route path="/termsOfservice" element={<TermsOfService  />} />
 
             {/* Admin Route */}
             {isAdmin && (

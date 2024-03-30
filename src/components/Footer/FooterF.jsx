@@ -18,18 +18,11 @@ const Footer = () => {
         <div className='footer-link-wrapper'>
           <div className='footer-link-items'>
             <h2>About Us</h2>
-            <Link to='/'>How it works</Link>
-            <Link to='/'>Testimonials</Link>
-            <Link to='/'>Careers</Link>
-            <Link to='/'>Investors</Link>
-            <Link to='/'>Terms of Service</Link>
+            <Link to='/termsOfservice'>Terms of Service</Link>
           </div>
           <div className='footer-link-items'>
             <h2>Contact Us</h2>
-            <Link to='/contact'>Contact</Link>
-            <Link to='/support'>Support</Link>
-            <Link to='/store'>Product Catalog</Link>
-            <Link to='/sponsorships'>Sponsorships</Link>
+            <Link to='/contactUs'>Contact</Link>
           </div>
         </div>
         <div className='footer-link-wrapper'>
@@ -55,19 +48,19 @@ const Footer = () => {
           </div>
           <small className='website-rights'>TechnoShack © 2023</small>
           <div className='social-icons'>
-            <a className='social-icon-link' href='https://www.instagram.com/YourPage' target='_blank' rel='noopener noreferrer' aria-label='Instagram'>
+            <a className='social-icon-link' href='' target='_blank' rel='noopener noreferrer' aria-label='Instagram'>
               <i className='fab fa-instagram' />
             </a>
-            <a className='social-icon-link' href='https://www.facebook.com/YourPage' target='_blank' rel='noopener noreferrer' aria-label='Facebook'>
+            <a className='social-icon-link' href='' target='_blank' rel='noopener noreferrer' aria-label='Facebook'>
               <i className='fab fa-facebook-f' />
             </a>
-            <a className='social-icon-link' href='https://www.youtube.com/YourPage' target='_blank' rel='noopener noreferrer' aria-label='YouTube'>
+            <a className='social-icon-link' href='' target='_blank' rel='noopener noreferrer' aria-label='YouTube'>
               <i className='fab fa-youtube' />
             </a>
-            <a className='social-icon-link' href='https://www.twitter.com/YourPage' target='_blank' rel='noopener noreferrer' aria-label='Twitter'>
+            <a className='social-icon-link' href='' target='_blank' rel='noopener noreferrer' aria-label='Twitter'>
               <i className='fab fa-twitter' />
             </a>
-            <a className='social-icon-link' href='https://www.linkedin.com/YourPage' target='_blank' rel='noopener noreferrer' aria-label='LinkedIn'>
+            <a className='social-icon-link' href='' target='_blank' rel='noopener noreferrer' aria-label='LinkedIn'>
               <i className='fab fa-linkedin' />
             </a>
           </div>

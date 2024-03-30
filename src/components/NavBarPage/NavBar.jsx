@@ -41,7 +41,7 @@ const NavBar = ({ toggleLoginForm, isLoggedIn, handleLogout }) => {
               </div>
               <ul className={productClick ? 'dropdown-menu active' : 'dropdown-menu'}>
                 <li className='dropdown-item'>
-                  <Link to='/store/pc' className='dropdown-link' onClick={closeMobileMenu}>PC</Link>
+                  <Link to='/store/computers' className='dropdown-link' onClick={closeMobileMenu}>Computers</Link>
                 </li>
                 <li className='dropdown-item'>
                   <Link to='/store/monitors' className='dropdown-link' onClick={closeMobileMenu}>Monitors</Link>
