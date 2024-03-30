@@ -2,19 +2,18 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import toast from "react-hot-toast";
 import DropdownMenu from "../../DropdownMenu/DropdwonMenu";
-import EditProductForm from "../../DropdownMenu/EditProductFrom"; // Corrected the import name
+import EditProductForm from "../EditPcForm/EditProductFrom";
 import "./ProductCard.css";
 
 function ProductCard({ product, isLoggedIn, userEmail }) {
   const [showDropdown, setShowDropdown] = useState(false);
-  const [isEditing, setIsEditing] = useState(false); // State to control edit form visibility
-
+  const [isEditing, setIsEditing] = useState(false); 
   function handleAddToCart() {
     // addToCart(product);
     toast.success("Added to Cart");
   }
 
-  // Function to toggle edit form visibility
+  
   const handleToggleEditForm = () => {
     setIsEditing(!isEditing);
   };
@@ -34,23 +33,24 @@ function ProductCard({ product, isLoggedIn, userEmail }) {
         <p>{product.graphics_card}</p>
         {showDropdown && (
           <DropdownMenu
-            isLoggedIn={isLoggedIn}
-            product={product}
-            userEmail={userEmail}
-            onEdit={() => handleToggleEditForm()} // Pass a function to handle edit button click
-          />
+          isLoggedIn={isLoggedIn}
+          product={product}
+          userEmail={userEmail}
+          onEdit={() => handleToggleEditForm()} 
+          databaseNode="computers"
+        />
         )}
         <span className="product-card_bottom">
           <b className="product-card_price">${product.original_price}</b>
         </span>
       </div>
-      {/* Conditionally render the edit form */}
+
       {isEditing && (
         <div className="edit-form-container">
           <EditProductForm
             product={product}
-            onSave={() => setIsEditing(false)} // Function to handle save action
-            onCancel={() => setIsEditing(false)} // Function to handle cancel action
+            onSave={() => setIsEditing(false)}
+            onCancel={() => setIsEditing(false)} 
           />
         </div>
       )}

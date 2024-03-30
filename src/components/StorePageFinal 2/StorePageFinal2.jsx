@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from "react";
-import ProductCard from "../StorePageFinal/ProductCard/ProductCard";
+import ProductCard2 from "./ProductCard2/ProductCard2";
 import { fetchData } from "../api3";
 import "./StorePageFinal2.css";
+
+import AddMonitorForm from "./AddMonitorForm/AddMonitorForm";
+import { getDatabase, ref, onValue } from 'firebase/database';
 
 import Sidebar from "./Sidebar2/Sidebar2";
 import PriceFilter from "./PriceFilter2/PriceFilter2";
@@ -20,19 +23,31 @@ function StorePageFinal({isLoggedIn, userEmail}) {
   const [selectedPanelType, setSelectedPanelType] = useState({});
   const [selectedScreenSize, setSelectedScreenSize] = useState({});
 
+  const [showAddProductForm, setShowAddProductForm] = useState(false);
+  const isAdmin = localStorage.getItem('isAdmin') === 'true';
+
   useEffect(() => {
-    async function getData() {
+    async function fetchDataAndListen() {
       try {
+        // Fetch initial data
         const res = await fetchData();
         setOriginalProducts(res);
         setProducts(res);
         setLoading(false);
+
+        // Listen for real-time changes in 'monitors' node
+        const database = getDatabase();
+        const monitorsRef = ref(database, 'monitors');
+        onValue(monitorsRef, (snapshot) => {
+          const data = snapshot.val();
+          setProducts(data ? Object.values(data) : []);
+        });
       } catch (error) {
         console.error("Error fetching or processing data:", error);
         setLoading(false);
       }
     }
-    getData();
+    fetchDataAndListen();
   }, []);
 
   const companies = Array.from(new Set(originalProducts.map((product) => product.company)));
@@ -177,6 +192,15 @@ function StorePageFinal({isLoggedIn, userEmail}) {
       />
 
       <PriceFilter priceFilter={priceFilter} handlePriceFilter={handlePriceFilter} />
+      {isAdmin && (
+        <div className="add-product-form-toggle">
+          <button className="toggle-button" onClick={() => setShowAddProductForm(!showAddProductForm)}>
+            {showAddProductForm ? "Hide Form" : "Add Monitor"}
+          </button>
+          {showAddProductForm && <AddMonitorForm />}
+        </div>
+      )}
+
       {products.length === 0 ? (
         <div className="products-container">
           <img src={noProductsImageUrl} alt="No products found" />
@@ -184,7 +208,7 @@ function StorePageFinal({isLoggedIn, userEmail}) {
       ) : (
         <div className="products-container">
           {products.map((product) => (
-             <ProductCard product={product} key={product.id} isLoggedIn = {isLoggedIn} userEmail={userEmail}/>
+             <ProductCard2 product={product} key={product.id} isLoggedIn = {isLoggedIn} userEmail={userEmail}/>
           ))}
         </div>
       )}

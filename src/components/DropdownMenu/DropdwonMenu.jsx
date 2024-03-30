@@ -7,10 +7,10 @@ import { addToCart, addToWishlist } from "../../firebase";
 import { remove, ref } from "firebase/database";
 import { getDatabase, set } from "firebase/database";
 
-import EditProductForm from "./EditProductFrom"; // Corrected the import name
+import EditProductForm from "../StorePageFinal/EditPcForm/EditProductFrom"; // Corrected the import name
 import "./DropdownMenu.css";
 
-function DropdownMenu({ isLoggedIn, onAddToCart, onAddToWishlist, product, userEmail, onEdit }) {
+function DropdownMenu({ isLoggedIn, onAddToCart, onAddToWishlist, product, userEmail, onEdit, databaseNode }) {
   const [userProducts, setUserProducts] = useState([]);
   const [isEmpty, setIsEmpty] = useState(true);
   const [isAddingToCart, setIsAddingToCart] = useState(false);
@@ -22,7 +22,8 @@ function DropdownMenu({ isLoggedIn, onAddToCart, onAddToWishlist, product, userE
   
   const handleDeleteProduct = async () => {
     const db = getDatabase();
-    const productRef = ref(db, `computers/${product.id - 1}`);
+    const productRef = ref(db, `${databaseNode}/${product.id - 1}`);
+    console.log(databaseNode)
 
     try {
       setIsDeleting(true);
