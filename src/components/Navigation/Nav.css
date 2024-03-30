@@ -80,69 +80,81 @@ input {
   
 
   
-  .suggestions-container {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    width: 100%; 
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 5px;
-    background-color: #fff;
-    z-index: 999;
-    max-height: 400px; 
-    overflow-y: auto;
-  }
-  
-  
-  .suggestions-container li {
-    display: flex;
-    align-items: center;
-    padding: 12px;
-    cursor: pointer;
-    transition: all 0.3s ease-in-out; 
-  }
-  
- 
-  .suggestions-container li img {
-    width: 120px;
-    height: 90px;
-    border-radius: 5px;
-    margin-right: 12px;
-    transition: transform 0.3s ease-in-out;
-  }
-  
- 
-  .suggestions-container li div {
-    display: flex;
-    flex-direction: column;
-  }
-  
- 
-  .suggestions-container li .suggestion-name {
-    font-size: 24px;
-  }
-  
+.suggestions-container {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 100%; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  background-color: #fff;
+  z-index: 999;
+  overflow-x: auto; 
+  white-space: nowrap; 
+}
 
-  .suggestions-container li .suggestion-price {
-    font-weight: bold;
-    font-size: 15px;
-    color: #777;
-  }
-  
-  
-  .suggestions-container li:hover {
-    background-color: #f5f5f5; 
-  }
-  
+.suggestions-container li {
+  display: inline-block; 
+  vertical-align: top; 
+  margin-right: 20px; 
+  border-radius: 10px; 
+  border: 1px solid #ccc; 
+  box-sizing: border-box; 
+  width: 250px; 
+  height: 250px; 
+  overflow: hidden; 
+}
 
-  .suggestions-container li:not(:last-child) {
-    margin-bottom: 8px;
-  }
-  
- 
-  .suggestions-container li:hover img {
-    transform: scale(1.1);
-  }
+.suggestion-name {
+  font-size: 16px; 
+  overflow: hidden; 
+  text-overflow: ellipsis; 
+  white-space: nowrap; 
+}
+
+
+.suggestions-container li:last-child {
+  margin-right: 0; 
+}
+
+
+
+.suggestions-container li img {
+  width: 200px;
+  height: 150px;
+  border-radius: 5px;
+  margin-right: 12px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.suggestions-container li div {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1; 
+}
+
+.suggestions-container li .suggestion-name {
+  font-size: 28px; 
+}
+
+.suggestions-container li .suggestion-price {
+  font-weight: bold;
+  font-size: 18px;
+  color: #777;
+}
+
+.suggestions-container li:hover {
+  background-color: #f5f5f5; 
+}
+
+.suggestions-container li:not(:last-child) {
+  margin-bottom: 20px; 
+}
+
+.suggestions-container li:hover img {
+  transform: scale(1.1);
+}
+
   
   input {
     padding: 10px;

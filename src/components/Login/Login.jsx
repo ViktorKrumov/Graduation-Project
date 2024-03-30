@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { BsCheckCircleFill } from "react-icons/bs";
+import { BsCheckCircleFill, BsEye, BsEyeSlash } from "react-icons/bs";
 import { Link } from 'react-router-dom';
 import './Login.css';
 import { auth, signInWithEmailAndPassword, createUserWithEmailAndPassword, sendPasswordResetEmail } from '../../firebase';
@@ -7,21 +7,31 @@ import { auth, signInWithEmailAndPassword, createUserWithEmailAndPassword, sendP
 const Login = ({ handleLoginSuccess }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
   const [isRegister, setIsRegister] = useState(false);
   const [forgotPassword, setForgotPassword] = useState(false);
   const [emailForPasswordReset, setEmailForPasswordReset] = useState('');
   const [showPasswordWarning, setShowPasswordWarning] = useState(false);
   const [successMessage, setSuccessMessage] = useState('');
   const [userEmail, setUserEmail] = useState(null); // State to hold user's email after successful login
+  const [passwordError, setPasswordError] = useState('');
+  const [emailError, setEmailError] = useState('');
 
   const toggleForm = () => {
     setIsRegister(!isRegister);
     setForgotPassword(false);
     setShowPasswordWarning(false);
     setSuccessMessage(''); 
+    setPasswordError('');
+    setEmailError('');
   };
 
   const handleRegister = () => {
+    if (password.length < 6) {
+      setPasswordError('Password should be at least 6 characters long.');
+      return;
+    }
+
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user;
@@ -30,7 +40,11 @@ const Login = ({ handleLoginSuccess }) => {
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
-        console.error(errorCode, errorMessage);
+        if (errorCode === 'auth/email-already-in-use') {
+          setEmailError('Email is already in use.');
+        } else {
+          console.error(errorCode, errorMessage);
+        }
       });
   };
 
@@ -38,7 +52,7 @@ const Login = ({ handleLoginSuccess }) => {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user;
-        setUserEmail(user.email); // Set the userEmail state with the user's email
+        setUserEmail(user.email); 
         console.log("User email in Login component:", user.email);
         setSuccessMessage('You have successfully logged in!');
         handleLoginSuccess();
@@ -46,12 +60,13 @@ const Login = ({ handleLoginSuccess }) => {
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
-        console.error(errorCode, errorMessage);
-        setShowPasswordWarning(true);
+        if (errorCode === 'auth/wrong-password' || errorCode === 'auth/user-not-found') {
+          setShowPasswordWarning(true);
+        } else {
+          console.error(errorCode, errorMessage);
+        }
       });
   };
-  
-  
 
   const handleResetPassword = () => {
     sendPasswordResetEmail(auth, emailForPasswordReset)
@@ -122,18 +137,25 @@ const Login = ({ handleLoginSuccess }) => {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                   />
-                  <input
-                    type="password"
-                    placeholder="Enter your password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                  />
+                  <div className="password-field">
+                    <input
+                      type={showPassword ? "text" : "password"}
+                      placeholder="Enter your password"
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                    />
+                    <span onClick={() => setShowPassword(!showPassword)}>
+                      {showPassword ? <BsEyeSlash /> : <BsEye />}
+                    </span>
+                  </div>
                   {showPasswordWarning && <p className="warning">Incorrect password. Please try again.</p>}
+                  {passwordError && <p className="error">{passwordError}</p>}
+                  {emailError && <p className="error">{emailError}</p>}
                   {isRegister && (
                     <input
                       type="password"
                       placeholder="Confirm your password"
-                      onChange={(e) => setPassword(e.target.value)}
+                      // Use a separate state variable for password confirmation
                     />
                   )}
                   <button onClick={isRegister ? handleRegister : handleLogin}>{isRegister ? 'Register' : 'Login'}</button>
