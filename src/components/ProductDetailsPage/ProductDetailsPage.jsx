@@ -9,10 +9,19 @@ import { Link } from 'react-router-dom';
 import { FiHeart } from 'react-icons/fi';
 import { AiOutlineShoppingCart, AiOutlineUserAdd } from 'react-icons/ai';
 
-function ProductDetailsPage({ isLoggedIn, userEmail }) {
+import { getFirestore, collection, query, where, getDocs, updateDoc, doc, onSnapshot } from "firebase/firestore";
+
+function ProductDetailsPage({ isLoggedIn, userEmail, onAddToCart }) {
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+
+  const [userProducts, setUserProducts] = useState([]);
+  const [isEmpty, setIsEmpty] = useState(true);
+  const [isAddingToCart, setIsAddingToCart] = useState(false);
+
+
+
 
   const { name } = useParams();
 
@@ -40,15 +49,70 @@ function ProductDetailsPage({ isLoggedIn, userEmail }) {
     fetchDataAndSetProduct();
   }, [name]);
 
-  const handleAddToCart = () => {
-    console.log(product.name);
-    console.log(userEmail);
-    console.log(product.photo);
-    console.log(product.original_price);
+  useEffect(() => {
+    const fetchUserProducts = async () => {
+      const db = getFirestore();
+      const q = query(collection(db, "Cart"), where("email", "==", userEmail));
+
+      try {
+        const unsubscribe = onSnapshot(q, (snapshot) => {
+          const products = snapshot.docs.map((doc) => ({
+            id: doc.id,
+            data: doc.data().product,
+            photo: doc.data().productPhoto,
+            price: doc.data().productPrice,
+            quantity: doc.data().quantity,
+          }));
+          setUserProducts(products);
+          setIsEmpty(products.length === 0);
+        });
+
+        return () => {
+          unsubscribe();
+        };
+      } catch (error) {
+        console.error("Error fetching user products:", error);
+      }
+    };
+
     if (isLoggedIn) {
-      addToCart(userEmail, product.name, product.photo, product.original_price);
+      fetchUserProducts();
+    }
+  }, [isLoggedIn, userEmail]);
+
+  const handleAddToCart = async () => {
+    if (isAddingToCart) return;
+    setIsAddingToCart(true);
+
+    if (isLoggedIn) {
+      const existingProduct = userProducts.find((item) => item.data === product.name);
+      if (existingProduct) {
+        const newQuantity = existingProduct.quantity + 1;
+        handleQuantityChange(existingProduct.id, newQuantity);
+      } else {
+        addToCart(userEmail, product.name, product.photo, product.original_price, 1);
+      }
     } else {
-      
+      onAddToCart();
+    }
+
+    setIsAddingToCart(false);
+  };
+
+  
+  const handleQuantityChange = async (productId, newQuantity) => {
+    const db = getFirestore();
+    const orderRef = doc(db, 'Cart', productId);
+
+    try {
+      await updateDoc(orderRef, { quantity: newQuantity });
+      setUserProducts(prevProducts =>
+        prevProducts.map(product =>
+          product.id === productId ? { ...product, quantity: newQuantity } : product
+        )
+      );
+    } catch (error) {
+      console.error('Error updating quantity:', error);
     }
   };
 
