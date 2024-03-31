@@ -56,3 +56,31 @@
     display: block;
   }
 }
+
+
+.sidebar-title {
+    font-size: 22px;
+    font-weight: normal;
+    margin-bottom: 20px;
+}
+
+.sidebar {
+  width: 320px;
+    margin-left: -3rem;
+    position: absolute;
+    height: 100%;
+    border: 3px solid #f3f3f3;
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.logo-container {
+    margin-bottom: 4rem;
+
+}
+
+.logo-container h1{
+    margin-top: 1.3rem;
+}

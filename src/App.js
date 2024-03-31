@@ -3,19 +3,18 @@ import { Routes, Route, useLocation, Navigate, Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import Home from './components/HomePage/Home';
 import Services from './components/ServicesPage/Services';
-import Store from './components/StorePage/Store';
-import Store2 from './components/SorePageAlt/StoreAlt';
+
 import Store3 from './components/StorePageFinal/StorePageFinal';
 import Cart from './components/CartPage/Cart';
 import Login from './components/Login/Login';
 import Footer from './components/Footer/FooterF';
 import Profile from './components/Profile/Profile';
 import ContactUs from './components/ContactUs/ContactUs'
-import LogoutConfirmation from './components/Profile/LogoutConfirmation';
+
 import NavBar from './components/NavBarPage/NavBar';
 import Navigation from './components/Navigation/Nav';
 import ProductDetailsPage from './components/ProductDetailsPage/ProductDetailsPage'; 
-import Register from './components/RegisterPage/RegisterPage'
+
 import Store4 from './components/StorePageFinal 2/StorePageFinal2'
 import Store5 from './components/StorePageFinal 3/StorePageFinal3'
 import Wishlist from './components/Wishlist/Wishlist';
@@ -98,7 +97,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login handleLoginSuccess={handleLoginSuccess} />} />
-        <Route path="/register" element={<Register />} />
+   
        
           <>
             <Route path="/store/computers" element={<Store3 isLoggedIn={isLoggedIn} userEmail={userEmail} />} />
