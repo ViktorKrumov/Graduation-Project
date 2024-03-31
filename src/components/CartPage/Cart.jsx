@@ -135,7 +135,7 @@ const Cart = ({ userEmail }) => {
               </li>
             ))}
           </ul>
-          <div className="total-price">Total Price: ${finalPrice}</div>
+          <div className="total-price">Total Price: ${finalPrice.toFixed(2)}</div>
           <button className="proceed-to-checkout-button" onClick={() => setIsCheckoutOpen(true)}>Proceed to Checkout</button>
           {isCheckoutOpen && <CheckoutForm onSubmit={handleSubmitForm} />}
         </div>

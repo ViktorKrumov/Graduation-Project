@@ -63,35 +63,35 @@ const AddMonitorForm = () => {
       <form onSubmit={handleSubmit}>
         <label>
           Monitor Name:
-          <input type="text" name="name" value={productData.name} onChange={handleInputChange} />
+          <input type="text" name="name" value={productData.name} onChange={handleInputChange} required/>
         </label>
         <label>
           Company:
-          <input type="text" name="company" value={productData.company} onChange={handleInputChange} />
+          <input type="text" name="company" value={productData.company} onChange={handleInputChange} required/>
         </label>
         <label>
           Original Price:
-          <input type="number" name="original_price" value={productData.original_price} onChange={handleInputChange} />
+          <input type="number" name="original_price" value={productData.original_price} onChange={handleInputChange} required/>
         </label>
         <label>
           Panel Type:
-          <input type="text" name="panel_type" value={productData.panel_type} onChange={handleInputChange} />
+          <input type="text" name="panel_type" value={productData.panel_type} onChange={handleInputChange} required/>
         </label>
         <label>
           Photo URL:
-          <input type="text" name="photo" value={productData.photo} onChange={handleInputChange} />
+          <input type="text" name="photo" value={productData.photo} onChange={handleInputChange} required/>
         </label>
         <label>
           Refresh Rate:
-          <input type="text" name="refresh_rate" value={productData.refresh_rate} onChange={handleInputChange} />
+          <input type="text" name="refresh_rate" value={productData.refresh_rate} onChange={handleInputChange} required/>
         </label>
         <label>
           Resolution:
-          <input type="text" name="resolution" value={productData.resolution} onChange={handleInputChange} />
+          <input type="text" name="resolution" value={productData.resolution} onChange={handleInputChange} required/>
         </label>
         <label>
           Screen Size:
-          <input type="text" name="screen_size" value={productData.screen_size} onChange={handleInputChange} />
+          <input type="text" name="screen_size" value={productData.screen_size} onChange={handleInputChange} required/>
         </label>
         <button type="submit">Add Monitor</button>
       </form>

@@ -67,51 +67,51 @@ const AddProductForm = () => {
       <form onSubmit={handleSubmit}>
         <label>
           Product Name:
-          <input type="text" name="name" value={productData.name} onChange={handleInputChange}  />
+          <input type="text" name="name" value={productData.name} onChange={handleInputChange}  required/>
         </label>
         <label>
           Price:
-          <input type="number" name="price" value={productData.price} onChange={handleInputChange}  />
+          <input type="number" name="price" value={productData.price} onChange={handleInputChange}  required/>
         </label>
         <label>
           Category:
-          <input type="text" name="category" value={productData.category} onChange={handleInputChange}  />
+          <input type="text" name="category" value={productData.category} onChange={handleInputChange}  required/>
         </label>
         <label>
           Color:
-          <input type="text" name="color" value={productData.color} onChange={handleInputChange}  />
+          <input type="text" name="color" value={productData.color} onChange={handleInputChange}  required/>
         </label>
         <label>
           Company:
-          <input type="text" name="company" value={productData.company} onChange={handleInputChange}  />
+          <input type="text" name="company" value={productData.company} onChange={handleInputChange}  required/>
         </label>
         <label>
           Processor:
-          <input type="text" name="processor" value={productData.processor} onChange={handleInputChange}  />
+          <input type="text" name="processor" value={productData.processor} onChange={handleInputChange}  required/>
         </label>
         <label>
           Graphics Card:
-          <input type="text" name="graphics_card" value={productData.graphics_card} onChange={handleInputChange}  />
+          <input type="text" name="graphics_card" value={productData.graphics_card} onChange={handleInputChange}  required/>
         </label>
         <label>
           Memory:
-          <input type="text" name="memory" value={productData.memory} onChange={handleInputChange}  />
+          <input type="text" name="memory" value={productData.memory} onChange={handleInputChange}  required/>
         </label>
         <label>
           Operating System:
-          <input type="text" name="operating_system" value={productData.operating_system} onChange={handleInputChange}  />
+          <input type="text" name="operating_system" value={productData.operating_system} onChange={handleInputChange}  required/>
         </label>
         <label>
           Original Price:
-          <input type="number" name="original_price" value={productData.original_price} onChange={handleInputChange}  />
+          <input type="number" name="original_price" value={productData.original_price} onChange={handleInputChange}  required/>
         </label>
         <label>
           Photo URL:
-          <input type="text" name="photo" value={productData.photo} onChange={handleInputChange}  />
+          <input type="text" name="photo" value={productData.photo} onChange={handleInputChange}  required/>
         </label>
         <label>
           Storage:
-          <input type="text" name="storage" value={productData.storage} onChange={handleInputChange}  />
+          <input type="text" name="storage" value={productData.storage} onChange={handleInputChange}  required/>
         </label>
         <button type="submit">Add Product</button>
       </form>

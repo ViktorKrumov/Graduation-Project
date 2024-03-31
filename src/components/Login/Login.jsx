@@ -99,11 +99,10 @@ const Login = ({ handleLoginSuccess }) => {
           </span>
           <p className="text-base text-gray-300">
             <span className="text-white font-semibold font-titleFont">
-              Get started fast with TechnoShack
+              Welcome to TechnoShack!
             </span>
             <br />
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ab omnis
-            nisi dolor recusandae consectetur!
+            At TechnoShack, we're committed to providing you with the best experience in tech shopping. Explore our wide range of products, from the latest gadgets to essential accessories, all at unbeatable prices. Whether you're a tech enthusiast or just getting started, we've got everything you need to stay connected and productive. Start browsing now and discover the future of technology!
           </p>
         </div>
       </div>
@@ -155,7 +154,7 @@ const Login = ({ handleLoginSuccess }) => {
                     <input
                       type="password"
                       placeholder="Confirm your password"
-                      // Use a separate state variable for password confirmation
+                      
                     />
                   )}
                   <button onClick={isRegister ? handleRegister : handleLogin}>{isRegister ? 'Register' : 'Login'}</button>

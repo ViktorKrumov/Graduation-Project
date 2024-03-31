@@ -59,35 +59,35 @@ const AddMouseForm = () => {
       <form onSubmit={handleSubmit}>
         <label>
           Mouse Name:
-          <input type="text" name="name" value={productData.name} onChange={handleInputChange} />
+          <input type="text" name="name" value={productData.name} onChange={handleInputChange} required/>
         </label>
         <label>
           Company:
-          <input type="text" name="company" value={productData.company} onChange={handleInputChange} />
+          <input type="text" name="company" value={productData.company} onChange={handleInputChange} required/>
         </label>
         <label>
           Original Price:
-          <input type="number" name="original_price" value={productData.original_price} onChange={handleInputChange} />
+          <input type="number" name="original_price" value={productData.original_price} onChange={handleInputChange} required/>
         </label>
         <label>
           DPI:
-          <input type="text" name="DPI" value={productData.DPI} onChange={handleInputChange} />
+          <input type="text" name="DPI" value={productData.DPI} onChange={handleInputChange} required/>
         </label>
         <label>
           Color:
-          <input type="text" name="color" value={productData.color} onChange={handleInputChange} />
+          <input type="text" name="color" value={productData.color} onChange={handleInputChange} required/>
         </label>
         <label>
           Connection:
-          <input type="text" name="connection" value={productData.connection} onChange={handleInputChange} />
+          <input type="text" name="connection" value={productData.connection} onChange={handleInputChange} required/>
         </label>
         <label>
           Photo URL:
-          <input type="text" name="photo" value={productData.photo} onChange={handleInputChange} />
+          <input type="text" name="photo" value={productData.photo} onChange={handleInputChange} required/>
         </label>
         <label>
           Weight:
-          <input type="text" name="weight" value={productData.weight} onChange={handleInputChange} />
+          <input type="text" name="weight" value={productData.weight} onChange={handleInputChange} required/>
         </label>
         <button type="submit">Add Mouse</button>
       </form>
