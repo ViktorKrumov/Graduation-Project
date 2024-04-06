@@ -7,6 +7,7 @@ const Wishlist = ({ userEmail, isLoggedIn }) => {
   const [userProducts, setUserProducts] = useState([]);
   const [finalPrice, setFinalPrice] = useState(0);
   const [isEmpty, setIsEmpty] = useState(false);
+
   
   useEffect(() => {
     const fetchUserProducts = async () => {
