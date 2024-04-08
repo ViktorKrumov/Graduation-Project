@@ -21,6 +21,8 @@ import Wishlist from './components/Wishlist/Wishlist';
 import AdminPage from './components/AdminPage/AdminPage';
 import TermsOfService from './components/TermsOfService/TermsOfService';
 
+import FAQ from './components/Footer/FAQ/FAQ'
+
 import { getAuth, onAuthStateChanged, signOut } from 'firebase/auth';
 import styled from "styled-components";
 
@@ -110,6 +112,7 @@ const App = () => {
             <Route path="/profile" element={<Profile userEmail={userEmail} />} />
             <Route path="/contactUs" element={<ContactUs userEmail={userEmail} />} />
             <Route path="/termsOfservice" element={<TermsOfService  />} />
+            <Route path="/FAQ" element={<FAQ  />} />
 
             {/* Admin Route */}
             {isAdmin && (
