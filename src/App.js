@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'; 
 import { Routes, Route, useLocation, Navigate, Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import Home from './components/HomePage/Home';
@@ -126,6 +128,7 @@ const App = () => {
      
       </Routes>
       <Footer />
+      <ToastContainer />
     </>
   );
 };

@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import './CheckoutForm.css'; 
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const CheckoutForm = ({ onSubmit }) => {
   const [formData, setFormData] = useState({
@@ -22,6 +24,7 @@ const CheckoutForm = ({ onSubmit }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     onSubmit(formData);
+    toast.success("Order submitted successfully!"); 
   };
 
   return (

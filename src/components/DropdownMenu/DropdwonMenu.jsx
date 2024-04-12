@@ -6,8 +6,9 @@ import { getFirestore, collection, query, where, getDocs, updateDoc, doc, onSnap
 import { addToCart, addToWishlist } from "../../firebase";
 import { remove, ref } from "firebase/database";
 import { getDatabase, set } from "firebase/database";
+import { toast } from 'react-toastify'; 
 
-import EditProductForm from "../StorePageFinal/EditPcForm/EditProductFrom"; // Corrected the import name
+
 import "./DropdownMenu.css";
 
 function DropdownMenu({ isLoggedIn, onAddToCart, onAddToWishlist, product, userEmail, onEdit, databaseNode }) {
@@ -19,18 +20,17 @@ function DropdownMenu({ isLoggedIn, onAddToCart, onAddToWishlist, product, userE
   const isAdmin = localStorage.getItem('isAdmin') === 'true';
   const [isFormOpen, setIsFormOpen] = useState(false);
 
-  
   const handleDeleteProduct = async () => {
     const db = getDatabase();
     const productRef = ref(db, `${databaseNode}/${product.id - 1}`);
-    console.log(databaseNode)
 
     try {
       setIsDeleting(true);
       await remove(productRef);
-      console.log("Product deleted successfully!", product.id);
+      toast.success("Product deleted successfully!"); 
     } catch (error) {
       console.error("Error deleting product:", error);
+      toast.error("Error deleting product."); 
     } finally {
       setIsDeleting(false);
     }
@@ -42,7 +42,6 @@ function DropdownMenu({ isLoggedIn, onAddToCart, onAddToWishlist, product, userE
     }
   };
 
-  
   useEffect(() => {
     const fetchUserProducts = async () => {
       const db = getFirestore();
@@ -85,9 +84,11 @@ function DropdownMenu({ isLoggedIn, onAddToCart, onAddToWishlist, product, userE
         handleQuantityChange(existingProduct.id, newQuantity);
       } else {
         addToCart(userEmail, product.name, product.photo, product.original_price, 1);
+        toast.success("Added to cart successfully!"); 
       }
     } else {
       onAddToCart();
+      toast.success("Added to cart successfully!"); 
     }
 
     setIsAddingToCart(false);
@@ -96,8 +97,10 @@ function DropdownMenu({ isLoggedIn, onAddToCart, onAddToWishlist, product, userE
   const handleAddToWishlist = () => {
     if (isLoggedIn) {
       addToWishlist(userEmail, product.name, product.photo, product.original_price);
+      toast.success("Added to wishlist successfully!"); 
     } else {
       onAddToWishlist();
+      toast.success("Added to wishlist successfully!"); 
     }
   };
 
@@ -112,8 +115,10 @@ function DropdownMenu({ isLoggedIn, onAddToCart, onAddToWishlist, product, userE
           product.id === productId ? { ...product, quantity: newQuantity } : product
         )
       );
+      toast.success("Quantity updated successfully!"); 
     } catch (error) {
       console.error('Error updating quantity:', error);
+      toast.error("Error updating quantity."); 
     }
   };
 
@@ -153,7 +158,6 @@ function DropdownMenu({ isLoggedIn, onAddToCart, onAddToWishlist, product, userE
         </div>
       )}
 
-      
     </div>
   );
 }
