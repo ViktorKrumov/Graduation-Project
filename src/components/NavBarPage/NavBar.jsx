@@ -49,6 +49,9 @@ const NavBar = ({ toggleLoginForm, isLoggedIn, handleLogout }) => {
                 <li className='dropdown-item'>
                   <Link to='/store/mice' className='dropdown-link' onClick={closeMobileMenu}>PC Mice</Link>
                 </li>
+                <li className='dropdown-item'>
+                  <Link to='/store/office' className='dropdown-link' onClick={closeMobileMenu}>Printers</Link>
+                </li>
               </ul>
             </li>
             <li className='nav-item'>

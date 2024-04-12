@@ -4,6 +4,7 @@ import './ProductDetailsPage.css';
 import { fetchData as fetchApi2Data } from "../api2";
 import { fetchData as fetchApi3Data } from "../api3";
 import { fetchData as fetchApi4Data } from "../api4";
+import { fetchData as fetchApi5Data } from "../api5";
 import { addToCart, addToWishlist } from '../../firebase'; 
 import { Link } from 'react-router-dom';
 import { FiHeart } from 'react-icons/fi';
@@ -28,11 +29,12 @@ function ProductDetailsPage({ isLoggedIn, userEmail, onAddToCart }) {
   useEffect(() => {
     async function fetchDataAndSetProduct() {
       try {
-        const [api2Products, api3Products, api4Products] = await Promise.all([fetchApi2Data(), fetchApi3Data(), fetchApi4Data()]);
+        const [api2Products, api3Products, api4Products, api5Products] = await Promise.all([fetchApi2Data(), fetchApi3Data(), fetchApi4Data(),  fetchApi5Data()]);
 
         const foundProduct = api2Products.find(item => item.name.toString() === name) || 
                             api3Products.find(item => item.name.toString() === name) || 
-                            api4Products.find(item => item.name.toString() === name);
+                            api4Products.find(item => item.name.toString() === name) || 
+                            api5Products.find(item => item.name.toString() === name);
 
         if (foundProduct) {
           setProduct(foundProduct);
@@ -148,6 +150,14 @@ function ProductDetailsPage({ isLoggedIn, userEmail, onAddToCart }) {
             <p><strong>Storage:</strong> {product.storage}</p>
             <p><strong>Graphics Card:</strong> {product.graphics_card}</p>
             <p><strong>Operating System:</strong> {product.operating_system}</p>
+          </div>
+        )}
+        {product.output && ( 
+          <div>
+            <p><strong>Company:</strong> {product.company}</p>
+            <p><strong>Output:</strong> {product.output}</p>
+            <p><strong>Max paper format:</strong> {product.paper_format}</p>
+            <p><strong>Printer technology:</strong> {product.printer_technology}</p>
           </div>
         )}
         {product.panel_type && ( 

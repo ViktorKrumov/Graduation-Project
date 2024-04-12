@@ -17,6 +17,8 @@ import ProductDetailsPage from './components/ProductDetailsPage/ProductDetailsPa
 
 import Store4 from './components/StorePageFinal 2/StorePageFinal2'
 import Store5 from './components/StorePageFinal 3/StorePageFinal3'
+import OfficeStore from './components/OfficeProductsPage/StorePageFinal4'
+
 import Wishlist from './components/Wishlist/Wishlist';
 import AdminPage from './components/AdminPage/AdminPage';
 import TermsOfService from './components/TermsOfService/TermsOfService';
@@ -105,6 +107,8 @@ const App = () => {
             <Route path="/store/computers" element={<Store3 isLoggedIn={isLoggedIn} userEmail={userEmail} />} />
             <Route path="/store/monitors" element={<Store4 isLoggedIn={isLoggedIn} userEmail={userEmail}/>} />
             <Route path="/store/mice" element={<Store5 isLoggedIn={isLoggedIn} userEmail={userEmail}/>} />
+            <Route path="/store/office" element={<OfficeStore isLoggedIn={isLoggedIn} userEmail={userEmail}/>} />
+
             <Route path="/product/:name" element={<ProductDetailsPage isLoggedIn={isLoggedIn} userEmail={userEmail} />} /> 
             <Route path="/cart" element={<Cart userEmail={userEmail}/>} />
             <Route path="/wishlist" element={<Wishlist isLoggedIn={isLoggedIn} userEmail={userEmail}/>} />

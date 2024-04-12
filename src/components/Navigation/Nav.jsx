@@ -7,6 +7,7 @@ import { getFirestore, collection, query, where, getDocs, onSnapshot } from 'fir
 import { fetchData as fetchComputersData } from '../api2';
 import { fetchData as fetchMonitorsData } from '../api3';
 import { fetchData as fetchMiceData } from '../api4';
+import { fetchData as fetchPrinterData } from '../api5';
 import './Nav.css';
 
 function Nav({ isLoggedIn, handleLogout, userEmail }) {
@@ -73,8 +74,9 @@ function Nav({ isLoggedIn, handleLogout, userEmail }) {
       const computersData = await fetchComputersData();
       const monitorsData = await fetchMonitorsData();
       const miceData = await fetchMiceData();
+      const printerData = await fetchPrinterData();
 
-      const combinedData = [...computersData, ...monitorsData, ...miceData];
+      const combinedData = [...computersData, ...monitorsData, ...miceData, ...printerData];
 
       const filteredData = combinedData.filter((item) =>
         item.name.toLowerCase().includes(inputValue.toLowerCase())
