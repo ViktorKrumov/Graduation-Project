@@ -6,7 +6,6 @@ import { useNavigate } from 'react-router-dom';
 import Home from './components/HomePage/Home';
 import Services from './components/ServicesPage/Services';
 
-import Store3 from './components/StorePageFinal/StorePageFinal';
 import Cart from './components/CartPage/Cart';
 import Login from './components/Login/Login';
 import Footer from './components/Footer/FooterF';
@@ -17,8 +16,9 @@ import NavBar from './components/NavBarPage/NavBar';
 import Navigation from './components/Navigation/Nav';
 import ProductDetailsPage from './components/ProductDetailsPage/ProductDetailsPage'; 
 
-import Store4 from './components/StorePageFinal 2/StorePageFinal2'
-import Store5 from './components/StorePageFinal 3/StorePageFinal3'
+import StoreComputers from './components/ComputersStorePage/ComputersStorePage';
+import StoreMonitors from './components/MonitorsStorePage/MonitorsStorePage'
+import StoreMice from './components/PCMiceStorePage/PCMiceStorePage'
 import OfficeStore from './components/OfficeProductsPage/StorePageFinal4'
 
 import Wishlist from './components/Wishlist/Wishlist';
@@ -106,9 +106,9 @@ const App = () => {
    
        
           <>
-            <Route path="/store/computers" element={<Store3 isLoggedIn={isLoggedIn} userEmail={userEmail} />} />
-            <Route path="/store/monitors" element={<Store4 isLoggedIn={isLoggedIn} userEmail={userEmail}/>} />
-            <Route path="/store/mice" element={<Store5 isLoggedIn={isLoggedIn} userEmail={userEmail}/>} />
+            <Route path="/store/computers" element={<StoreComputers isLoggedIn={isLoggedIn} userEmail={userEmail} />} />
+            <Route path="/store/monitors" element={<StoreMonitors isLoggedIn={isLoggedIn} userEmail={userEmail}/>} />
+            <Route path="/store/mice" element={<StoreMice isLoggedIn={isLoggedIn} userEmail={userEmail}/>} />
             <Route path="/store/office" element={<OfficeStore isLoggedIn={isLoggedIn} userEmail={userEmail}/>} />
 
             <Route path="/product/:name" element={<ProductDetailsPage isLoggedIn={isLoggedIn} userEmail={userEmail} />} /> 

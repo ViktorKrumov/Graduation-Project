@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import './ProductDetailsPage.css';
-import { fetchData as fetchApi2Data } from "../api2";
-import { fetchData as fetchApi3Data } from "../api3";
-import { fetchData as fetchApi4Data } from "../api4";
-import { fetchData as fetchApi5Data } from "../api5";
+import { fetchData as fetchApi2Data } from "../apiComputers";
+import { fetchData as fetchApi3Data } from "../apiMonitors";
+import { fetchData as fetchApi4Data } from "../apiMice";
+import { fetchData as fetchApi5Data } from "../apiOffice";
 import { addToCart, addToWishlist } from '../../firebase'; 
 import { Link } from 'react-router-dom';
 import { FiHeart } from 'react-icons/fi';

@@ -4,10 +4,10 @@ import { FiHeart } from 'react-icons/fi';
 import { AiOutlineShoppingCart, AiOutlineUserAdd } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
 import { getFirestore, collection, query, where, getDocs, onSnapshot } from 'firebase/firestore';
-import { fetchData as fetchComputersData } from '../api2';
-import { fetchData as fetchMonitorsData } from '../api3';
-import { fetchData as fetchMiceData } from '../api4';
-import { fetchData as fetchPrinterData } from '../api5';
+import { fetchData as fetchComputersData } from '../apiComputers';
+import { fetchData as fetchMonitorsData } from '../apiMonitors';
+import { fetchData as fetchMiceData } from '../apiMice';
+import { fetchData as fetchPrinterData } from '../apiOffice';
 import './Nav.css';
 
 function Nav({ isLoggedIn, handleLogout, userEmail }) {

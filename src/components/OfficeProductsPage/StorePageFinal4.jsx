@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import ProductCard4 from "./ProductCard4/ProductCard4";
-import { fetchData } from "../api5";
+import { fetchData } from "../apiOffice";
 import "./StorePageFinal4.css";
 
 import AddPrinterForm from "./AddPrinterForm/AddPrinterForm";
