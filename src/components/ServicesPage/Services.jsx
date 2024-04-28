@@ -1,9 +1,7 @@
 import React from 'react';
 import './Services.css';
 
-
 function Services() {
-
     return (
         <section className="section services-section" id="services">
             <div className="container">
@@ -44,29 +42,29 @@ function Services() {
                     <div className="services-row">
                         <div className="service-card">
                             <div className="icon">
-                                <i className="fa fa-cloud"></i>
+                                <i className="fa fa-cogs"></i>
                             </div>
                             <div className="feature-content">
-                                <h3>Cloud Services</h3>
-                                <p>Scalable cloud solutions for storage, hosting, and data management.</p>
+                                <h3>Software Installation</h3>
+                                <p>Professional installation of software applications tailored to your needs.</p>
                             </div>
                         </div>
                         <div className="service-card">
                             <div className="icon">
-                                <i className="fa fa-database"></i>
+                                <i className="fa fa-desktop"></i>
                             </div>
                             <div className="feature-content">
-                                <h3>Database Management</h3>
-                                <p>Efficient management and optimization of databases for performance.</p>
+                                <h3>Hardware Consultations</h3>
+                                <p>Expert advice and consultations on hardware-related issues and upgrades.</p>
                             </div>
                         </div>
                         <div className="service-card">
                             <div className="icon">
-                                <i className="fa fa-network-wired"></i>
+                                <i className="fa fa-wrench"></i>
                             </div>
                             <div className="feature-content">
-                                <h3>Network Infrastructure</h3>
-                                <p>Design, setup, and maintenance of robust network infrastructure.</p>
+                                <h3>Warranty Service</h3>
+                                <p>Professional warranty service and repairs for your tech devices.</p>
                             </div>
                         </div>
                     </div>

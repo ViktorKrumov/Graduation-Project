@@ -7,6 +7,7 @@ import { auth, signInWithEmailAndPassword, createUserWithEmailAndPassword, sendP
 const Login = ({ handleLoginSuccess }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [isRegister, setIsRegister] = useState(false);
   const [forgotPassword, setForgotPassword] = useState(false);
@@ -27,8 +28,15 @@ const Login = ({ handleLoginSuccess }) => {
   };
 
   const handleRegister = () => {
+    if (password !== confirmPassword) {
+      setPasswordError('Passwords do not match.');
+      setEmailError('');
+      return;
+    }
+
     if (password.length < 6) {
       setPasswordError('Password should be at least 6 characters long.');
+      setEmailError('');
       return;
     }
 
@@ -85,7 +93,7 @@ const Login = ({ handleLoginSuccess }) => {
     <div className="login-page-container">
       <div className="left-content">
         <Link to="/">
-          <img src = 'https://firebasestorage.googleapis.com/v0/b/technoshack-cbd13.appspot.com/o/SmallLogoTechnoShack.png?alt=media&token=ccbd69d5-bb5a-405c-a41f-48b76766c76a' alt="navbar-logo" className="logo" />
+          <img src='https://firebasestorage.googleapis.com/v0/b/technoshack-cbd13.appspot.com/o/SmallLogoTechnoShack.png?alt=media&token=ccbd69d5-bb5a-405c-a41f-48b76766c76a' alt="navbar-logo" className="logo" />
         </Link>
         <div className="flex flex-col gap-1 -mt-1">
           <h1 className="font-titleFont text-xl font-medium">
@@ -154,7 +162,8 @@ const Login = ({ handleLoginSuccess }) => {
                     <input
                       type="password"
                       placeholder="Confirm your password"
-                      
+                      value={confirmPassword}
+                      onChange={(e) => setConfirmPassword(e.target.value)}
                     />
                   )}
                   <button onClick={isRegister ? handleRegister : handleLogin}>{isRegister ? 'Register' : 'Login'}</button>

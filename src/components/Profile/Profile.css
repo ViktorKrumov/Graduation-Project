@@ -60,15 +60,25 @@
 
 .profile-info-container button {
   margin-top: 20px;
-  padding: 12px 24px;
-  font-size: 1.2rem;
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  border-radius: 8px;
+  padding: 8px 16px; 
+  font-size: 1rem; 
+  background-color: #bbb; 
+  color: #000; 
+  border: 2px solid #000; 
+  border-radius: 20px; 
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease; 
 }
+
+.profile-info-container button:hover {
+  background-color: #999; 
+  color: #fff; 
+  border-color: #000; 
+}
+
+
+
+
 
 .profile-info-container button:hover {
   background-color: #0056b3;

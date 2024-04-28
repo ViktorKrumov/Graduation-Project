@@ -85,8 +85,8 @@ const Wishlist = ({ userEmail, isLoggedIn }) => {
       </div>
       {isEmpty ? (
         <div className="empty-wishlist">
-          <img src="https://firebasestorage.googleapis.com/v0/b/technoshack-cbd13.appspot.com/o/Daco_5212497.png?alt=media&token=ec5d3e3d-3190-41d0-9d20-d37666df54e2" alt="Empty Wishlist" />
-          <p>Your wishlist is empty.</p>
+          <img src="https://firebasestorage.googleapis.com/v0/b/technoshack-cbd13.appspot.com/o/WishlistEmpty.png?alt=media&token=47e58be1-dc1f-4f69-b668-d0d5b83a9310" alt="Empty Wishlist" />
+          {/* <p>Your wishlist is empty.</p> */}
         </div>
       ) : (
         <div>

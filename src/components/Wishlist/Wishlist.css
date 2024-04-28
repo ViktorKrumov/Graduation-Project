@@ -40,7 +40,7 @@
   }
   
   .empty-wishlist img {
-    max-width: 200px;
+    max-width: 400px;
     margin-bottom: 20px;
   }
   
@@ -70,6 +70,11 @@
     object-fit: cover;
     margin-left: 20px;
   }
+
+
+  
+  
+
   
   .wishlist-product-info {
     flex-grow: 1;
@@ -136,4 +141,10 @@
     .wishlist-header-line {
       display: none; 
     }
+
+    .empty-wishlist img {
+      max-width: 200px;
+      margin-bottom: 20px;
+    }
+    
   }

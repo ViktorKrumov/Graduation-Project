@@ -32,6 +32,7 @@ const Footer = () => {
             <Link to='/store/computers'>Computers</Link>
             <Link to='/store/mice'>PC Mice</Link>
             <Link to='/store/monitors'>Monitors</Link>
+            <Link to='/store/office'>Printers</Link>
           </div>
           <div className='footer-link-items'>
             <h2>Services</h2>
