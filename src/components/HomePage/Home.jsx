@@ -19,7 +19,7 @@ const Home = ({isLoggedIn, userEmail}) => {
         
         <ProductOfTheYear />
 
-        <NewArrivals isLoggedIn={isLoggedIn} userEmail={userEmail}/>
+        <NewArrivals userEmail={userEmail}/>
 
         <SpecialOffer />
 

@@ -40,11 +40,10 @@ const WarningMessage = styled.div`
 const App = () => {
   const [userEmail, setUserEmail] = useState(null); // State to hold user's email after successful login
   const [user, setUser] = useState(null); // State to hold user authentication status
-  const [isLoggedIn, setIsLoggedIn] = useState(false); // State to track login status
   const [isAdmin, setIsAdmin] = useState(false); // State to track admin status
   const navigate = useNavigate();
 
-  const location = useLocation();
+
 
   useEffect(() => {
     const auth = getAuth();
@@ -52,10 +51,10 @@ const App = () => {
       setUser(user);
       if (user) {
         setUserEmail(user.email); // Update userEmail state when user is logged in
-        setIsLoggedIn(true); // Update login status
+        localStorage.setItem('isLoggedIn', 'true'); // Set login status in local storage
       } else {
         setUserEmail(null); // Clear userEmail state when user is logged out
-        setIsLoggedIn(false); // Update login status
+        localStorage.removeItem('isLoggedIn'); // Remove login status from local storage
       }
     }, (error) => {
       console.error('Authentication error:', error);
@@ -65,7 +64,7 @@ const App = () => {
     const adminEmails = ['admin1@example.com', 'admin2@example.com']; // Example admin email addresses
     if (userEmail && adminEmails.includes(userEmail)) {
       setIsAdmin(true);
-      localStorage.setItem('isAdmin', true); // Store admin status in local storage
+      localStorage.setItem('isAdmin', 'true'); // Store admin status in local storage
     } else {
       setIsAdmin(false);
       localStorage.removeItem('isAdmin'); // Remove admin status from local storage
@@ -76,7 +75,6 @@ const App = () => {
 
   const handleLoginSuccess = () => {
     console.log('Login successful');
-    setIsLoggedIn(true); 
   };
 
   // Function to handle logout
@@ -86,7 +84,7 @@ const App = () => {
       .then(() => {
         console.log('Logout successful');
         setUser(null); // Clear user state after logout
-        setIsLoggedIn(false); 
+        localStorage.removeItem('isLoggedIn'); // Remove login status from local storage
         navigate('/');
       })
       .catch((error) => {
@@ -98,22 +96,22 @@ const App = () => {
     <>
      
       <NavBar  /> 
-      {user ? null : <WarningMessage>Please log in to access all features</WarningMessage>}
-      <Navigation isLoggedIn={isLoggedIn} handleLogout={handleLogout} userEmail={userEmail} />
+      {localStorage.getItem('isLoggedIn') !== 'true' ? <WarningMessage>Please log in to access all features</WarningMessage> : null}
+      <Navigation handleLogout={handleLogout} userEmail={userEmail} />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login handleLoginSuccess={handleLoginSuccess} />} />
    
        
           <>
-            <Route path="/store/computers" element={<StoreComputers isLoggedIn={isLoggedIn} userEmail={userEmail} />} />
-            <Route path="/store/monitors" element={<StoreMonitors isLoggedIn={isLoggedIn} userEmail={userEmail}/>} />
-            <Route path="/store/mice" element={<StoreMice isLoggedIn={isLoggedIn} userEmail={userEmail}/>} />
-            <Route path="/store/office" element={<OfficeStore isLoggedIn={isLoggedIn} userEmail={userEmail}/>} />
+            <Route path="/store/computers" element={<StoreComputers userEmail={userEmail} />} />
+            <Route path="/store/monitors" element={<StoreMonitors userEmail={userEmail}/>} />
+            <Route path="/store/mice" element={<StoreMice userEmail={userEmail}/>} />
+            <Route path="/store/office" element={<OfficeStore userEmail={userEmail}/>} />
 
-            <Route path="/product/:name" element={<ProductDetailsPage isLoggedIn={isLoggedIn} userEmail={userEmail} />} /> 
+            <Route path="/product/:name" element={<ProductDetailsPage userEmail={userEmail} />} /> 
             <Route path="/cart" element={<Cart userEmail={userEmail}/>} />
-            <Route path="/wishlist" element={<Wishlist isLoggedIn={isLoggedIn} userEmail={userEmail}/>} />
+            <Route path="/wishlist" element={<Wishlist userEmail={userEmail}/>} />
             <Route path="/services" element={<Services />} />
             <Route path="/profile" element={<Profile userEmail={userEmail} />} />
             <Route path="/contactUs" element={<ContactUs userEmail={userEmail} />} />
@@ -121,7 +119,7 @@ const App = () => {
             <Route path="/FAQ" element={<FAQ  />} />
 
             {/* Admin Route */}
-            {isAdmin && (
+            {localStorage.getItem('isAdmin') === 'true' && (
               <Route path="/admin" element={<AdminPage />} />
             )}
           </>

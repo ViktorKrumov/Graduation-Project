@@ -12,7 +12,7 @@ import { AiOutlineShoppingCart, AiOutlineUserAdd } from 'react-icons/ai';
 
 import { getFirestore, collection, query, where, getDocs, updateDoc, doc, onSnapshot } from "firebase/firestore";
 
-function ProductDetailsPage({ isLoggedIn, userEmail, onAddToCart }) {
+function ProductDetailsPage({userEmail, onAddToCart }) {
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -21,6 +21,7 @@ function ProductDetailsPage({ isLoggedIn, userEmail, onAddToCart }) {
   const [isEmpty, setIsEmpty] = useState(true);
   const [isAddingToCart, setIsAddingToCart] = useState(false);
 
+  const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
 
 
 

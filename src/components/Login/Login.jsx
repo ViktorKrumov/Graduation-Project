@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import './Login.css';
 import { auth, signInWithEmailAndPassword, createUserWithEmailAndPassword, sendPasswordResetEmail } from '../../firebase';
 
-const Login = ({ handleLoginSuccess }) => {
+const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -42,7 +42,7 @@ const Login = ({ handleLoginSuccess }) => {
 
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        const user = userCredential.user;
+        // const user = userCredential.user;
         setSuccessMessage('You have successfully registered!');
       })
       .catch((error) => {
@@ -63,7 +63,7 @@ const Login = ({ handleLoginSuccess }) => {
         setUserEmail(user.email); 
         console.log("User email in Login component:", user.email);
         setSuccessMessage('You have successfully logged in!');
-        handleLoginSuccess();
+        
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -93,20 +93,20 @@ const Login = ({ handleLoginSuccess }) => {
     <div className="login-page-container">
       <div className="left-content">
         <Link to="/">
-          <img src='https://firebasestorage.googleapis.com/v0/b/technoshack-cbd13.appspot.com/o/SmallLogoTechnoShack.png?alt=media&token=ccbd69d5-bb5a-405c-a41f-48b76766c76a' alt="navbar-logo" className="logo" />
+          <img src = 'https://firebasestorage.googleapis.com/v0/b/technoshack-cbd13.appspot.com/o/SmallLogoTechnoShack.png?alt=media&token=ccbd69d5-bb5a-405c-a41f-48b76766c76a' alt="navbar-logo" className="logo" />
         </Link>
-        <div className="flex flex-col gap-1 -mt-1">
-          <h1 className="font-titleFont text-xl font-medium">
+        <div >
+          <h1 >
             Stay sign in for more
           </h1>
           <p className="text-base">When you sign in, you are with us!</p>
         </div>
-        <div className="w-[300px] flex items-start gap-3">
-          <span className="text-green-500 mt-1">
+        <div >
+          <span >
             <BsCheckCircleFill />
           </span>
-          <p className="text-base text-gray-300">
-            <span className="text-white font-semibold font-titleFont">
+          <p >
+            <span >
               Welcome to TechnoShack!
             </span>
             <br />

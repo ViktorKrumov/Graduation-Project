@@ -9,7 +9,7 @@ import PriceFilter from "./PriceFilter3/PriceFilter3";
 import AddMouseForm from "./AddMouseForm/AddMouseForm";
 import { getDatabase, ref, onValue } from 'firebase/database';
 
-function PCMiceStorePage({isLoggedIn, userEmail}) {
+function PCMiceStorePage({userEmail}) {
   const [originalProducts, setOriginalProducts] = useState([]);
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -25,6 +25,7 @@ function PCMiceStorePage({isLoggedIn, userEmail}) {
 
   const [showAddProductForm, setShowAddProductForm] = useState(false);
   const isAdmin = localStorage.getItem('isAdmin') === 'true';
+  const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
 
   useEffect(() => {
     async function fetchDataAndListen() {

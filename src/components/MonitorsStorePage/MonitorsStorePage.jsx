@@ -9,7 +9,7 @@ import { getDatabase, ref, onValue } from 'firebase/database';
 import Sidebar from "./Sidebar2/Sidebar2";
 import PriceFilter from "./PriceFilter2/PriceFilter2";
 
-function MonitorsStorePage({isLoggedIn, userEmail}) {
+function MonitorsStorePage({userEmail}) {
   const [originalProducts, setOriginalProducts] = useState([]);
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -25,6 +25,7 @@ function MonitorsStorePage({isLoggedIn, userEmail}) {
 
   const [showAddProductForm, setShowAddProductForm] = useState(false);
   const isAdmin = localStorage.getItem('isAdmin') === 'true';
+  const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
 
   useEffect(() => {
     async function fetchDataAndListen() {

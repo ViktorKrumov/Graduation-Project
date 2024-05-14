@@ -11,7 +11,7 @@ import { toast } from 'react-toastify';
 
 import "./DropdownMenu.css";
 
-function DropdownMenu({ isLoggedIn, onAddToCart, onAddToWishlist, product, userEmail, onEdit, databaseNode }) {
+function DropdownMenu({onAddToCart, onAddToWishlist, product, userEmail, onEdit, databaseNode }) {
   const [userProducts, setUserProducts] = useState([]);
   const [isEmpty, setIsEmpty] = useState(true);
   const [isAddingToCart, setIsAddingToCart] = useState(false);
@@ -19,6 +19,8 @@ function DropdownMenu({ isLoggedIn, onAddToCart, onAddToWishlist, product, userE
   const [isEditing, setIsEditing] = useState(false);
   const isAdmin = localStorage.getItem('isAdmin') === 'true';
   const [isFormOpen, setIsFormOpen] = useState(false);
+
+  const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
 
   const handleDeleteProduct = async () => {
     const db = getDatabase();

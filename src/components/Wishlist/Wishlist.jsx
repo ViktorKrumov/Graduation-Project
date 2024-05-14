@@ -3,10 +3,12 @@ import { getFirestore, collection, query, where, getDocs, deleteDoc, doc } from 
 import { addToCart } from '../../firebase'; 
 import './Wishlist.css'; 
 
-const Wishlist = ({ userEmail, isLoggedIn }) => {
+const Wishlist = ({ userEmail}) => {
   const [userProducts, setUserProducts] = useState([]);
   const [finalPrice, setFinalPrice] = useState(0);
   const [isEmpty, setIsEmpty] = useState(false);
+
+  const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
 
   
   useEffect(() => {

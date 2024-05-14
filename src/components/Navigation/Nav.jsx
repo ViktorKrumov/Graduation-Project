@@ -10,12 +10,13 @@ import { fetchData as fetchMiceData } from '../apiMice';
 import { fetchData as fetchPrinterData } from '../apiOffice';
 import './Nav.css';
 
-function Nav({ isLoggedIn, handleLogout, userEmail }) {
+function Nav({ handleLogout, userEmail }) {
   const [queryTest, setQuery] = useState('');
   const [suggestions, setSuggestions] = useState([]);
   const [wishlistCount, setWishlistCount] = useState(0);
   const [cartQuantity, setCartQuantity] = useState(0); 
   const [showSuggestions, setShowSuggestions] = useState(true); 
+  const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
 
   useEffect(() => {
     let unsubscribeWishlist;
@@ -62,7 +63,6 @@ function Nav({ isLoggedIn, handleLogout, userEmail }) {
     };
   }, [isLoggedIn, userEmail]);
   
-
 
   const toggleDropdown = () => {
     const dropdownMenu = document.querySelector('.dropdown-content');
