@@ -125,34 +125,35 @@ const Profile = () => {
 
   return (
     <div className="profile-container">
-      <div className="profile-detail-container">
-        {loading ? (
-          <p>Loading...</p>
-        ) : (
+  <div className="profile-detail-container">
+    {loading ? (
+      <p>Loading...</p>
+    ) : (
+      <>
+        {userData ? (
           <>
-            {userData ? (
-              <>
-                {isEditing ? (
-                  <EditProfileForm
-                    userData={userData}
-                    onSave={handleSave}
-                    onCancel={() => setIsEditing(false)}
-                  />
-                ) : (
-                  <div className="profile-info-container">
-                    <ProfileInfo userData={userData} onEdit={handleEdit} />
-                    <button onClick={toggleOrders}>
-                      {showOrders ? 'Hide Orders' : 'Show Orders'}
-                    </button>
-                  </div>
-                )}
-              </>
+            {isEditing ? (
+              <EditProfileForm
+                userData={userData}
+                onSave={handleSave}
+                onCancel={() => setIsEditing(false)}
+              />
             ) : (
-              <p>No user data found</p>
+              <div className="profile-info-container">
+                <ProfileInfo userData={userData} onEdit={handleEdit} />
+                <button className="edit-button" onClick={toggleOrders}>
+                  {showOrders ? 'Hide Orders' : 'Show Orders'}
+                </button>
+              </div>
             )}
           </>
+        ) : (
+          <p>No user data found</p>
         )}
-      </div>
+      </>
+    )}
+  </div>
+
       {showOrders && (
         <div className="order-container">
           <h2>User Orders:</h2>

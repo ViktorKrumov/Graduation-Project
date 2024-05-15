@@ -43,17 +43,17 @@ const App = () => {
   const [isAdmin, setIsAdmin] = useState(false); // State to track admin status
   const navigate = useNavigate();
 
-
-
   useEffect(() => {
     const auth = getAuth();
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       setUser(user);
       if (user) {
         setUserEmail(user.email); // Update userEmail state when user is logged in
+        localStorage.setItem('userEmail', user.email); // Set userEmail in localStorage
         localStorage.setItem('isLoggedIn', 'true'); // Set login status in local storage
       } else {
         setUserEmail(null); // Clear userEmail state when user is logged out
+        localStorage.removeItem('userEmail'); // Remove userEmail from localStorage
         localStorage.removeItem('isLoggedIn'); // Remove login status from local storage
       }
     }, (error) => {
@@ -71,11 +71,7 @@ const App = () => {
     }
   
     return unsubscribe; 
-  }, [userEmail]);
-
-  const handleLoginSuccess = () => {
-    console.log('Login successful');
-  };
+  }, []);
 
   // Function to handle logout
   const handleLogout = () => {
@@ -84,6 +80,7 @@ const App = () => {
       .then(() => {
         console.log('Logout successful');
         setUser(null); // Clear user state after logout
+        localStorage.removeItem('userEmail'); // Remove userEmail from localStorage
         localStorage.removeItem('isLoggedIn'); // Remove login status from local storage
         navigate('/');
       })
@@ -94,36 +91,31 @@ const App = () => {
 
   return (
     <>
-     
-      <NavBar  /> 
+      <NavBar />
       {localStorage.getItem('isLoggedIn') !== 'true' ? <WarningMessage>Please log in to access all features</WarningMessage> : null}
-      <Navigation handleLogout={handleLogout} userEmail={userEmail} />
+      <Navigation handleLogout={handleLogout} />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login handleLoginSuccess={handleLoginSuccess} />} />
-   
-       
-          <>
-            <Route path="/store/computers" element={<StoreComputers userEmail={userEmail} />} />
-            <Route path="/store/monitors" element={<StoreMonitors userEmail={userEmail}/>} />
-            <Route path="/store/mice" element={<StoreMice userEmail={userEmail}/>} />
-            <Route path="/store/office" element={<OfficeStore userEmail={userEmail}/>} />
+        <Route path="/login" element={<Login />} />
+        <>
+          <Route path="/store/computers" element={<StoreComputers />} />
+          <Route path="/store/monitors" element={<StoreMonitors />} />
+          <Route path="/store/mice" element={<StoreMice />} />
+          <Route path="/store/office" element={<OfficeStore />} />
+          <Route path="/product/:name" element={<ProductDetailsPage />} /> 
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/wishlist" element={<Wishlist />} />
+          <Route path="/services" element={<Services />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/contactUs" element={<ContactUs />} />
+          <Route path="/termsOfservice" element={<TermsOfService />} />
+          <Route path="/FAQ" element={<FAQ />} />
 
-            <Route path="/product/:name" element={<ProductDetailsPage userEmail={userEmail} />} /> 
-            <Route path="/cart" element={<Cart userEmail={userEmail}/>} />
-            <Route path="/wishlist" element={<Wishlist userEmail={userEmail}/>} />
-            <Route path="/services" element={<Services />} />
-            <Route path="/profile" element={<Profile userEmail={userEmail} />} />
-            <Route path="/contactUs" element={<ContactUs userEmail={userEmail} />} />
-            <Route path="/termsOfservice" element={<TermsOfService  />} />
-            <Route path="/FAQ" element={<FAQ  />} />
-
-            {/* Admin Route */}
-            {localStorage.getItem('isAdmin') === 'true' && (
-              <Route path="/admin" element={<AdminPage />} />
-            )}
-          </>
-     
+          {/* Admin Route */}
+          {localStorage.getItem('isAdmin') === 'true' && (
+            <Route path="/admin" element={<AdminPage />} />
+          )}
+        </>
       </Routes>
       <Footer />
       <ToastContainer />

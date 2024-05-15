@@ -11,7 +11,7 @@ import PriceFilter from "./PriceFilter4/PriceFilter4";
 
 
 
-function StorePageFinal4({userEmail}) {
+function StorePageFinal4() {
   const [originalProducts, setOriginalProducts] = useState([]);
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -28,6 +28,7 @@ function StorePageFinal4({userEmail}) {
   const [showAddProductForm, setShowAddProductForm] = useState(false);
   const isAdmin = localStorage.getItem('isAdmin') === 'true';
   const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+  const userEmail = localStorage.getItem('userEmail');
 
   useEffect(() => {
     async function fetchDataAndListen() {

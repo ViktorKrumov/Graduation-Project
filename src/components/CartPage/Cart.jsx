@@ -4,11 +4,13 @@ import './Cart.css';
 import CheckoutForm from './CheckoutForm/CheckoutForm';
 import { addToOrders } from '../../firebase';
 
-const Cart = ({ userEmail }) => {
+const Cart = () => {
   const [userProducts, setUserProducts] = useState([]);
   const [finalPrice, setFinalPrice] = useState(0);
   const [isEmpty, setIsEmpty] = useState(false);
   const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
+
+  const userEmail = localStorage.getItem('userEmail');
 
   useEffect(() => {
     const fetchUserProducts = async () => {

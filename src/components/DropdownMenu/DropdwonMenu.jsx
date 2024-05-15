@@ -11,8 +11,9 @@ import { toast } from 'react-toastify';
 
 import "./DropdownMenu.css";
 
-function DropdownMenu({onAddToCart, onAddToWishlist, product, userEmail, onEdit, databaseNode }) {
+function DropdownMenu({product, onEdit, databaseNode }) {
   const [userProducts, setUserProducts] = useState([]);
+  const [wishlistProducts, setWishlistProducts] = useState([]);
   const [isEmpty, setIsEmpty] = useState(true);
   const [isAddingToCart, setIsAddingToCart] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
@@ -21,6 +22,8 @@ function DropdownMenu({onAddToCart, onAddToWishlist, product, userEmail, onEdit,
   const [isFormOpen, setIsFormOpen] = useState(false);
 
   const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+  const userEmail = localStorage.getItem('userEmail');
+  
 
   const handleDeleteProduct = async () => {
     const db = getDatabase();
@@ -70,14 +73,36 @@ function DropdownMenu({onAddToCart, onAddToWishlist, product, userEmail, onEdit,
       }
     };
 
+    const fetchWishlistProducts = async () => {
+      const db = getFirestore();
+      const q = query(collection(db, "Wishlist"), where("email", "==", userEmail));
+
+      try {
+        const unsubscribe = onSnapshot(q, (snapshot) => {
+          const products = snapshot.docs.map((doc) => ({
+            id: doc.id,
+            data: doc.data().product,
+            photo: doc.data().productPhoto,
+            price: doc.data().productPrice,
+          }));
+          setWishlistProducts(products);
+        });
+
+        return () => {
+          unsubscribe();
+        };
+      } catch (error) {
+        console.error("Error fetching wishlist products:", error);
+      }
+    };
+
     if (isLoggedIn) {
       fetchUserProducts();
+      fetchWishlistProducts();
     }
   }, [isLoggedIn, userEmail]);
 
   const handleAddToCart = async () => {
-    if (isAddingToCart) return;
-    setIsAddingToCart(true);
 
     if (isLoggedIn) {
       const existingProduct = userProducts.find((item) => item.data === product.name);
@@ -89,22 +114,24 @@ function DropdownMenu({onAddToCart, onAddToWishlist, product, userEmail, onEdit,
         toast.success("Added to cart successfully!"); 
       }
     } else {
-      onAddToCart();
       toast.success("Added to cart successfully!"); 
     }
-
-    setIsAddingToCart(false);
   };
 
   const handleAddToWishlist = () => {
     if (isLoggedIn) {
-      addToWishlist(userEmail, product.name, product.photo, product.original_price);
-      toast.success("Added to wishlist successfully!"); 
+      const existingProduct = wishlistProducts.find((item) => item.data === product.name);
+      if (existingProduct) {
+        toast.warning("The product is already added to wishlist");
+      } else {
+        addToWishlist(userEmail, product.name, product.photo, product.original_price);
+        toast.success("Added to wishlist successfully!");
+      }
     } else {
-      onAddToWishlist();
-      toast.success("Added to wishlist successfully!"); 
+      toast.success("Added to wishlist successfully!");
     }
   };
+  
 
   const handleQuantityChange = async (productId, newQuantity) => {
     const db = getFirestore();

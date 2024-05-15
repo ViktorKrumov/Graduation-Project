@@ -9,19 +9,22 @@ import { addToCart, addToWishlist } from '../../firebase';
 import { Link } from 'react-router-dom';
 import { FiHeart } from 'react-icons/fi';
 import { AiOutlineShoppingCart, AiOutlineUserAdd } from 'react-icons/ai';
+import { toast } from 'react-toastify'; 
 
 import { getFirestore, collection, query, where, getDocs, updateDoc, doc, onSnapshot } from "firebase/firestore";
 
-function ProductDetailsPage({userEmail, onAddToCart }) {
+function ProductDetailsPage() {
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   const [userProducts, setUserProducts] = useState([]);
+  const [wishlistProducts, setWishlistProducts] = useState([]);
   const [isEmpty, setIsEmpty] = useState(true);
   const [isAddingToCart, setIsAddingToCart] = useState(false);
 
   const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+  const userEmail = localStorage.getItem('userEmail');
 
 
 
@@ -77,15 +80,36 @@ function ProductDetailsPage({userEmail, onAddToCart }) {
         console.error("Error fetching user products:", error);
       }
     };
+    const fetchWishlistProducts = async () => {
+      const db = getFirestore();
+      const q = query(collection(db, "Wishlist"), where("email", "==", userEmail));
+
+      try {
+        const unsubscribe = onSnapshot(q, (snapshot) => {
+          const products = snapshot.docs.map((doc) => ({
+            id: doc.id,
+            data: doc.data().product,
+            photo: doc.data().productPhoto,
+            price: doc.data().productPrice,
+          }));
+          setWishlistProducts(products);
+        });
+
+        return () => {
+          unsubscribe();
+        };
+      } catch (error) {
+        console.error("Error fetching wishlist products:", error);
+      }
+    };
 
     if (isLoggedIn) {
       fetchUserProducts();
+      fetchWishlistProducts();
     }
   }, [isLoggedIn, userEmail]);
 
   const handleAddToCart = async () => {
-    if (isAddingToCart) return;
-    setIsAddingToCart(true);
 
     if (isLoggedIn) {
       const existingProduct = userProducts.find((item) => item.data === product.name);
@@ -94,12 +118,13 @@ function ProductDetailsPage({userEmail, onAddToCart }) {
         handleQuantityChange(existingProduct.id, newQuantity);
       } else {
         addToCart(userEmail, product.name, product.photo, product.original_price, 1);
+        toast.success("Added to cart successfully!"); 
       }
     } else {
-      onAddToCart();
+      
+      toast.success("Added to cart successfully!"); 
     }
 
-    setIsAddingToCart(false);
   };
 
   
@@ -114,14 +139,25 @@ function ProductDetailsPage({userEmail, onAddToCart }) {
           product.id === productId ? { ...product, quantity: newQuantity } : product
         )
       );
+      toast.success("Quantity updated successfully!"); 
     } catch (error) {
       console.error('Error updating quantity:', error);
+      toast.error("Error updating quantity."); 
     }
   };
 
   const handleAddToWishlist = () => {
     if (isLoggedIn) {
-      addToWishlist(userEmail, product.name, product.photo, product.original_price);
+      const existingProduct = wishlistProducts.find((item) => item.data === product.name);
+      if (existingProduct) {
+        toast.warning("The product is already added to wishlist");
+      } else {
+        addToWishlist(userEmail, product.name, product.photo, product.original_price);
+        toast.success("Added to wishlist successfully!");
+      }
+    } else {
+      
+      toast.success("Added to wishlist successfully!");
     }
   };
 

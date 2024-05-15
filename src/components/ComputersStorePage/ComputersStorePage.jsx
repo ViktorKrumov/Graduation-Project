@@ -8,7 +8,7 @@ import { getDatabase, ref, onValue } from 'firebase/database';
 import Sidebar from "./Sidebar/Sidebar";
 import PriceFilter from "./PriceFilter/PriceFilter";
 
-function ComputersStorePage({ userEmail }) {
+function ComputersStorePage() {
   const [originalProducts, setOriginalProducts] = useState([]);
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -25,6 +25,7 @@ function ComputersStorePage({ userEmail }) {
 
   const isAdmin = localStorage.getItem('isAdmin') === 'true';
   const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+  const userEmail = localStorage.getItem('userEmail');
 
   useEffect(() => {
     async function fetchDataAndListen() {

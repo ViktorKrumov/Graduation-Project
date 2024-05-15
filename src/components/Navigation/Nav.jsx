@@ -10,13 +10,14 @@ import { fetchData as fetchMiceData } from '../apiMice';
 import { fetchData as fetchPrinterData } from '../apiOffice';
 import './Nav.css';
 
-function Nav({ handleLogout, userEmail }) {
+function Nav({ handleLogout }) {
   const [queryTest, setQuery] = useState('');
   const [suggestions, setSuggestions] = useState([]);
   const [wishlistCount, setWishlistCount] = useState(0);
   const [cartQuantity, setCartQuantity] = useState(0); 
   const [showSuggestions, setShowSuggestions] = useState(true); 
   const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+  const userEmail = localStorage.getItem('userEmail');
 
   useEffect(() => {
     let unsubscribeWishlist;
