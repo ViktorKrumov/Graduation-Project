@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { toast} from 'react-toastify';
 import "./PriceRangeFilter.css";
 
 function PriceRangeFilter({ handlePriceRangeFilter }) {
@@ -6,9 +7,12 @@ function PriceRangeFilter({ handlePriceRangeFilter }) {
   const [maxPrice, setMaxPrice] = useState("");
 
   const handleFilterClick = () => {
-    
+    if (minPrice !== "" && maxPrice !== "" && parseInt(minPrice) > parseInt(maxPrice)) {
+        toast.error("Minimum price cannot be greater than maximum price!");
+        return;
+    }
     handlePriceRangeFilter(minPrice, maxPrice);
-  };
+};
 
   const handleClearClick = () => {
    
