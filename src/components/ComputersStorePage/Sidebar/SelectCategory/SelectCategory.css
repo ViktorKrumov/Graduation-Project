@@ -1,17 +1,24 @@
 .select-category_container {
   width: 20%;
-  padding: 0px 0px 50px;
-  margin-left: 80px;
+  margin-left: 60px;
   top: 0px;
+  margin-bottom: 30px;
+  width: fit-content;
 }
 
 .select-category_container h4 {
   font-weight: 500;
   font-size: 1.5rem;
+  width: max-content;
   letter-spacing: 1px;
   border-bottom: 1px solid #c2c2c2;
   padding-bottom: 4px;
-  pointer-events: none;
+  cursor: pointer; 
+}
+
+.category-option {
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .category-option {
@@ -20,6 +27,13 @@
   gap: 20px;
   font-size: 1.4rem;
   padding-top: 10px;
+  margin-left: 20px;
+}
+
+.category-option input[type="checkbox"] {
+  width: 24px;
+  height: 24px;
+  margin-right: 10px;
 }
 
 .category-option label {
@@ -27,10 +41,16 @@
   min-width: 150px;
 }
 
-.category-option input[type="checkbox"] {
-  width: 24px;
-  height: 24px;
-  margin-right: 10px;
+.category-option {
+  top: 100%;
+  left: 0;
+  width: 100%; 
+  margin-top: 10px;
+  
+}
+
+.graphic-card-options.open {
+  display: block; 
 }
 
 /* @media (max-width: 800px) {

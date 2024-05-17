@@ -1,9 +1,7 @@
 import React from "react";
 import "./ProcessorFilter.css";
 
-function ProcessorFilter({ processors, processorFilters, handleProcessorChange }) {
-
-
+function ProcessorFilter({ processors, selectedProcessor, handleProcessorChange }) {
   return (
     <div className="processor-filter-container">
       <h4>Processor</h4>
@@ -12,10 +10,10 @@ function ProcessorFilter({ processors, processorFilters, handleProcessorChange }
           <span key={processor} className="processor-option">
             <input
               type="checkbox"
-             id={`processor-${processor}`}
-             name={processor}
-            //   checked={processorFilters[processor]}
-               onChange={() => handleProcessorChange(processor)}
+              id={`processor-${processor}`}
+              name={processor}
+              checked={selectedProcessor[processor]}
+              onChange={handleProcessorChange}
             />
             <label htmlFor={`processor-${processor}`}>{processor}</label>
           </span>
@@ -24,5 +22,6 @@ function ProcessorFilter({ processors, processorFilters, handleProcessorChange }
     </div>
   );
 }
+
 
 export default ProcessorFilter;

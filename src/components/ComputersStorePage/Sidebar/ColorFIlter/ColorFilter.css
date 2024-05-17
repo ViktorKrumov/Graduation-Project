@@ -13,11 +13,17 @@
   cursor: pointer; 
 }
 
+
+.color-options {
+  display: flex;
+  flex-wrap: wrap;
+}
+
 .color-option {
   display: flex;
   align-items: center;
   gap: 20px;
-  font-size: 1.4rem;
+  font-size: 1.3rem;
   padding-top: 10px;
 }
 
@@ -68,3 +74,7 @@
     
   }
 } */
+
+
+
+

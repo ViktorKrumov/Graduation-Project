@@ -145,26 +145,30 @@ function ComputersStorePage() {
     setPriceFilter(e.target.value);
   }
 
-  function handleProcessorChange(processor) {
-    setSelectedProcessor((prevProcessorFilters) => ({
-      ...prevProcessorFilters,
-      [processor]: !prevProcessorFilters[processor],
+  function handleProcessorChange(e) {
+    const { name, checked } = e.target;
+    setSelectedProcessor((prevSelectedProcessor) => ({
+      ...prevSelectedProcessor,
+      [name]: checked,
     }));
   }
-
-  function handleGraphicCardChange(card) {
+  
+  function handleGraphicCardChange(e) {
+    const { name, checked } = e.target;
     setSelectedGraphicCard((prevCardFilters) => ({
       ...prevCardFilters,
-      [card]: !prevCardFilters[card],
+      [name]: checked,
     }));
   }
 
-  function handleCompanyChange(company) {
+  function handleCompanyChange(e) {
+    const { name, checked } = e.target;
     setSelectedCompany((prevCompanyFilters) => ({
       ...prevCompanyFilters,
-      [company]: !prevCompanyFilters[company],
+      [name]: checked,
     }));
   }
+
 
   const noProductsImageUrl = "https://firebasestorage.googleapis.com/v0/b/technoshack-cbd13.appspot.com/o/noProductsFound.jpg?alt=media&token=5f250185-2745-40aa-9b2a-71dcebbeb56d";
 

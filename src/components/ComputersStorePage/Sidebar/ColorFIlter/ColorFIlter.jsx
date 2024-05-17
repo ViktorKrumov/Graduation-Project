@@ -21,7 +21,7 @@ function ColorFilter({ colors, colorFilters, handleColorFilterChange }) {
               checked={colorFilters[color]}
               onChange={handleColorFilterChange}
             />
-            <label htmlFor={`color-${color}`}>{color}</label>
+            <label htmlFor={`color-${color}`} style={{ color: color, textShadow: color === 'White' ? '2px 2px 2px rgba(0,0,0,2)' : 'none' }}>{color}</label>
           </span>
         ))}
       </div>

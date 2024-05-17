@@ -1,7 +1,7 @@
 import React from "react";
 import "./GraphicCard.css";
 
-function GraphicCardFilter({ graphicCards, graphicCardFilters, handleGraphicCardChange }) {
+function GraphicCardFilter({ graphicCards, selectedGraphicCard, handleGraphicCardChange }) {
 
   return (
     <div className="graphic-card-filter-container">
@@ -13,8 +13,8 @@ function GraphicCardFilter({ graphicCards, graphicCardFilters, handleGraphicCard
               type="checkbox"
               id={`graphic-card-${graphicCard}`}
               name={graphicCard}
-            //   checked={graphicCardFilters[graphicCard]}
-              onChange={() => handleGraphicCardChange(graphicCard)}
+              checked={selectedGraphicCard[graphicCard]}
+              onChange={handleGraphicCardChange}
             />
             <label htmlFor={`graphic-card-${graphicCard}`}>{graphicCard}</label>
           </span>
