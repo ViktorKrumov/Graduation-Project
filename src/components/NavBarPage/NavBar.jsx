@@ -6,7 +6,8 @@ import { Button } from './Button';
 const NavBar = ({ toggleLoginForm, isLoggedIn, handleLogout }) => {
   const [click, setClick] = useState(false);
   const [productClick, setProductClick] = useState(false); 
-  const isAdmin = localStorage.getItem('isAdmin') === 'true'; 
+  const isAdmin = localStorage.getItem('isAdmin'); 
+  console.log(isAdmin)
 
   const handleProductsClick = () => {
     setProductClick(!productClick); 

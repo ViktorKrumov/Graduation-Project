@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { getFirestore, collection, query, where, getDocs, deleteDoc, doc } from 'firebase/firestore';
 import { addToCart } from '../../firebase'; 
+import { toast, ToastContainer } from 'react-toastify';
 import './Wishlist.css'; 
 
 const Wishlist = () => {
@@ -59,7 +60,7 @@ const Wishlist = () => {
       try {
        
         await addToCart(userEmail, product.data, product.photo, product.price);
-  
+        toast.success("Added to cart successfully!"); 
         
         const db = getFirestore();
         const orderRef = doc(db, 'Wishlist', product.id);

@@ -56,7 +56,7 @@ function EditProductForm({ product, onSave, onCancel }) {
         <label>Storage:</label>
         <input type="text" name="storage" value={editedProduct.storage} onChange={handleChange} />
         <button type="submit">Save</button>
-        <button type="button" onClick={onCancel}>Cancel</button>
+        <button className="CancelButton" type="button" onClick={onCancel}>Cancel</button>
       </form>
     </div>
   );

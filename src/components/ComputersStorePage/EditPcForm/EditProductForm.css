@@ -1,0 +1,13 @@
+.CancelButton {
+    background-color: #dc3545; 
+    color: #fff; 
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .CancelButton:hover {
+    background-color: #c82333; 
+  }
+  

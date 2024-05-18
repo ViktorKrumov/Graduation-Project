@@ -23,9 +23,8 @@ function ComputersStorePage() {
   const [selectedCompany, setSelectedCompany] = useState({});
   const [showAddProductForm, setShowAddProductForm] = useState(false);
 
-  const isAdmin = localStorage.getItem('isAdmin') === 'true';
-  const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
-  const userEmail = localStorage.getItem('userEmail');
+  const isAdmin = localStorage.getItem('isAdmin') == 'true';
+  
 
   useEffect(() => {
     async function fetchDataAndListen() {
@@ -89,7 +88,7 @@ function ComputersStorePage() {
       const selectedProcessors = Object.keys(selectedProcessor).filter((processor) => selectedProcessor[processor]);
       if (selectedProcessors.length > 0) {
         filteredProducts = filteredProducts.filter((product) =>
-          selectedProcessors.some(selectedProcessor => product.processor.includes(selectedProcessor))
+          selectedProcessors.includes(product.processor)
         );
       }
 
@@ -210,7 +209,7 @@ function ComputersStorePage() {
       ) : (
         <div className="products-container">
           {products.map((product) => (
-            <ProductCard product={product} key={product.id} isLoggedIn={isLoggedIn} userEmail={userEmail} />
+            <ProductCard product={product} key={product.id}/>
           ))}
         </div>
       )}

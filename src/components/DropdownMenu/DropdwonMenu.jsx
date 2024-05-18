@@ -18,7 +18,7 @@ function DropdownMenu({product, onEdit, databaseNode }) {
   const [isAddingToCart, setIsAddingToCart] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
-  const isAdmin = localStorage.getItem('isAdmin') === 'true';
+  const isAdmin = localStorage.getItem('isAdmin');
   const [isFormOpen, setIsFormOpen] = useState(false);
 
   const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';

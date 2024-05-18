@@ -1,21 +1,21 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import toast from "react-hot-toast";
+import { toast, ToastContainer } from 'react-toastify';
 import DropdownMenu from "../../DropdownMenu/DropdwonMenu";
 import EditProductForm from "../EditPcForm/EditProductFrom";
 import "./ProductCard.css";
 
-function ProductCard({ product, isLoggedIn, userEmail }) {
+function ProductCard({ product }) {
   const [showDropdown, setShowDropdown] = useState(false);
   const [isEditing, setIsEditing] = useState(false); 
-  function handleAddToCart() {
-    // addToCart(product);
-    toast.success("Added to Cart");
-  }
 
-  
   const handleToggleEditForm = () => {
     setIsEditing(!isEditing);
+  };
+
+  const handleSave = () => {
+    setIsEditing(false);
+    toast.success('Product edited successfully');
   };
 
   return (
@@ -33,12 +33,10 @@ function ProductCard({ product, isLoggedIn, userEmail }) {
         <p>{product.graphics_card}</p>
         {showDropdown && (
           <DropdownMenu
-          isLoggedIn={isLoggedIn}
-          product={product}
-          userEmail={userEmail}
-          onEdit={() => handleToggleEditForm()} 
-          databaseNode="computers"
-        />
+            product={product}
+            onEdit={() => handleToggleEditForm()} 
+            databaseNode="computers"
+          />
         )}
         <span className="product-card_bottom">
           <b className="product-card_price">${product.original_price}</b>
@@ -49,7 +47,7 @@ function ProductCard({ product, isLoggedIn, userEmail }) {
         <div className="edit-form-container">
           <EditProductForm
             product={product}
-            onSave={() => setIsEditing(false)}
+            onSave={handleSave}
             onCancel={() => setIsEditing(false)} 
           />
         </div>

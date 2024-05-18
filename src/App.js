@@ -49,29 +49,32 @@ const App = () => {
       setUser(user);
       if (user) {
         setUserEmail(user.email); // Update userEmail state when user is logged in
+        console.log(user.email); // Use user.email directly
         localStorage.setItem('userEmail', user.email); // Set userEmail in localStorage
         localStorage.setItem('isLoggedIn', 'true'); // Set login status in local storage
+  
+        const adminEmails = ['admin1@example.com', 'admin2@example.com']; // Example admin email addresses
+        if (adminEmails.includes(user.email)) {
+          setIsAdmin(true);
+          localStorage.setItem('isAdmin', true); // Store admin status in local storage
+        } else {
+          setIsAdmin(false);
+          localStorage.removeItem('isAdmin'); // Remove admin status from local storage
+        }
       } else {
         setUserEmail(null); // Clear userEmail state when user is logged out
         localStorage.removeItem('userEmail'); // Remove userEmail from localStorage
         localStorage.removeItem('isLoggedIn'); // Remove login status from local storage
+        setIsAdmin(false); // Clear admin status when user is logged out
+        localStorage.removeItem('isAdmin'); // Remove admin status from local storage
       }
     }, (error) => {
       console.error('Authentication error:', error);
     });
-
-    // Check if the user is an admin (replace this logic with your own admin detection mechanism)
-    const adminEmails = ['admin1@example.com', 'admin2@example.com']; // Example admin email addresses
-    if (userEmail && adminEmails.includes(userEmail)) {
-      setIsAdmin(true);
-      localStorage.setItem('isAdmin', 'true'); // Store admin status in local storage
-    } else {
-      setIsAdmin(false);
-      localStorage.removeItem('isAdmin'); // Remove admin status from local storage
-    }
   
     return unsubscribe; 
   }, []);
+  
 
   // Function to handle logout
   const handleLogout = () => {
@@ -112,7 +115,7 @@ const App = () => {
           <Route path="/FAQ" element={<FAQ />} />
 
           {/* Admin Route */}
-          {localStorage.getItem('isAdmin') === 'true' && (
+          {isAdmin && (
             <Route path="/admin" element={<AdminPage />} />
           )}
         </>

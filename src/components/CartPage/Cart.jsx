@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { getFirestore, collection, query, where, getDocs, deleteDoc, doc, addDoc, updateDoc, increment } from 'firebase/firestore';
 import './Cart.css';
 import CheckoutForm from './CheckoutForm/CheckoutForm';
+import { toast } from 'react-toastify';
 import { addToOrders } from '../../firebase';
 
 const Cart = () => {
@@ -48,7 +49,7 @@ const Cart = () => {
     try {
       await deleteDoc(orderRef);
       setUserProducts(prevProducts => prevProducts.filter(product => product.id !== productId));
-      setIsEmpty(userProducts.length === 1);
+      setIsEmpty(userProducts.length === 0);
     } catch (error) {
       console.error('Error removing product from cart:', error);
     }
@@ -81,6 +82,7 @@ const Cart = () => {
     try {
       await addToOrders(fullName, email, address, city, zipcode, items);
       console.log('Order placed successfully!');
+      toast.success('Order placed successfully!');
       clearCart();
     } catch (error) {
       console.error('Error placing order:', error);
