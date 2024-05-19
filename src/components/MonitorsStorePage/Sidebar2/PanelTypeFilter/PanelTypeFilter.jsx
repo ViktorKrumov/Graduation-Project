@@ -13,7 +13,7 @@ function PanelTypeFilter({ panel_types, selectedPanelType, handlePanelTypeChange
               id={`panel-type-${panel_type}`}
               name={panel_type}
               checked={selectedPanelType[panel_type]}
-              onChange={() => handlePanelTypeChange(panel_type)}
+              onChange={handlePanelTypeChange}
             />
             <label htmlFor={`panel-type-${panel_type}`}>{panel_type}</label>
           </span>

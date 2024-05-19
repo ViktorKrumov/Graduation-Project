@@ -1,6 +1,6 @@
 import React from "react";
 
-function PaperFormatFilter({ paperFormats = [], selectedPaperFormats = {}, handlePaperFormatChange }) {
+function PaperFormatFilter({ paperFormats, selectedPaperFormats, handlePaperFormatChange }) {
   if (paperFormats.length === 0 || !selectedPaperFormats) {
     return null; // Render nothing if paperFormats are empty or selectedPaperFormats is not defined
   }
@@ -16,7 +16,7 @@ function PaperFormatFilter({ paperFormats = [], selectedPaperFormats = {}, handl
               id={`output-type-${paperFormat}`}
               name={paperFormat}
               checked={selectedPaperFormats[paperFormat] || false}
-              onChange={() => handlePaperFormatChange(paperFormat)}
+              onChange={handlePaperFormatChange}
             />
             <label htmlFor={`output-type-${paperFormat}`}>{paperFormat}</label>
           </span>

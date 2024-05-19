@@ -18,7 +18,7 @@ function ComputersStorePage() {
   const [priceFilter, setPriceFilter] = useState("default");
   const [processors, setProcessors] = useState(["Intel Core i5", "Intel Core i7", "Intel Core i9", "AMD Ryzen 3", "AMD Ryzen 5", "AMD Ryzen 7"]);
   const [selectedProcessor, setSelectedProcessor] = useState({});
-  const [graphicCards, setGraphicCards] = useState(["GeForce RTX 2080", "GeForce RTX 3050", "GeForce RTX 3060", "GeForce RTX 3060 Ti", "GeForce RTX 3070", "Radeon RX"]);
+  const [graphicCards, setGraphicCards] = useState(["GeForce RTX 2080", "GeForce RTX 3050", "GeForce RTX 3060", "GeForce RTX 3070", "GeForce RTX 3080","Radeon RX"]);
   const [selectedGraphicCard, setSelectedGraphicCard] = useState({});
   const [selectedCompany, setSelectedCompany] = useState({});
   const [showAddProductForm, setShowAddProductForm] = useState(false);
@@ -88,7 +88,7 @@ function ComputersStorePage() {
       const selectedProcessors = Object.keys(selectedProcessor).filter((processor) => selectedProcessor[processor]);
       if (selectedProcessors.length > 0) {
         filteredProducts = filteredProducts.filter((product) =>
-          selectedProcessors.includes(product.processor)
+        selectedProcessors.some(selectedProcessor => product.processor.includes(selectedProcessor))
         );
       }
 
@@ -151,6 +151,7 @@ function ComputersStorePage() {
       [name]: checked,
     }));
   }
+  
   
   function handleGraphicCardChange(e) {
     const { name, checked } = e.target;

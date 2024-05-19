@@ -23,5 +23,4 @@ function ProcessorFilter({ processors, selectedProcessor, handleProcessorChange 
   );
 }
 
-
 export default ProcessorFilter;

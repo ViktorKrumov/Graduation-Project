@@ -13,7 +13,7 @@ function OutputFilter({ outputTypes, selectedOutputType, handleOutputTypeChange 
               id={`output-type-${outputType}`}
               name={outputType}
               checked={selectedOutputType[outputType]}
-              onChange={() => handleOutputTypeChange(outputType)}
+              onChange={handleOutputTypeChange}
             />
             <label htmlFor={`output-type-${outputType}`}>{outputType}</label>
           </span>

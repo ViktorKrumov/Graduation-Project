@@ -13,7 +13,7 @@ function CompanyFilter({ companies, selectedCompany, handleCompanyChange }) {
               id={`company-${company}`}
               name={company}
               checked={selectedCompany[company]}
-              onChange={() => handleCompanyChange(company)}
+              onChange={handleCompanyChange}
             />
             <label htmlFor={`company-${company}`}>{company}</label>
           </span>

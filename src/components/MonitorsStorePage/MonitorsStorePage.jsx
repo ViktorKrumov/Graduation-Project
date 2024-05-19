@@ -135,33 +135,72 @@ function MonitorsStorePage() {
     setPriceFilter(e.target.value);
   }
 
-  function handleCompanyChange(company) {
+  // function handleCompanyChange(company) {
+  //   setSelectedCompany((prevCompanyFilters) => ({
+  //     ...prevCompanyFilters,
+  //     [company]: !prevCompanyFilters[company],
+  //   }));
+  // }
+
+  function handleCompanyChange(e) {
+    const { name, checked } = e.target;
     setSelectedCompany((prevCompanyFilters) => ({
       ...prevCompanyFilters,
-      [company]: !prevCompanyFilters[company],
+      [name]: checked,
     }));
   }
 
-  function handleRefreshRateChange(refresh_rate) {
+  
+  function handleRefreshRateChange(e) {
+    const { name, checked } = e.target;
     setSelectedRefreshRate((prevRefreshRateFilters) => ({
       ...prevRefreshRateFilters,
-      [refresh_rate]: !prevRefreshRateFilters[refresh_rate],
+      [name]: checked,
     }));
   }
 
-  function handleResolutionChange(resolution) {
+  // function handleRefreshRateChange(refresh_rate) {
+  //   setSelectedRefreshRate((prevRefreshRateFilters) => ({
+  //     ...prevRefreshRateFilters,
+  //     [refresh_rate]: !prevRefreshRateFilters[refresh_rate],
+  //   }));
+  // }
+
+
+    
+  function handleResolutionChange(e) {
+    const { name, checked } = e.target;
     setSelectedResolution((prevResolutionFilters) => ({
       ...prevResolutionFilters,
-      [resolution]: !prevResolutionFilters[resolution],
+      [name]: checked,
     }));
   }
 
-  function handlePanelTypeChange(panel_type) {
+
+  // function handleResolutionChange(resolution) {
+  //   setSelectedResolution((prevResolutionFilters) => ({
+  //     ...prevResolutionFilters,
+  //     [resolution]: !prevResolutionFilters[resolution],
+  //   }));
+  // }
+
+
+  function handlePanelTypeChange(e) {
+    const { name, checked } = e.target;
     setSelectedPanelType((prevPanelTypeFilters) => ({
       ...prevPanelTypeFilters,
-      [panel_type]: !prevPanelTypeFilters[panel_type],
+      [name]: checked,
     }));
   }
+
+
+
+  // function handlePanelTypeChange(panel_type) {
+  //   setSelectedPanelType((prevPanelTypeFilters) => ({
+  //     ...prevPanelTypeFilters,
+  //     [panel_type]: !prevPanelTypeFilters[panel_type],
+  //   }));
+  // }
 
   function handleScreenSizeChange(screen_size) {
     setSelectedScreenSize((prevScreenSizeFilters) => ({

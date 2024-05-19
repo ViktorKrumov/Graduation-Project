@@ -137,19 +137,36 @@ function PCMiceStorePage() {
     setPriceFilter(e.target.value);
   }
 
-  function handleCompanyChange(company) {
+  // function handleCompanyChange(company) {
+  //   setSelectedCompany((prevCompanyFilters) => ({
+  //     ...prevCompanyFilters,
+  //     [company]: !prevCompanyFilters[company],
+  //   }));
+  // }
+  function handleCompanyChange(e) {
+    const { name, checked } = e.target;
     setSelectedCompany((prevCompanyFilters) => ({
       ...prevCompanyFilters,
-      [company]: !prevCompanyFilters[company],
+      [name]: checked,
     }));
   }
 
-  function handleConnectionChange(connection) {
+
+  // function handleConnectionChange(connection) {
+  //   setSelectedConnections((prevConnectionFilters) => ({
+  //     ...prevConnectionFilters,
+  //     [connection]: !prevConnectionFilters[connection],
+  //   }));
+  // }
+  
+  function handleConnectionChange(e) {
+    const { name, checked } = e.target;
     setSelectedConnections((prevConnectionFilters) => ({
       ...prevConnectionFilters,
-      [connection]: !prevConnectionFilters[connection],
+      [name]: checked,
     }));
   }
+
 
   function handleDPIFilter(minDPI, maxDPI) {
     setDPIRange({ minDPI, maxDPI });

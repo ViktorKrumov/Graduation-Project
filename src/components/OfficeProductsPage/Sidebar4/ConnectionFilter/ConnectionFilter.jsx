@@ -1,7 +1,7 @@
 import React from "react";
 import "./ConnectionFilter.css";
 
-function ConnectionFilter({ connections = [], selectedConnections = {}, handleConnectionChange }) {
+function ConnectionFilter({ connections, selectedConnections, handleConnectionChange }) {
   if (connections.length === 0 || !selectedConnections) {
     return null; // Render nothing if connections are empty or selectedConnections is not defined
   }
@@ -17,7 +17,7 @@ function ConnectionFilter({ connections = [], selectedConnections = {}, handleCo
               id={`connection-${connection}`}
               name={connection}
               checked={selectedConnections[connection] || false}
-              onChange={() => handleConnectionChange(connection)}
+              onChange={handleConnectionChange}
             />
             <label htmlFor={`connection-${connection}`}>{connection}</label>
           </span>

@@ -14,7 +14,7 @@ function ScreenSizeFilter({ screen_sizes, selectedScreenSize, handleScreenSizeCh
               id={`screen-size-${size}`}
               name={size}
               checked={selectedScreenSize[size]}
-              onChange={() => handleScreenSizeChange(size)}
+              onChange={handleScreenSizeChange}
             />
             <label htmlFor={`screen-size-${size}`}>{size}</label>
           </span>

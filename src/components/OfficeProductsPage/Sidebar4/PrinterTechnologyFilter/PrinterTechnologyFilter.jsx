@@ -13,7 +13,7 @@ function PrinterTechnologyFilter({ printerTechnologies, selectedPrinterTechnolog
               id={`printer-technology-${printerTechnology}`}
               name={printerTechnology}
               checked={selectedPrinterTechnology[printerTechnology]}
-              onChange={() => handlePrinterTechnologyChange(printerTechnology)}
+              onChange={handlePrinterTechnologyChange}
             />
             <label htmlFor={`printer-technology-${printerTechnology}`}>{printerTechnology}</label>
           </span>

@@ -82,7 +82,7 @@ const Cart = () => {
     try {
       await addToOrders(fullName, email, address, city, zipcode, items);
       console.log('Order placed successfully!');
-      toast.success('Order placed successfully!');
+      //toast.success('Order placed successfully!');
       clearCart();
     } catch (error) {
       console.error('Error placing order:', error);

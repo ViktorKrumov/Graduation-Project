@@ -13,7 +13,7 @@ function ConnectionFilter({ connections, selectedConnections, handleConnectionCh
               id={`connection-${connection}`}
               name={connection}
               checked={selectedConnections[connection]}
-              onChange={() => handleConnectionChange(connection)}
+              onChange={handleConnectionChange}
             />
             <label htmlFor={`connection-${connection}`}>{connection}</label>
           </span>

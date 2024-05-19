@@ -13,7 +13,7 @@ function RefreshRateFilter({ refresh_rates, selectedRefreshRate, handleRefreshRa
               id={`refresh_rate-${refresh_rate}`}
               name={refresh_rate}
               checked={selectedRefreshRate[refresh_rate]}
-              onChange={() => handleRefreshRateChange(refresh_rate)}
+              onChange={handleRefreshRateChange}
             />
             <label htmlFor={`refresh_rate-${refresh_rate}`}>{refresh_rate}</label>
           </span>

@@ -57,12 +57,11 @@ const Profile = () => {
               setUserData({ ...userDataDoc.data(), id: userDataDoc.id });
             } else {
               console.error('User data not found after creation');
-            }
-          } else {
+             }
+         } else {
             // Set user profile data
-            userDataQuerySnapshot.forEach((doc) => {
+              const doc = userDataQuerySnapshot.docs[0];
               setUserData({ ...doc.data(), id: doc.id });
-            });
           }
 
           // Fetch user orders

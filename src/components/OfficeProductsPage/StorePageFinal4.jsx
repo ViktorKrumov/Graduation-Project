@@ -127,41 +127,83 @@ function StorePageFinal4() {
     filterProducts();
   }, [originalProducts, priceRange, selectedConnections, selectedCompany, priceFilter, selectedOutputType, selectedPrinterTechnology, selectedPaperFormats]);
 
-  function handleConnectionChange(connection) {
+  // function handleConnectionChange(connection) {
+  //   setSelectedConnections((prevConnectionFilters) => ({
+  //     ...prevConnectionFilters,
+  //     [connection]: !prevConnectionFilters[connection],
+  //   }));
+  // }
+
+  function handleConnectionChange(e) {
+    const { name, checked } = e.target;
     setSelectedConnections((prevConnectionFilters) => ({
       ...prevConnectionFilters,
-      [connection]: !prevConnectionFilters[connection],
+      [name]: checked,
     }));
   }
 
-  function handleCompanyChange(company) {
+  // function handleCompanyChange(company) {
+  //   setSelectedCompany((prevCompanyFilters) => ({
+  //     ...prevCompanyFilters,
+  //     [company]: !prevCompanyFilters[company],
+  //   }));
+  // }
+
+  function handleCompanyChange(e) {
+    const { name, checked } = e.target;
     setSelectedCompany((prevCompanyFilters) => ({
       ...prevCompanyFilters,
-      [company]: !prevCompanyFilters[company],
+      [name]: checked,
     }));
   }
 
-  function handleOutputTypeChange(outputType) {
+  // function handleOutputTypeChange(outputType) {
+  //   setSelectedOutputType((prevOutputTypeFilters) => ({
+  //     ...prevOutputTypeFilters,
+  //     [outputType]: !prevOutputTypeFilters[outputType],
+  //   }));
+  // }
+
+  function handleOutputTypeChange(e) {
+    const { name, checked } = e.target;
     setSelectedOutputType((prevOutputTypeFilters) => ({
       ...prevOutputTypeFilters,
-      [outputType]: !prevOutputTypeFilters[outputType],
+      [name]: checked,
     }));
   }
 
-  function handlePrinterTechnologyChange(printerTechnology) {
+  // function handlePrinterTechnologyChange(printerTechnology) {
+  //   setSelectedPrinterTechnology((prevSelected) => ({
+  //     ...prevSelected,
+  //     [printerTechnology]: !prevSelected[printerTechnology],
+  //   }));
+  // }
+
+  function handlePrinterTechnologyChange(e) {
+    const { name, checked } = e.target;
     setSelectedPrinterTechnology((prevSelected) => ({
       ...prevSelected,
-      [printerTechnology]: !prevSelected[printerTechnology],
+      [name]: checked,
     }));
   }
 
-  function handlePaperFormatChange(format) {
+
+  // function handlePaperFormatChange(format) {
+  //   setSelectedPaperFormats((prevSelectedFormats) => ({
+  //     ...prevSelectedFormats,
+  //     [format]: !prevSelectedFormats[format],
+  //   }));
+  // }
+  
+  
+  function handlePaperFormatChange(e) {
+    const { name, checked } = e.target;
     setSelectedPaperFormats((prevSelectedFormats) => ({
       ...prevSelectedFormats,
-      [format]: !prevSelectedFormats[format],
+      [name]: checked,
     }));
   }
-  
+
 
   function handlePriceFilter(e) {
     setPriceFilter(e.target.value);

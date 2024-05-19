@@ -13,7 +13,7 @@ function ResolutionFilter({ resolutions, selectedResolution, handleResolutionCha
               id={`resolution-${resolution}`}
               name={resolution}
               checked={selectedResolution[resolution]}
-              onChange={() => handleResolutionChange(resolution)}
+              onChange={handleResolutionChange}
             />
             <label htmlFor={`resolution-${resolution}`}>{resolution}</label>
           </span>
