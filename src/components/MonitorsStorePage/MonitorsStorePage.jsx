@@ -103,10 +103,11 @@ function MonitorsStorePage() {
       }
 
       // Filter by screen size
+      // Filter by screen size
       const selectedScreenSizes = Object.keys(selectedScreenSize).filter((screen_size) => selectedScreenSize[screen_size]);
       if (selectedScreenSizes.length > 0) {
         filteredProducts = filteredProducts.filter((product) =>
-          selectedScreenSizes.some(selectedScreenSize => product.screen_size.includes(selectedScreenSize))
+          selectedScreenSizes.includes(product.screen_size)
         );
       }
 
@@ -135,12 +136,6 @@ function MonitorsStorePage() {
     setPriceFilter(e.target.value);
   }
 
-  // function handleCompanyChange(company) {
-  //   setSelectedCompany((prevCompanyFilters) => ({
-  //     ...prevCompanyFilters,
-  //     [company]: !prevCompanyFilters[company],
-  //   }));
-  // }
 
   function handleCompanyChange(e) {
     const { name, checked } = e.target;
@@ -159,12 +154,6 @@ function MonitorsStorePage() {
     }));
   }
 
-  // function handleRefreshRateChange(refresh_rate) {
-  //   setSelectedRefreshRate((prevRefreshRateFilters) => ({
-  //     ...prevRefreshRateFilters,
-  //     [refresh_rate]: !prevRefreshRateFilters[refresh_rate],
-  //   }));
-  // }
 
 
     
@@ -177,12 +166,6 @@ function MonitorsStorePage() {
   }
 
 
-  // function handleResolutionChange(resolution) {
-  //   setSelectedResolution((prevResolutionFilters) => ({
-  //     ...prevResolutionFilters,
-  //     [resolution]: !prevResolutionFilters[resolution],
-  //   }));
-  // }
 
 
   function handlePanelTypeChange(e) {
@@ -195,19 +178,17 @@ function MonitorsStorePage() {
 
 
 
-  // function handlePanelTypeChange(panel_type) {
-  //   setSelectedPanelType((prevPanelTypeFilters) => ({
-  //     ...prevPanelTypeFilters,
-  //     [panel_type]: !prevPanelTypeFilters[panel_type],
-  //   }));
-  // }
+ 
 
-  function handleScreenSizeChange(screen_size) {
+  function handleScreenSizeChange(e) {
+    const { name, checked } = e.target;
     setSelectedScreenSize((prevScreenSizeFilters) => ({
       ...prevScreenSizeFilters,
-      [screen_size]: !prevScreenSizeFilters[screen_size],
+      [name]: checked,
     }));
   }
+
+
 
   const noProductsImageUrl = "https://firebasestorage.googleapis.com/v0/b/technoshack-cbd13.appspot.com/o/noProductsFound.jpg?alt=media&token=5f250185-2745-40aa-9b2a-71dcebbeb56d";
 

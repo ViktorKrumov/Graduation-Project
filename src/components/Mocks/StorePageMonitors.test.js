@@ -1,10 +1,10 @@
 import React from 'react';
 import { render, fireEvent, waitFor } from '@testing-library/react';
-import StorePageFinal2 from '../StorePageFinal 2/StorePageFinal2';
+import StoreMonitors from '../MonitorsStorePage/MonitorsStorePage'
 import '@testing-library/jest-dom/extend-expect';
 
 describe('StorePageFinal component', () => {
-  jest.mock('../api3', () => ({
+  jest.mock('../apiMonitors', () => ({
     fetchData: jest.fn(() => Promise.resolve([])),
   }));
 
@@ -19,7 +19,7 @@ describe('StorePageFinal component', () => {
       json: jest.fn().mockResolvedValueOnce(mockProducts),
     });
   
-    const { findByText } = render(<StorePageFinal2 />);
+    const { findByText } = render(<StoreMonitors />);
     
     
     expect(await findByText('Acer Nitro VG270Ebmiix')).toBeInTheDocument();
@@ -36,7 +36,7 @@ describe('StorePageFinal component', () => {
       json: jest.fn().mockResolvedValueOnce(mockProducts),
     });
   
-    const { findByText, queryByText, getByLabelText } = render(<StorePageFinal2 />);
+    const { findByText, queryByText, getByLabelText } = render(<StoreMonitors />);
   
     expect(await findByText('Acer Nitro VG270Ebmiix')).toBeInTheDocument();
     expect(await findByText('Dell P2423')).toBeInTheDocument();
@@ -63,7 +63,7 @@ describe('StorePageFinal component', () => {
       json: jest.fn().mockResolvedValueOnce(mockProducts),
     });
   
-    const { findByText, queryByText, getByLabelText } = render(<StorePageFinal2 />);
+    const { findByText, queryByText, getByLabelText } = render(<StoreMonitors />);
   
     expect(await findByText('Acer Nitro VG270Ebmiix')).toBeInTheDocument();
     expect(await findByText('Dell P2423')).toBeInTheDocument();
@@ -90,7 +90,7 @@ describe('StorePageFinal component', () => {
       json: jest.fn().mockResolvedValueOnce(mockProducts),
     });
   
-    const { findByText, queryByText, getByLabelText } = render(<StorePageFinal2 />);
+    const { findByText, queryByText, getByLabelText } = render(<StoreMonitors />);
   
     expect(await findByText('Acer Nitro VG270Ebmiix')).toBeInTheDocument();
     expect(await findByText('Dell P2423')).toBeInTheDocument();
@@ -115,7 +115,7 @@ describe('StorePageFinal component', () => {
       json: jest.fn().mockResolvedValueOnce(mockProducts),
     });
   
-    const { findByText, queryByText, getByLabelText } = render(<StorePageFinal2 />);
+    const { findByText, queryByText, getByLabelText } = render(<StoreMonitors />);
   
     expect(await findByText('Acer Nitro VG270Ebmiix')).toBeInTheDocument();
     expect(await findByText('Dell P2423')).toBeInTheDocument();
@@ -141,7 +141,7 @@ describe('StorePageFinal component', () => {
       json: jest.fn().mockResolvedValueOnce(mockProducts),
     });
   
-    const { findByText, queryByText, getByLabelText } = render(<StorePageFinal2 />);
+    const { findByText, queryByText, getByLabelText } = render(<StoreMonitors />);
   
     expect(await findByText('Acer Nitro VG270Ebmiix')).toBeInTheDocument();
     expect(await findByText('Dell P2423')).toBeInTheDocument();
@@ -167,7 +167,7 @@ describe('StorePageFinal component', () => {
       json: jest.fn().mockResolvedValueOnce(mockProducts),
     });
 
-    const { findByText, queryByText, getByPlaceholderText, getByText } = render(<StorePageFinal2 />);
+    const { findByText, queryByText, getByPlaceholderText, getByText } = render(<StoreMonitors />);
     
    
     expect(await findByText('Acer Nitro VG270Ebmiix')).toBeInTheDocument();

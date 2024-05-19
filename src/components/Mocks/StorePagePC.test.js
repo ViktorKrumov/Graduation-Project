@@ -1,10 +1,10 @@
 import React from 'react';
 import { render, fireEvent, waitFor } from '@testing-library/react';
-import StorePageFinal from '../StorePageFinal/StorePageFinal';
+import StoreComputers from '../ComputersStorePage/ComputersStorePage';
 import '@testing-library/jest-dom/extend-expect';
 
 describe('StorePageFinal component', () => {
-  jest.mock('../api2', () => ({
+  jest.mock('../apiComputers', () => ({
     fetchData: jest.fn(() => Promise.resolve([])),
   }));
 
@@ -19,7 +19,7 @@ describe('StorePageFinal component', () => {
       json: jest.fn().mockResolvedValueOnce(mockProducts),
     });
   
-    const { findByText } = render(<StorePageFinal />);
+    const { findByText } = render(<StoreComputers />);
     
     
     expect(await findByText('Gaming Laptop')).toBeInTheDocument();
@@ -27,7 +27,7 @@ describe('StorePageFinal component', () => {
 
   test('filters products by color correctly', async () => {
     const mockProducts = [
-      { id: 1, name: 'Gaming Laptop', price: 1000, color: 'Red' },
+      { id: 1, name: 'Business Ultrabook', price: 1000, color: 'Red' },
       { id: 2, name: 'Home Office PC', price: 50, color: 'Blue' },
     ];
   
@@ -36,10 +36,10 @@ describe('StorePageFinal component', () => {
       json: jest.fn().mockResolvedValueOnce(mockProducts),
     });
   
-    const { findByText, queryByText, getByLabelText } = render(<StorePageFinal />);
+    const { findByText, queryByText, getByLabelText } = render(<StoreComputers />);
   
    
-    expect(await findByText('Gaming Laptop')).toBeInTheDocument();
+    expect(await findByText('Business Ultrabook')).toBeInTheDocument();
     expect(await findByText('Home Office PC')).toBeInTheDocument();
   
     
@@ -49,7 +49,7 @@ describe('StorePageFinal component', () => {
     
     await waitFor(() => {
       
-      expect(queryByText('Gaming Laptop')).toBeInTheDocument();
+      expect(queryByText('Business Ultrabook')).toBeInTheDocument();
       expect(queryByText('Home Office PC')).not.toBeInTheDocument();
     });
   });
@@ -64,7 +64,7 @@ describe('StorePageFinal component', () => {
       json: jest.fn().mockResolvedValueOnce(mockProducts),
     });
   
-    const { findByText, queryByText, getByLabelText } = render(<StorePageFinal />);
+    const { findByText, queryByText, getByLabelText } = render(<StoreComputers />);
   
     expect(await findByText('Gaming Laptop')).toBeInTheDocument();
     expect(await findByText('Home Office PC')).toBeInTheDocument();
@@ -91,7 +91,7 @@ describe('StorePageFinal component', () => {
       json: jest.fn().mockResolvedValueOnce(mockProducts),
     });
   
-    const { findByText, queryByText, getByLabelText } = render(<StorePageFinal />);
+    const { findByText, queryByText, getByLabelText } = render(<StoreComputers />);
   
    
     expect(await findByText('Gaming Laptop')).toBeInTheDocument();
@@ -121,7 +121,7 @@ describe('StorePageFinal component', () => {
       json: jest.fn().mockResolvedValueOnce(mockProducts),
     });
   
-    const { findByText, queryByText, getByLabelText } = render(<StorePageFinal />);
+    const { findByText, queryByText, getByLabelText } = render(<StoreComputers />);
   
    
     expect(await findByText('Gaming Laptop')).toBeInTheDocument();
@@ -150,7 +150,7 @@ describe('StorePageFinal component', () => {
       json: jest.fn().mockResolvedValueOnce(mockProducts),
     });
   
-    const { findByText, queryByText, getByLabelText } = render(<StorePageFinal />);
+    const { findByText, queryByText, getByLabelText } = render(<StoreComputers />);
   
    
     expect(await findByText('Gaming Laptop')).toBeInTheDocument();
@@ -178,7 +178,7 @@ describe('StorePageFinal component', () => {
       json: jest.fn().mockResolvedValueOnce(mockProducts),
     });
 
-    const { findByText, queryByText, getByPlaceholderText, getByText } = render(<StorePageFinal />);
+    const { findByText, queryByText, getByPlaceholderText, getByText } = render(<StoreComputers />);
     
    
     expect(await findByText('Gaming Laptop')).toBeInTheDocument();

@@ -1,10 +1,10 @@
 import React from 'react';
 import { render, fireEvent, waitFor } from '@testing-library/react';
-import StorePageFinal3 from '../StorePageFinal 3/StorePageFinal3';
+import StoreMice from '../PCMiceStorePage/PCMiceStorePage'
 import '@testing-library/jest-dom/extend-expect';
 
 describe('StorePageFinal component', () => {
-  jest.mock('../api4', () => ({
+  jest.mock('../apiMice', () => ({
     fetchData: jest.fn(() => Promise.resolve([])),
   }));
 
@@ -19,7 +19,7 @@ describe('StorePageFinal component', () => {
       json: jest.fn().mockResolvedValueOnce(mockProducts),
     });
   
-    const { findByText } = render(<StorePageFinal3 />);
+    const { findByText } = render(<StoreMice />);
     
     
     expect(await findByText('Logitech G102 LIGHTSYNC Black')).toBeInTheDocument();
@@ -36,7 +36,7 @@ describe('StorePageFinal component', () => {
       json: jest.fn().mockResolvedValueOnce(mockProducts),
     });
   
-    const { findByText, queryByText, getByLabelText } = render(<StorePageFinal3 />);
+    const { findByText, queryByText, getByLabelText } = render(<StoreMice />);
   
     expect(await findByText('Logitech G102 LIGHTSYNC Black')).toBeInTheDocument();
     expect(await findByText('ASUS ROG Harpe Ace Aim Lab Edition, White')).toBeInTheDocument();
@@ -63,7 +63,7 @@ describe('StorePageFinal component', () => {
       json: jest.fn().mockResolvedValueOnce(mockProducts),
     });
   
-    const { findByText, queryByText, getByLabelText } = render(<StorePageFinal3 />);
+    const { findByText, queryByText, getByLabelText } = render(<StoreMice />);
   
     expect(await findByText('Logitech G102 LIGHTSYNC Black')).toBeInTheDocument();
     expect(await findByText('ASUS ROG Harpe Ace Aim Lab Edition, White')).toBeInTheDocument();
@@ -90,7 +90,7 @@ describe('StorePageFinal component', () => {
       json: jest.fn().mockResolvedValueOnce(mockProducts),
     });
   
-    const { findByText, queryByText, getByLabelText } = render(<StorePageFinal3 />);
+    const { findByText, queryByText, getByLabelText } = render(<StoreMice />);
   
     expect(await findByText('Logitech G102 LIGHTSYNC Black')).toBeInTheDocument();
     expect(await findByText('ASUS ROG Harpe Ace Aim Lab Edition, White')).toBeInTheDocument();
@@ -117,7 +117,7 @@ describe('StorePageFinal component', () => {
       json: jest.fn().mockResolvedValueOnce(mockProducts),
     });
 
-    const { findByText, queryByText, getByPlaceholderText, getByText } = render(<StorePageFinal3 />);
+    const { findByText, queryByText, getByPlaceholderText, getByText } = render(<StoreMice />);
     
    
     expect(await findByText('Logitech G102 LIGHTSYNC Black')).toBeInTheDocument();

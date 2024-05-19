@@ -4,9 +4,10 @@ import { MemoryRouter as Router, Routes } from 'react-router-dom';
 import App from './App';
 import Home from './components/HomePage/Home';
 import Login from './components/Login/Login';
-import Store3 from './components/StorePageFinal/StorePageFinal';
-import Store4 from './components/StorePageFinal 2/StorePageFinal2';
-import Store5 from './components/StorePageFinal 3/StorePageFinal3';
+import StoreComputers from './components/ComputersStorePage/ComputersStorePage';
+import StoreMonitors from './components/MonitorsStorePage/MonitorsStorePage'
+import StoreMice from './components/PCMiceStorePage/PCMiceStorePage'
+import OfficeStore from './components/OfficeProductsPage/StorePageFinal4'
 import ProductDetailsPage from './components/ProductDetailsPage/ProductDetailsPage';
 import Cart from './components/CartPage/Cart';
 import Wishlist from './components/Wishlist/Wishlist';
@@ -39,28 +40,37 @@ test('renders Login component when path is "/login"', () => {
 });
 
 
-test('renders Store3 component when path is "/store/pc"', () => {
+test('renders computer store page component when path is "/store/pc"', () => {
   render(
     <Router initialEntries={['/store/computers']}>
-      <Store3 />
+      <StoreComputers />
     </Router>
   );
 //   expect(screen.getByText(/PC Store Page/i)).toBeInTheDocument();
 });
 
-test('renders Store4 component when path is "/store/monitors"', () => {
+test('renders monitor store page component when path is "/store/monitors"', () => {
   render(
     <Router initialEntries={['/store/monitors']}>
-      <Store4 />
+      <StoreMonitors />
     </Router>
   );
 //   expect(screen.getByText(/Monitors Store Page/i)).toBeInTheDocument();
 });
 
-test('renders Store5 component when path is "/store/mice"', () => {
+test('renders mice store page component when path is "/store/mice"', () => {
   render(
     <Router initialEntries={['/store/mice']}>
-      <Store5 />
+      <StoreMice />
+    </Router>
+  );
+//   expect(screen.getByText(/Mice Store Page/i)).toBeInTheDocument();
+});
+
+test('renders office store page component when path is "/store/mice"', () => {
+  render(
+    <Router initialEntries={['/store/office']}>
+      <OfficeStore />
     </Router>
   );
 //   expect(screen.getByText(/Mice Store Page/i)).toBeInTheDocument();
