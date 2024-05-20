@@ -45,16 +45,19 @@ const Cart = () => {
   const handleRemoveFromCart = async (productId) => {
     const db = getFirestore();
     const orderRef = doc(db, 'Cart', productId);
-
+  
     try {
       await deleteDoc(orderRef);
-      setUserProducts(prevProducts => prevProducts.filter(product => product.id !== productId));
-      setIsEmpty(userProducts.length === 0);
+      setUserProducts(prevProducts => {
+        const updatedProducts = prevProducts.filter(product => product.id !== productId);
+        setIsEmpty(updatedProducts.length === 0);
+        return updatedProducts;
+      });
     } catch (error) {
       console.error('Error removing product from cart:', error);
     }
   };
-
+  
   const handleQuantityChange = async (productId, newQuantity) => {
     const db = getFirestore();
     const orderRef = doc(db, 'Cart', productId);
